@@ -1,0 +1,83 @@
+[
+  {
+    "uid": "2023년6월전력수요예측전망_v2_p2_id36",
+    "doc": "2023년6월전력수요예측전망_v2",
+    "page": 2,
+    "id": 36,
+    "category": "chart",
+    "path": "/home/user/langchain-study/2023_visuals_output/2023년6월전력수요예측전망_v2/page2_id36_chart.png",
+    "summary": "The chart displays electricity demand forecasts from 2019 to 2023, measured in megawatts (MW). The x-axis represents months (1 to 12), and the y-axis shows demand in MW, ranging from 65,000 to 100,000 MW.\n\n### Key Observations:\n\n- **2023 (Red Line):**\n  - Peaks at 92,613 MW in January.\n  - Lowest demand is 72,292 MW in May.\n  - Ends the year with 90,708 MW in December.\n\n- **2022 (Blue Line):**\n  - Highest demand is 94,509 MW in December.\n  - Lowest demand is 75,206 MW in May.\n\n- **2021 (Pink Line):**\n  - Peaks at 91,141 MW in August.\n  - Lowest demand is 73,001 MW in May.\n\n- **2020 (Green Line):**\n  - Peaks at 92,990 MW in August.\n  - Lowest demand is 66,699 MW in May.\n\n- **2019 (Black Line):**\n  - Peaks at 89,397 MW in January.\n  - Lowest demand is 68,454 MW in November.\n\n### Trends:\n\n- Demand generally peaks in the winter and summer months, with lower demand in spring and fall.\n- 2023 shows a significant peak in January, similar to 2020 and 2022.\n- The lowest demand consistently occurs around May across all years.\n- The demand in 2022 and 2023 is generally higher compared to previous years, indicating an upward trend in electricity demand over time."
+  },
+  {
+    "uid": "2023년6월전력수요예측전망_v2_p2_id39",
+    "doc": "2023년6월전력수요예측전망_v2",
+    "page": 2,
+    "id": 39,
+    "category": "table",
+    "path": "/home/user/langchain-study/2023_visuals_output/2023년6월전력수요예측전망_v2/page2_id39_table.png",
+    "summary": "The table presents electricity demand forecasts for June from 2019 to 2023, focusing on maximum and average loads in megawatts (MW) and their year-on-year growth rates.\n\n### Maximum Load (MW)\n- **2019**: 75,206 MW, with a decrease of 1.8% from the previous year.\n- **2020**: 75,247 MW, a slight increase of 0.1%.\n- **2021**: 75,854 MW, an increase of 0.8%.\n- **2022**: 84,742 MW, a significant increase of 11.7%.\n- **2023**: 80,700 MW, a decrease of 4.8%.\n\n### Average Load (MW)\n- **2019**: 59,672 MW, with a decrease of 2.4%.\n- **2020**: 58,680 MW, a decrease of 1.7%.\n- **2021**: 61,202 MW, an increase of 4.3%.\n- **2022**: 63,726 MW, an increase of 4.1%.\n- **2023**: 62,100 MW, a decrease of 2.6%.\n\n### Trends\n- The maximum load saw a notable increase in 2022 but decreased in 2023.\n- The average load followed a similar pattern, with increases in 2021 and 2022, followed by a decrease in 2023.\n- Both maximum and average loads experienced a decline in 2023 compared to 2022."
+  },
+  {
+    "uid": "2023년6월전력수요예측전망_v2_p3_id45",
+    "doc": "2023년6월전력수요예측전망_v2",
+    "page": 3,
+    "id": 45,
+    "category": "table",
+    "path": "/home/user/langchain-study/2023_visuals_output/2023년6월전력수요예측전망_v2/page3_id45_table.png",
+    "summary": "The table presents the maximum electricity demand (in megawatts, MW) forecasted for each week from May 29 to July 2, 2023. Here's a detailed summary:\n\n- **1st Week (5/29 - 6/4):** The maximum demand is 74,900 MW.\n- **2nd Week (6/5 - 6/11):** The demand increases to 78,600 MW.\n- **3rd Week (6/12 - 6/18):** The demand further rises to 79,700 MW.\n- **4th Week (6/19 - 6/25):** The demand reaches 80,700 MW.\n- **5th Week (6/26 - 7/2):** The demand remains steady at 80,700 MW.\n\n**Trend Analysis:**\n- There is a consistent increase in demand from the 1st to the 4th week.\n- The demand stabilizes in the 4th and 5th weeks at 80,700 MW.\n\nThis trend suggests a growing electricity demand as the weeks progress, with a plateau in the last two weeks of the period."
+  },
+  {
+    "uid": "2023년6월전력수요예측전망_v2_p3_id48",
+    "doc": "2023년6월전력수요예측전망_v2",
+    "page": 3,
+    "id": 48,
+    "category": "table",
+    "path": "/home/user/langchain-study/2023_visuals_output/2023년6월전력수요예측전망_v2/page3_id48_table.png",
+    "summary": "The table presents the maximum electricity demand forecast in megawatts (MW) for each week of July 2023. Here's a detailed summary:\n\n- **1st Week (7/3 - 7/9):** The maximum demand is projected to be 85,500 MW.\n- **2nd Week (7/10 - 7/16):** The demand increases to 88,500 MW.\n- **3rd Week (7/17 - 7/23):** The demand further rises to 92,600 MW.\n- **4th Week (7/24 - 7/30):** The highest demand is expected, reaching 94,700 MW.\n\n**Trend Analysis:**\n- There is a consistent upward trend in electricity demand throughout July.\n- The demand increases by 3,000 MW from the 1st to the 2nd week.\n- From the 2nd to the 3rd week, the increase is 4,100 MW.\n- The final increase from the 3rd to the 4th week is 2,100 MW.\n\nThis trend suggests a growing need for electricity as the month progresses, possibly due to seasonal factors such as increased cooling requirements in the summer."
+  },
+  {
+    "uid": "2023년6월전력수요예측전망_v2_p4_id56",
+    "doc": "2023년6월전력수요예측전망_v2",
+    "page": 4,
+    "id": 56,
+    "category": "table",
+    "path": "/home/user/langchain-study/2023_visuals_output/2023년6월전력수요예측전망_v2/page4_id56_table.png",
+    "summary": "The table provides a weekly forecast for June, focusing on temperature and precipitation trends, along with atmospheric influences.\n\n### Week 1 (5/29 - 6/4)\n- **Influence**: Mainly affected by moving high pressure, with potential influence from pressure troughs.\n- **Temperature**: Likely to be similar to or higher than the average of 19.2~20.2°C, with a 40% probability.\n- **Precipitation**: Likely to be similar to or more than the average of 3.7~15.0mm, with a 40% probability.\n\n### Week 2 (6/5 - 6/11)\n- **Influence**: Mainly affected by upper cold air and moving high pressure.\n- **Temperature**: Likely to be similar to the average of 20.2~21.2°C, with a 50% probability.\n- **Precipitation**: Likely to be similar to or less than the average of 6.4~23.9mm, with a 40% probability.\n\n### Week 3 (6/12 - 6/18)\n- **Influence**: Mainly affected by high pressure, with occasional influence from upper cold air.\n- **Temperature**: Likely to be similar to or higher than the average of 21.0~21.8°C, with a 40% probability.\n- **Precipitation**: Likely to be similar to the average of 8.4~34.7mm, with a 50% probability.\n\n### Week 4 (6/19 - 6/25)\n- **Influence**: Mainly affected by high pressure, with potential influence from pressure troughs passing south.\n- **Temperature**: Likely to be higher than the average of 21.5~22.5°C, with a 50% probability.\n- **Precipitation**: Likely to be similar to the average of 18.9~46.0mm, with a 50% probability.\n\nOverall, the forecast suggests a trend of temperatures being similar to or higher than average, with varying precipitation levels influenced by atmospheric conditions."
+  },
+  {
+    "uid": "2023년6월전력수요예측전망_v2_p4_id59",
+    "doc": "2023년6월전력수요예측전망_v2",
+    "page": 4,
+    "id": 59,
+    "category": "table",
+    "path": "/home/user/langchain-study/2023_visuals_output/2023년6월전력수요예측전망_v2/page4_id59_table.png",
+    "summary": "The table provides a forecast for average temperature and precipitation over four weeks, with probabilities for different scenarios.\n\n### Average Temperature (평균기온)\n- **1st Week (1주):** \n  - Range: 19.2°C to 20.2°C\n  - Probability: Low 20%, Normal 40%, High 40%\n  \n- **2nd Week (2주):** \n  - Range: 20.2°C to 21.2°C\n  - Probability: Low 30%, Normal 50%, High 20%\n  \n- **3rd Week (3주):** \n  - Range: 21.0°C to 21.8°C\n  - Probability: Low 20%, Normal 40%, High 40%\n  \n- **4th Week (4주):** \n  - Range: 21.5°C to 22.5°C\n  - Probability: Low 10%, Normal 40%, High 50%\n\n### Precipitation (강수량)\n- **1st Week (1주):** \n  - Range: 3.7mm to 15.0mm\n  - Probability: Low 20%, Normal 40%, High 40%\n  \n- **2nd Week (2주):** \n  - Range: 6.4mm to 23.9mm\n  - Probability: Low 40%, Normal 40%, High 20%\n  \n- **3rd Week (3주):** \n  - Range: 8.4mm to 34.7mm\n  - Probability: Low 30%, Normal 50%, High 20%\n  \n- **4th Week (4주):** \n  - Range: 18.9mm to 46.0mm\n  - Probability: Low 30%, Normal 50%, High 20%\n\n### Trends\n- **Temperature:** The average temperature increases gradually each week. The probability of higher temperatures increases in the 4th week.\n- **Precipitation:** The range of precipitation also increases over the weeks, with the highest range in the 4th week. The probability of normal precipitation is consistently high, especially in the 3rd and 4th weeks."
+  },
+  {
+    "uid": "2023년6월전력수요예측전망_v2_p5_id63",
+    "doc": "2023년6월전력수요예측전망_v2",
+    "page": 5,
+    "id": 63,
+    "category": "figure",
+    "path": "/home/user/langchain-study/2023_visuals_output/2023년6월전력수요예측전망_v2/page5_id63_figure.png",
+    "summary": "The figure and table provide a detailed overview of electricity demand forecasts across different regions in South Korea for June, July, and August.\n\n### Figure Analysis:\n\n- **Regions**: The maps show various regions including Seoul, Incheon, Gyeonggi-do, Gangwon-do, Chungcheong-do, Jeolla-do, Gyeongsang-do, and Jeju-do.\n- **Bars**: Each region has two bars representing electricity demand levels: blue for \"low\" and pink for \"high.\"\n- **Values**: \n  - In June, most regions show a higher demand in the \"low\" category (20) compared to \"high\" (40).\n  - In July, the demand shifts with more regions showing increased \"high\" demand (40).\n  - In August, the trend continues with consistent \"high\" demand (40) across most regions.\n\n### Table Analysis:\n\n- **Temperature Ranges**: The table provides average temperature ranges for each region over the three months.\n  - **June**: Ranges from 21.1°C to 22.7°C.\n  - **July**: Ranges from 24.0°C to 25.2°C.\n  - **August**: Ranges from 24.5°C to 25.9°C.\n- **Regional Details**:\n  - **Seoul, Incheon, Gyeonggi-do**: \n    - June: 21.5°C - 22.1°C\n    - July: 24.2°C - 25.2°C\n    - August: 24.8°C - 25.9°C\n  - **Gangwon-do, Yeongseo**: \n    - June: 21.3°C - 22.3°C\n    - July: 23.0°C - 24.0°C\n    - August: 23.2°C - 24.2°C\n  - **Jeju-do**: \n    - June: 21.3°C - 21.9°C\n    - July: 24.3°C - 25.3°C\n    - August: 24.5°C - 25.5°C\n\n### Trends:\n\n- **Increasing Demand**: There is a clear trend of increasing electricity demand from June to August, correlating with rising temperatures.\n- **Regional Variations**: While all regions show increased demand, the extent varies, with some regions like Seoul showing higher demand peaks.\n\nThis analysis highlights the relationship between temperature increases and electricity demand, emphasizing the need for efficient energy management during hotter months."
+  },
+  {
+    "uid": "2023년6월전력수요예측전망_v2_p6_id67",
+    "doc": "2023년6월전력수요예측전망_v2",
+    "page": 6,
+    "id": 67,
+    "category": "figure",
+    "path": "/home/user/langchain-study/2023_visuals_output/2023년6월전력수요예측전망_v2/page6_id67_figure.png",
+    "summary": "The figure illustrates the occurrence probabilities of abnormal low and high temperatures.\n\n### Abnormal Low Temperature (Left Side):\n- **40% Probability**: Conditions similar to or slightly below average.\n- **40% Probability**: Conditions significantly below average.\n- **20% Probability**: Conditions much below average.\n\n### Abnormal High Temperature (Right Side):\n- **20% Probability**: Conditions slightly above average.\n- **40% Probability**: Conditions significantly above average.\n- **40% Probability**: Conditions much above average.\n\n### Summary:\n- For both abnormal low and high temperatures, there is a 40% chance of experiencing conditions that are either similar to or significantly different from the average.\n- The likelihood of experiencing much lower or higher temperatures is 20% for low temperatures and 40% for high temperatures."
+  },
+  {
+    "uid": "2023년6월전력수요예측전망_v2_p6_id69",
+    "doc": "2023년6월전력수요예측전망_v2",
+    "page": 6,
+    "id": 69,
+    "category": "figure",
+    "path": "/home/user/langchain-study/2023_visuals_output/2023년6월전력수요예측전망_v2/page6_id69_figure.png",
+    "summary": "The image appears to be a gauge or scale related to temperature, with two sections labeled in Korean. \n\n- The left side is labeled \"이상저온\" (abnormally low temperature) in blue, with a scale from 0 to 10.\n- The right side is labeled \"이상고온\" (abnormally high temperature) in red, with a scale from 90 to 100.\n\nThe text below the blue section indicates \"평년 최고기온 10퍼센타일 미만\" (below the 10th percentile of average maximum temperature), while the text below the red section indicates \"평년 최고기온 90퍼센타일 초과\" (above the 90th percentile of average maximum temperature).\n\nThis scale likely represents a range of temperature anomalies, with the blue section indicating cooler than average conditions and the red section indicating warmer than average conditions. The context suggests this is part of an electricity demand forecast, where temperature extremes can significantly impact electricity usage."
+  }
+]

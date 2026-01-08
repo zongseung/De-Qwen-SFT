@@ -1,0 +1,101 @@
+[
+  {
+    "uid": "2023년12월전력수요예측전망_결재 (1)_p2_id35",
+    "doc": "2023년12월전력수요예측전망_결재 (1)",
+    "page": 2,
+    "id": 35,
+    "category": "figure",
+    "path": "/home/user/langchain-study/2023_visuals_output/2023년12월전력수요예측전망_결재 (1)/page2_id35_figure.png",
+    "summary": "The graph illustrates electricity demand trends over several years, with data points for each month. The y-axis represents electricity demand in units (likely megawatt-hours), ranging from 65,000 to 100,000. The x-axis represents the months from January (1) to December (12).\n\n### Key Observations:\n\n- **2023 (Red Line):** \n  - Starts at 92,613 in January.\n  - Decreases to a low of 72,292 in May.\n  - Peaks at 93,615 in August.\n  - Ends at 92,300 in December.\n\n- **2022 (Blue Line):**\n  - Begins at 90,564 in January.\n  - Reaches a low of 79,124 in May.\n  - Peaks at 94,509 in August.\n  - Ends at 90,706 in December.\n\n- **2021 (Pink Line):**\n  - Starts at 89,397 in January.\n  - Drops to 75,854 in May.\n  - Peaks at 92,990 in August.\n  - Ends at 82,117 in December.\n\n- **2020 (Green Line):**\n  - Begins at 85,392 in January.\n  - Reaches a low of 66,699 in May.\n  - Peaks at 90,314 in August.\n  - Ends at 81,787 in December.\n\n- **2019 (Black Line):**\n  - Starts at 82,352 in January.\n  - Drops to 65,700 in May.\n  - Peaks at 89,263 in August.\n  - Ends at 74,393 in December.\n\n### Trends:\n\n- **Seasonal Variation:** \n  - All years show a similar pattern of lower demand in the spring (April-May) and higher demand in the summer (July-August).\n  \n- **Yearly Comparison:**\n  - 2023 shows a higher peak in August compared to previous years.\n  - 2020 and 2019 have the lowest demand in May.\n  - 2022 has the highest peak in August among all years.\n\nThis graph provides a clear view of the seasonal fluctuations in electricity demand and highlights the variations across different years."
+  },
+  {
+    "uid": "2023년12월전력수요예측전망_결재 (1)_p2_id38",
+    "doc": "2023년12월전력수요예측전망_결재 (1)",
+    "page": 2,
+    "id": 38,
+    "category": "table",
+    "path": "/home/user/langchain-study/2023_visuals_output/2023년12월전력수요예측전망_결재 (1)/page2_id38_table.png",
+    "summary": "The table provides data on electricity demand in megawatts (MW) for December from 2019 to 2023, focusing on both maximum and average loads, along with their year-over-year growth rates.\n\n### Maximum Load (MW)\n- **2019.12**: 81,787 MW, with a decrease of 5.0% from the previous year.\n- **2020.12**: 85,132 MW, showing an increase of 4.1%.\n- **2021.12**: 90,708 MW, with a growth of 6.5%.\n- **2022.12**: 94,509 MW, increasing by 4.2%.\n- **2023.12**: 92,300 MW, a decrease of 2.3%.\n\n### Average Load (MW)\n- **2019.12**: 66,657 MW, with a decrease of 3.2%.\n- **2020.12**: 67,922 MW, showing an increase of 1.9%.\n- **2021.12**: 70,013 MW, with a growth of 3.1%.\n- **2022.12**: 73,576 MW, increasing by 5.1%.\n- **2023.12**: 70,800 MW, a decrease of 3.8%.\n\n### Trends\n- **Maximum Load**: There was a consistent increase from 2019 to 2022, peaking in 2022, followed by a decline in 2023.\n- **Average Load**: Similar to the maximum load, there was a steady increase from 2019 to 2022, with a peak in 2022, and a subsequent decrease in 2023.\n\nOverall, both maximum and average loads show a trend of growth until 2022, followed by a decline in 2023."
+  },
+  {
+    "uid": "2023년12월전력수요예측전망_결재 (1)_p3_id44",
+    "doc": "2023년12월전력수요예측전망_결재 (1)",
+    "page": 3,
+    "id": 44,
+    "category": "table",
+    "path": "/home/user/langchain-study/2023_visuals_output/2023년12월전력수요예측전망_결재 (1)/page3_id44_table.png",
+    "summary": "The table presents the projected maximum electricity demand in megawatts (MW) for December 2023, broken down by week. Here's a detailed summary:\n\n- **1st Week (12/4 - 12/10):** The maximum demand is projected to be 86,600 MW.\n- **2nd Week (12/11 - 12/17):** The demand increases to 90,600 MW.\n- **3rd Week (12/18 - 12/24):** A slight increase is observed, with the demand reaching 90,800 MW.\n- **4th Week (12/25 - 12/31):** The demand peaks at 92,300 MW.\n\n**Trend Analysis:**\n- There is a consistent upward trend in electricity demand throughout December.\n- The demand starts at 86,600 MW in the first week and increases steadily each week, reaching its highest point of 92,300 MW in the last week.\n- The most significant increase occurs between the 1st and 2nd weeks, with a rise of 4,000 MW."
+  },
+  {
+    "uid": "2023년12월전력수요예측전망_결재 (1)_p3_id47",
+    "doc": "2023년12월전력수요예측전망_결재 (1)",
+    "page": 3,
+    "id": 47,
+    "category": "table",
+    "path": "/home/user/langchain-study/2023_visuals_output/2023년12월전력수요예측전망_결재 (1)/page3_id47_table.png",
+    "summary": "The table presents the projected maximum electricity demand (in megawatts, MW) for each week of January. Here's a detailed summary:\n\n- **1st Week (1/1 - 1/7):** The maximum demand is projected to be 92,000 MW.\n- **2nd Week (1/8 - 1/14):** The demand increases to 93,500 MW.\n- **3rd Week (1/15 - 1/21):** The demand further rises to 94,300 MW.\n- **4th Week (1/22 - 1/28):** The demand slightly decreases to 94,000 MW.\n\n**Trend Analysis:**\n- There is a general upward trend in electricity demand from the 1st to the 3rd week.\n- The demand peaks in the 3rd week at 94,300 MW.\n- A slight decrease is observed in the 4th week, dropping to 94,000 MW."
+  },
+  {
+    "uid": "2023년12월전력수요예측전망_결재 (1)_p4_id55",
+    "doc": "2023년12월전력수요예측전망_결재 (1)",
+    "page": 4,
+    "id": 55,
+    "category": "table",
+    "path": "/home/user/langchain-study/2023_visuals_output/2023년12월전력수요예측전망_결재 (1)/page4_id55_table.png",
+    "summary": "The table provides a weekly forecast for December, focusing on atmospheric pressure influences and expected temperature and precipitation levels.\n\n### December 1st Week (12/4 - 12/10)\n- **Influence**: High pressure systems, with potential influence from low pressure in the south.\n- **Temperature**: 40% chance of being similar to or higher than the average (1.2~3.0°C).\n- **Precipitation**: 40% chance of being similar to or more than the average (3.7~12.0mm).\n\n### December 2nd Week (12/11 - 12/17)\n- **Influence**: Predominantly high pressure systems.\n- **Temperature**: 50% chance of being similar to the average (0.0~2.0°C).\n- **Precipitation**: 50% chance of being similar to the average (2.5~4.8mm).\n\n### December 3rd Week (12/18 - 12/24)\n- **Influence**: Mainly mobile high pressure systems, with occasional cold spells from high pressure.\n- **Temperature**: 40% chance of being similar to or higher than the average (-0.2~2.0°C).\n- **Precipitation**: 50% chance of being similar to the average (1.3~4.2mm).\n\n### December 4th Week (12/25 - 12/31)\n- **Influence**: Mainly mobile high pressure systems, with potential influence from low pressure in the south.\n- **Temperature**: 50% chance of being higher than the average (-1.4~0.4°C).\n- **Precipitation**: 50% chance of being similar to or more than the average (0.8~3.8mm).\n\nOverall, the forecast suggests varying influences of high and low pressure systems throughout December, with temperature and precipitation levels fluctuating around their respective averages."
+  },
+  {
+    "uid": "2023년12월전력수요예측전망_결재 (1)_p4_id58",
+    "doc": "2023년12월전력수요예측전망_결재 (1)",
+    "page": 4,
+    "id": 58,
+    "category": "table",
+    "path": "/home/user/langchain-study/2023_visuals_output/2023년12월전력수요예측전망_결재 (1)/page4_id58_table.png",
+    "summary": "The table provides a forecast for temperature and precipitation over four weeks, with probabilities for different conditions.\n\n### Temperature Forecast:\n- **1st Week:**\n  - Average Range: 1.2°C to 3.0°C\n  - Probability: Low 20%, Normal 40%, High 40%\n- **2nd Week:**\n  - Average Range: 0.0°C to 2.0°C\n  - Probability: Low 20%, Normal 50%, High 30%\n- **3rd Week:**\n  - Average Range: -0.2°C to 2.0°C\n  - Probability: Low 20%, Normal 40%, High 40%\n- **4th Week:**\n  - Average Range: -1.4°C to 0.4°C\n  - Probability: Low 20%, Normal 30%, High 50%\n\n### Precipitation Forecast:\n- **1st Week:**\n  - Average Range: 3.7mm to 12.0mm\n  - Probability: Low 20%, Normal 40%, High 40%\n- **2nd Week:**\n  - Average Range: 2.5mm to 4.9mm\n  - Probability: Low 20%, Normal 50%, High 30%\n- **3rd Week:**\n  - Average Range: 1.3mm to 4.2mm\n  - Probability: Low 20%, Normal 50%, High 30%\n- **4th Week:**\n  - Average Range: 0.8mm to 3.8mm\n  - Probability: Low 20%, Normal 30%, High 50%\n\n### Trends:\n- **Temperature:** The probability of higher temperatures increases in the 4th week.\n- **Precipitation:** The likelihood of higher precipitation is greatest in the 4th week.\n\nThis forecast suggests a trend towards cooler temperatures and potentially more precipitation as the month progresses."
+  },
+  {
+    "uid": "2023년12월전력수요예측전망_결재 (1)_p5_id62",
+    "doc": "2023년12월전력수요예측전망_결재 (1)",
+    "page": 5,
+    "id": 62,
+    "category": "figure",
+    "path": "/home/user/langchain-study/2023_visuals_output/2023년12월전력수요예측전망_결재 (1)/page5_id62_figure.png",
+    "summary": "The figure shows regional electricity demand forecasts for December, January, and February across various regions in South Korea. Each region is represented with three bars indicating different levels of demand: low (blue), average (gray), and high (red).\n\n### December:\n- **Seoul, Incheon, Gyeonggi-do**: Low 20, Average 40, High 40\n- **Gangwon-do, Chungcheongbuk-do, Chungcheongnam-do, Jeollabuk-do, Jeollanam-do, Gyeongsangbuk-do, Gyeongsangnam-do, Jeju-do**: Low 20, Average 40, High 40\n- **Gwangju, Daejeon, Ulsan, Busan, Daegu**: Low 20, Average 40, High 40\n\n### January:\n- **Seoul, Incheon, Gyeonggi-do**: Low 20, Average 30, High 50\n- **Gangwon-do, Chungcheongbuk-do, Chungcheongnam-do, Jeollabuk-do, Jeollanam-do, Gyeongsangbuk-do, Gyeongsangnam-do, Jeju-do**: Low 20, Average 30, High 50\n- **Gwangju, Daejeon, Ulsan, Busan, Daegu**: Low 20, Average 30, High 50\n\n### February:\n- **Seoul, Incheon, Gyeonggi-do**: Low 20, Average 40, High 40\n- **Gangwon-do, Chungcheongbuk-do, Chungcheongnam-do, Jeollabuk-do, Jeollanam-do, Gyeongsangbuk-do, Gyeongsangnam-do, Jeju-do**: Low 20, Average 40, High 40\n- **Gwangju, Daejeon, Ulsan, Busan, Daegu**: Low 20, Average 40, High 40\n\n### Trends:\n- **December and February**: Consistent demand levels across all regions with low at 20, average at 40, and high at 40.\n- **January**: Increase in high demand to 50 across all regions, with low at 20 and average at 30.\n\n### Contextual Summary:\n- The table below the maps indicates the national average temperature range for each month:\n  - December: 0.5 to 1.7°C\n  - January: -1.5 to -0.3°C\n  - February: 0.6 to 1.8°C\n\nThe data suggests that January experiences the highest electricity demand, likely due to colder temperatures, while December and February have similar demand levels."
+  },
+  {
+    "uid": "2023년12월전력수요예측전망_결재 (1)_p6_id66",
+    "doc": "2023년12월전력수요예측전망_결재 (1)",
+    "page": 6,
+    "id": 66,
+    "category": "chart",
+    "path": "/home/user/langchain-study/2023_visuals_output/2023년12월전력수요예측전망_결재 (1)/page6_id66_chart.png",
+    "summary": "The chart illustrates the distribution of \"이상저온 발생일수\" (abnormal low-temperature occurrence days) in percentage terms. It is divided into three categories:\n\n1. **적음 (Low)**: Represented by the light green color, this category accounts for 40% of the occurrence days.\n2. **비슷 (Similar)**: Shown in light blue, this also constitutes 40% of the days.\n3. **많음 (High)**: Indicated by the dark blue color, this category makes up 20% of the occurrence days.\n\nThe chart suggests that the majority of the days fall into the \"Low\" and \"Similar\" categories, each with 40%, while a smaller portion, 20%, is categorized as \"High.\" This distribution provides insight into the expected frequency of abnormal low-temperature days."
+  },
+  {
+    "uid": "2023년12월전력수요예측전망_결재 (1)_p6_id67",
+    "doc": "2023년12월전력수요예측전망_결재 (1)",
+    "page": 6,
+    "id": 67,
+    "category": "chart",
+    "path": "/home/user/langchain-study/2023_visuals_output/2023년12월전력수요예측전망_결재 (1)/page6_id67_chart.png",
+    "summary": "The chart illustrates the distribution of \"이상고온 발생일수\" (days of abnormal high temperatures) in three categories: 적음 (few), 보통 (normal), and 많음 (many).\n\n- **20%** of the days fall into the \"적음\" (few) category, represented by the light yellow color.\n- **40%** of the days are categorized as \"보통\" (normal), shown in orange.\n- Another **40%** of the days are in the \"많음\" (many) category, depicted in red.\n\nThe chart indicates that a significant portion of the days, 80% in total, experience either normal or many occurrences of high temperatures, with an equal split between these two categories. Only a smaller portion, 20%, falls into the few category."
+  },
+  {
+    "uid": "2023년12월전력수요예측전망_결재 (1)_p7_id77",
+    "doc": "2023년12월전력수요예측전망_결재 (1)",
+    "page": 7,
+    "id": 77,
+    "category": "figure",
+    "path": "/home/user/langchain-study/2023_visuals_output/2023년12월전력수요예측전망_결재 (1)/page7_id77_figure.png",
+    "summary": "The figure provides a forecast of temperature and precipitation for December 2023, divided into four weekly periods.\n\n### Temperature Forecast:\n\n#### Axes:\n- **Y-Axis**: Temperature deviation from the average (°C).\n- **X-Axis**: Weekly periods in December.\n\n#### Weekly Analysis:\n- **Dec 4 - Dec 10**: \n  - Range: 1.2°C to 3.0°C above average.\n  - Most likely scenario: 40% chance of being similar to or higher than average.\n- **Dec 11 - Dec 17**: \n  - Range: 0.0°C to 2.0°C above average.\n  - Most likely scenario: 50% chance of being similar to average.\n- **Dec 18 - Dec 24**: \n  - Range: -0.9°C to 0.9°C.\n  - Most likely scenario: 40% chance of being similar to or higher than average.\n- **Dec 25 - Dec 31**: \n  - Range: -1.4°C to -0.5°C.\n  - Most likely scenario: 50% chance of being higher than average.\n\n### Precipitation Forecast:\n\n#### Axes:\n- **Y-Axis**: Precipitation deviation from the average (mm).\n- **X-Axis**: Weekly periods in December.\n\n#### Weekly Analysis:\n- **Dec 4 - Dec 10**: \n  - Range: 3.7mm to 12.0mm.\n  - Most likely scenario: 40% chance of being similar to or more than average.\n- **Dec 11 - Dec 17**: \n  - Range: 2.5mm to 4.9mm.\n  - Most likely scenario: 50% chance of being similar to average.\n- **Dec 18 - Dec 24**: \n  - Range: 1.3mm to 4.2mm.\n  - Most likely scenario: 50% chance of being similar to average.\n- **Dec 25 - Dec 31**: \n  - Range: 0.8mm to 3.8mm.\n  - Most likely scenario: 50% chance of being more than average.\n\n### Trends:\n- **Temperature**: Generally expected to be above average in early December, with a cooling trend towards the end of the month.\n- **Precipitation**: Likely to be around average, with a slight increase in the likelihood of higher precipitation towards the end of the month."
+  },
+  {
+    "uid": "2023년12월전력수요예측전망_결재 (1)_p8_id80",
+    "doc": "2023년12월전력수요예측전망_결재 (1)",
+    "page": 8,
+    "id": 80,
+    "category": "chart",
+    "path": "/home/user/langchain-study/2023_visuals_output/2023년12월전력수요예측전망_결재 (1)/page8_id80_chart.png",
+    "summary": "The chart provides a monthly overview of various factors affecting electricity supply and grid operations throughout the year. Here's a detailed summary:\n\n### Axes:\n- **Horizontal Axis:** Months from January (1월) to December (12월), divided into seasons: Winter (겨울), Spring (봄), Summer (여름), and Fall (가을).\n- **Vertical Axis:** Different factors impacting electricity supply and grid operations.\n\n### Factors and Trends:\n1. **기상개황 오차 (Weather Forecast Error - Solar):**\n   - High impact in January, March, and December.\n   - Moderate impact in February and November.\n\n2. **기온급변 (Sudden Temperature Change):**\n   - High impact in March and April.\n   - Moderate impact in May.\n\n3. **기온예보 오차 (Temperature Forecast Error):**\n   - High impact in January, February, and December.\n   - Moderate impact in March and November.\n\n4. **건조 (산불) (Dryness - Wildfire):**\n   - High impact from March to May.\n\n5. **폭염·열대야 (Heatwave and Tropical Nights):**\n   - High impact from June to August.\n\n6. **낙뢰 (집중호우) (Lightning - Heavy Rain):**\n   - High impact from June to September.\n\n7. **태풍 (Typhoon):**\n   - High impact from July to September.\n\n8. **폭설·한파 (Heavy Snow and Cold Wave):**\n   - High impact in January, February, and December.\n\n9. **미세먼지 (Fine Dust):**\n   - High impact in January, February, March, and December.\n   - Moderate impact in April and November.\n\n10. **장마 (Monsoon):**\n    - High impact in June and July.\n\n11. **가을장마 (Autumn Monsoon):**\n    - High impact in September.\n\n12. **소나기 (Shower):**\n    - High impact in July and August.\n\n### Additional Notes:\n- **Risk Weather Forecast Implementation:** Active from January to March, June to September, and December.\n- **Wildfire Monitoring Period:** March to May.\n- **Typhoon Monitoring Period:** July to September.\n- **Spring and Autumn Review Period:** March to May and September to November.\n\nThis chart helps in understanding the seasonal challenges and planning for electricity supply and grid operations accordingly."
+  }
+]

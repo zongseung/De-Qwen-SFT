@@ -1,0 +1,74 @@
+[
+  {
+    "uid": "2023년3월전력수요예측전망_p2_id35",
+    "doc": "2023년3월전력수요예측전망",
+    "page": 2,
+    "id": 35,
+    "category": "chart",
+    "path": "/home/user/langchain-study/2023_visuals_output/2023년3월전력수요예측전망/page2_id35_chart.png",
+    "summary": "The chart displays electricity demand forecasts from 2019 to 2023, with the x-axis representing months (1 to 12) and the y-axis showing demand in MW, ranging from 65,000 to 100,000 MW.\n\n### Key Observations:\n\n- **2023 Forecast (Red Line):**\n  - Starts at 92,613 MW in January.\n  - Decreases to 84,290 MW in February and further to 81,200 MW in March.\n\n- **2022 Data (Blue Line):**\n  - Peaks at 94,509 MW in December.\n  - Lowest point is 80,350 MW in October.\n\n- **2021 Data (Pink Line):**\n  - Peaks at 91,141 MW in August.\n  - Lowest point is 68,966 MW in May.\n\n- **2020 Data (Green Line):**\n  - Peaks at 90,314 MW in August.\n  - Lowest point is 66,699 MW in May.\n\n- **2019 Data (Black Line):**\n  - Peaks at 89,397 MW in January.\n  - Lowest point is 73,550 MW in November.\n\n### Trends:\n\n- **Seasonal Variation:**\n  - All years show a general trend of higher demand in the winter and summer months, with lower demand in spring and fall.\n  \n- **2023 Forecast:**\n  - Shows a significant drop from January to March, indicating a potential decrease in demand during early 2023 compared to previous years.\n\nThis chart provides a clear view of the seasonal fluctuations in electricity demand and highlights the expected trends for 2023."
+  },
+  {
+    "uid": "2023년3월전력수요예측전망_p2_id38",
+    "doc": "2023년3월전력수요예측전망",
+    "page": 2,
+    "id": 38,
+    "category": "table",
+    "path": "/home/user/langchain-study/2023_visuals_output/2023년3월전력수요예측전망/page2_id38_table.png",
+    "summary": "The table presents electricity demand forecasts for March from 2019 to 2023, focusing on maximum and average loads in megawatts (MW), along with their year-over-year growth rates.\n\n### Maximum Load (MW)\n- **2019.3월**: 74,136 MW, with a decrease of 6.0% from the previous year.\n- **2020.3월**: 73,329 MW, a further decrease of 1.1%.\n- **2021.3월**: 77,208 MW, an increase of 5.3%.\n- **2022.3월**: 78,233 MW, a smaller increase of 1.3%.\n- **2023.3월**: 81,200 MW, with a growth of 3.8%.\n\n### Average Load (MW)\n- **2019.3월**: 62,494 MW, a slight decrease of 0.9%.\n- **2020.3월**: 60,020 MW, a larger decrease of 4.0%.\n- **2021.3월**: 61,092 MW, an increase of 1.8%.\n- **2022.3월**: 64,398 MW, a significant increase of 5.4%.\n- **2023.3월**: 65,400 MW, with a growth of 1.6%.\n\n### Trends\n- The maximum load shows a general upward trend from 2020 to 2023, with the most significant increase in 2021.\n- The average load also follows an upward trend from 2020, with the largest increase in 2022.\n- Both maximum and average loads experienced declines in 2019 and 2020, followed by recovery and growth in subsequent years."
+  },
+  {
+    "uid": "2023년3월전력수요예측전망_p3_id44",
+    "doc": "2023년3월전력수요예측전망",
+    "page": 3,
+    "id": 44,
+    "category": "table",
+    "path": "/home/user/langchain-study/2023_visuals_output/2023년3월전력수요예측전망/page3_id44_table.png",
+    "summary": "The table presents the maximum electricity demand forecast in megawatts (MW) for each week from February 27 to April 2, 2023. Here's a detailed summary:\n\n- **Week 1 (2/27 - 3/5):** The maximum demand is forecasted at 81,200 MW.\n- **Week 2 (3/6 - 3/12):** The demand slightly decreases to 81,000 MW.\n- **Week 3 (3/13 - 3/19):** The demand continues to decrease to 80,700 MW.\n- **Week 4 (3/20 - 3/26):** A more significant drop is observed, with demand at 78,700 MW.\n- **Week 5 (3/27 - 4/2):** The demand further decreases to 78,200 MW.\n\n**Trend Analysis:**\n- There is a consistent downward trend in the maximum electricity demand over the five-week period.\n- The largest weekly decrease occurs between Week 3 and Week 4, with a drop of 2,000 MW.\n- Overall, the demand decreases by 3,000 MW from Week 1 to Week 5."
+  },
+  {
+    "uid": "2023년3월전력수요예측전망_p3_id47",
+    "doc": "2023년3월전력수요예측전망",
+    "page": 3,
+    "id": 47,
+    "category": "table",
+    "path": "/home/user/langchain-study/2023_visuals_output/2023년3월전력수요예측전망/page3_id47_table.png",
+    "summary": "The table presents the maximum electricity demand forecast in megawatts (MW) for each week of April 2023. Here's a detailed summary:\n\n- **1st Week (April 3 - April 9):** The maximum demand is forecasted to be 75,800 MW.\n- **2nd Week (April 10 - April 16):** The demand slightly decreases to 75,200 MW.\n- **3rd Week (April 17 - April 23):** There is a further decrease in demand to 73,700 MW.\n- **4th Week (April 24 - April 30):** The demand slightly increases to 73,800 MW.\n\n**Trend Analysis:**\n- The demand starts at 75,800 MW in the first week and decreases over the next two weeks, reaching a low of 73,700 MW in the third week.\n- In the fourth week, there is a slight increase to 73,800 MW.\n\nThis trend indicates a general decrease in electricity demand through the month, with a minor uptick in the final week."
+  },
+  {
+    "uid": "2023년3월전력수요예측전망_p4_id55",
+    "doc": "2023년3월전력수요예측전망",
+    "page": 4,
+    "id": 55,
+    "category": "table",
+    "path": "/home/user/langchain-study/2023_visuals_output/2023년3월전력수요예측전망/page4_id55_table.png",
+    "summary": "The table provides a forecast for electricity demand in March 2023, focusing on weekly weather influences and their probabilities.\n\n### March 2nd Week (3/6~3/12)\n- **Weather Influence**: Mainly affected by high-pressure systems.\n- **Temperature**: 60% probability of being higher than the average range of 3.8~5.2°C.\n- **Precipitation**: 50% probability of being similar to the average range of 1.8~14.4mm.\n\n### March 3rd Week (3/13~3/19)\n- **Weather Influence**: Affected by high-pressure systems and low-pressure systems passing to the north.\n- **Temperature**: 50% probability of being higher than the average range of 5.8~7.2°C.\n- **Precipitation**: 40% probability of being similar to or more than the average range of 8.9~17.5mm.\n\n### March 4th Week (3/20~3/26)\n- **Weather Influence**: Affected by high-pressure systems and low-pressure systems passing to the south.\n- **Temperature**: 50% probability of being higher than the average range of 6.4~7.8°C.\n- **Precipitation**: 40% probability of being similar to or more than the average range of 6.2~20.3mm.\n\n### March 5th Week (3/27~4/2)\n- **Weather Influence**: Affected by high-pressure systems and low-pressure systems passing to the south.\n- **Temperature**: 40% probability of being similar to or higher than the average range of 7.8~9.8°C.\n- **Precipitation**: 40% probability of being similar to or more than the average range of 4.5~12.1mm.\n\n### Summary\nThe forecast indicates a consistent influence of high-pressure systems throughout March, with varying probabilities of temperatures being higher than average. Precipitation is expected to be similar to or more than average, with probabilities ranging from 40% to 50%."
+  },
+  {
+    "uid": "2023년3월전력수요예측전망_p4_id58",
+    "doc": "2023년3월전력수요예측전망",
+    "page": 4,
+    "id": 58,
+    "category": "table",
+    "path": "/home/user/langchain-study/2023_visuals_output/2023년3월전력수요예측전망/page4_id58_table.png",
+    "summary": "The table provides a forecast for temperature and precipitation over four weeks, with probabilities for different conditions.\n\n### Temperature Forecast:\n- **2nd Week:**\n  - Average Range: 3.8°C to 5.2°C\n  - Probability: Low (10%), Normal (30%), High (60%)\n\n- **3rd Week:**\n  - Average Range: 5.8°C to 7.2°C\n  - Probability: Low (10%), Normal (40%), High (50%)\n\n- **4th Week:**\n  - Average Range: 6.4°C to 7.8°C\n  - Probability: Low (10%), Normal (40%), High (50%)\n\n- **5th Week:**\n  - Average Range: 7.8°C to 9.8°C\n  - Probability: Low (20%), Normal (40%), High (40%)\n\n### Precipitation Forecast:\n- **2nd Week:**\n  - Average Range: 1.8mm to 14.4mm\n  - Probability: Low (20%), Normal (50%), High (30%)\n\n- **3rd Week:**\n  - Average Range: 8.9mm to 17.5mm\n  - Probability: Low (20%), Normal (40%), High (40%)\n\n- **4th Week:**\n  - Average Range: 6.2mm to 20.3mm\n  - Probability: Low (20%), Normal (40%), High (40%)\n\n- **5th Week:**\n  - Average Range: 4.5mm to 12.1mm\n  - Probability: Low (20%), Normal (40%), High (40%)\n\n### Trends:\n- **Temperature:** There is a gradual increase in the average temperature range from the 2nd to the 5th week. The probability of higher temperatures is consistently significant, especially in the 2nd week.\n- **Precipitation:** The average precipitation range varies, with the highest potential in the 4th week. The probability of normal to high precipitation is consistent across the weeks.\n\nThis forecast suggests a warming trend with variable precipitation, indicating potential impacts on electricity demand due to changing weather conditions."
+  },
+  {
+    "uid": "2023년3월전력수요예측전망_p5_id61",
+    "doc": "2023년3월전력수요예측전망",
+    "page": 5,
+    "id": 61,
+    "category": "figure",
+    "path": "/home/user/langchain-study/2023_visuals_output/2023년3월전력수요예측전망/page5_id61_figure.png",
+    "summary": "The figure shows electricity demand forecasts for March, April, and May across different regions in South Korea. Each region is represented with three bars indicating low, medium, and high demand scenarios.\n\n### March:\n- **Seoul, Incheon, Gyeonggi-do**: Low 10, Medium 50, High 90\n- **Gangwon-do**: Low 10, Medium 50, High 90\n- **Chungcheongbuk-do**: Low 10, Medium 50, High 90\n- **Chungcheongnam-do**: Low 10, Medium 50, High 90\n- **Jeollabuk-do**: Low 10, Medium 50, High 90\n- **Jeollanam-do, Gwangju**: Low 10, Medium 50, High 90\n- **Gyeongsangbuk-do**: Low 10, Medium 50, High 90\n- **Gyeongsangnam-do, Busan, Ulsan**: Low 10, Medium 50, High 90\n- **Jeju-do**: Low 10, Medium 50, High 90\n\n### April:\n- **Seoul, Incheon, Gyeonggi-do**: Low 20, Medium 40, High 40\n- **Gangwon-do**: Low 20, Medium 40, High 40\n- **Chungcheongbuk-do**: Low 20, Medium 40, High 40\n- **Chungcheongnam-do**: Low 20, Medium 40, High 40\n- **Jeollabuk-do**: Low 20, Medium 40, High 40\n- **Jeollanam-do, Gwangju**: Low 20, Medium 40, High 40\n- **Gyeongsangbuk-do**: Low 20, Medium 40, High 40\n- **Gyeongsangnam-do, Busan, Ulsan**: Low 20, Medium 40, High 40\n- **Jeju-do**: Low 20, Medium 40, High 40\n\n### May:\n- **Seoul, Incheon, Gyeonggi-do**: Low 20, Medium 40, High 40\n- **Gangwon-do**: Low 20, Medium 40, High 40\n- **Chungcheongbuk-do**: Low 20, Medium 40, High 40\n- **Chungcheongnam-do**: Low 20, Medium 40, High 40\n- **Jeollabuk-do**: Low 20, Medium 40, High 40\n- **Jeollanam-do, Gwangju**: Low 20, Medium 40, High 40\n- **Gyeongsangbuk-do**: Low 20, Medium 40, High 40\n- **Gyeongsangnam-do, Busan, Ulsan**: Low 20, Medium 40, High 40\n- **Jeju-do**: Low 20, Medium 40, High 40\n\n### Trends:\n- In March, all regions show a high demand scenario of 90, indicating a peak in electricity demand.\n- In April and May, the demand levels are more balanced across low, medium, and high scenarios, with values of 20, 40, and 40, respectively.\n- The demand decreases from March to April and remains stable through May."
+  },
+  {
+    "uid": "2023년3월전력수요예측전망_p6_id65",
+    "doc": "2023년3월전력수요예측전망",
+    "page": 6,
+    "id": 65,
+    "category": "figure",
+    "path": "/home/user/langchain-study/2023_visuals_output/2023년3월전력수요예측전망/page6_id65_figure.png",
+    "summary": "The figure consists of two bar charts, each representing the occurrence probability of abnormal temperatures.\n\n### Left Chart: 이상저온 (Abnormally Low Temperatures)\n- **50%**: 적음 (Low) - Green\n- **40%**: 비슷 (Similar) - Blue\n- **10%**: 많음 (High) - Dark Blue\n\nThe text below indicates that the probability of having lower than average temperatures is 50% compared to the average of 3 days.\n\n### Right Chart: 이상고온 (Abnormally High Temperatures)\n- **10%**: 적음 (Low) - Yellow\n- **40%**: 비슷 (Similar) - Orange\n- **50%**: 많음 (High) - Red\n\nThe text below indicates that the probability of having higher than average temperatures is 50% compared to the average of 3 days.\n\n### Summary\n- For abnormally low temperatures, there is a higher probability (50%) of experiencing lower temperatures than average.\n- For abnormally high temperatures, there is a higher probability (50%) of experiencing higher temperatures than average."
+  }
+]

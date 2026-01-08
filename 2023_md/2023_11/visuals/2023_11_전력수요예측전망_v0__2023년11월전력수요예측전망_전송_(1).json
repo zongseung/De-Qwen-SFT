@@ -1,0 +1,74 @@
+[
+  {
+    "uid": "2023년11월전력수요예측전망_전송 (1)_p2_id35",
+    "doc": "2023년11월전력수요예측전망_전송 (1)",
+    "page": 2,
+    "id": 35,
+    "category": "chart",
+    "path": "/home/user/langchain-study/2023_visuals_output/2023년11월전력수요예측전망_전송 (1)/page2_id35_chart.png",
+    "summary": "The chart displays electricity demand forecasts from 2019 to 2023, with the x-axis representing months (1 to 12) and the y-axis showing demand in megawatts (MW), ranging from 65,000 to 100,000 MW.\n\n### Key Observations:\n\n- **2023 (Red Line):**\n  - Starts at 92,613 MW in January.\n  - Decreases to a low of 72,292 MW in May.\n  - Peaks at 93,615 MW in August.\n  - Ends at 81,900 MW in November.\n\n- **2022 (Blue Line):**\n  - Begins at 90,564 MW in January.\n  - Drops to 70,920 MW in May.\n  - Peaks at 94,509 MW in August.\n  - Ends at 90,709 MW in November.\n\n- **2021 (Pink Line):**\n  - Starts at 89,397 MW in January.\n  - Reaches a low of 73,001 MW in May.\n  - Peaks at 92,990 MW in August.\n  - Ends at 82,117 MW in November.\n\n- **2020 (Green Line):**\n  - Begins at 85,392 MW in January.\n  - Drops to 66,699 MW in May.\n  - Peaks at 86,355 MW in August.\n  - Ends at 74,393 MW in November.\n\n- **2019 (Black Line):**\n  - Starts at 82,352 MW in January.\n  - Reaches a low of 68,454 MW in May.\n  - Peaks at 84,742 MW in August.\n  - Ends at 81,787 MW in November.\n\n### Trends:\n\n- Each year shows a similar pattern of decreasing demand from January to May, followed by an increase peaking in August, and then a decline towards November.\n- 2023 shows the highest peak in August compared to previous years.\n- The demand in 2023 is generally higher than in previous years, indicating an upward trend in electricity demand over the years."
+  },
+  {
+    "uid": "2023년11월전력수요예측전망_전송 (1)_p2_id38",
+    "doc": "2023년11월전력수요예측전망_전송 (1)",
+    "page": 2,
+    "id": 38,
+    "category": "table",
+    "path": "/home/user/langchain-study/2023_visuals_output/2023년11월전력수요예측전망_전송 (1)/page2_id38_table.png",
+    "summary": "The table provides data on electricity demand forecasts for November from 2019 to 2023, focusing on maximum and average loads in megawatts (MW), along with their year-over-year growth rates.\n\n### Maximum Load (MW)\n- **2019.11**: 74,393 MW, with a decrease of 2.0% from the previous year.\n- **2020.11**: 77,096 MW, an increase of 3.6%.\n- **2021.11**: 80,362 MW, an increase of 4.2%.\n- **2022.11**: 82,117 MW, an increase of 2.2%.\n- **2023.11**: 81,900 MW, a slight decrease of 0.3%.\n\n### Average Load (MW)\n- **2019.11**: 61,420 MW, with a decrease of 2.6%.\n- **2020.11**: 60,974 MW, a decrease of 0.7%.\n- **2021.11**: 63,286 MW, an increase of 3.8%.\n- **2022.11**: 62,293 MW, a decrease of 1.6%.\n- **2023.11**: 64,800 MW, an increase of 4.0%.\n\n### Trends\n- The maximum load shows a general upward trend from 2019 to 2022, peaking in 2022, followed by a slight decrease in 2023.\n- The average load fluctuates, with decreases in 2019 and 2020, an increase in 2021, a decrease in 2022, and a notable increase in 2023.\n\nOverall, the data indicates variability in electricity demand, with recent years showing a stabilization in maximum load and a recovery in average load."
+  },
+  {
+    "uid": "2023년11월전력수요예측전망_전송 (1)_p3_id44",
+    "doc": "2023년11월전력수요예측전망_전송 (1)",
+    "page": 3,
+    "id": 44,
+    "category": "table",
+    "path": "/home/user/langchain-study/2023_visuals_output/2023년11월전력수요예측전망_전송 (1)/page3_id44_table.png",
+    "summary": "The table presents the forecasted maximum electricity demand (in megawatts, MW) for each week from October 30 to December 3, 2023. Here's a detailed summary:\n\n- **1st Week (10/30 - 11/5):** The maximum demand is projected to be 72,700 MW.\n- **2nd Week (11/6 - 11/12):** The demand increases slightly to 73,300 MW.\n- **3rd Week (11/13 - 11/19):** A more significant rise is expected, with demand reaching 75,500 MW.\n- **4th Week (11/20 - 11/26):** The demand continues to grow, reaching 79,000 MW.\n- **5th Week (11/27 - 12/3):** The highest demand is forecasted at 81,900 MW.\n\n**Trend Analysis:**\n- There is a consistent upward trend in electricity demand over the five-week period.\n- The increase from the 1st to the 5th week is 9,200 MW, indicating a growing need for electricity as the weeks progress."
+  },
+  {
+    "uid": "2023년11월전력수요예측전망_전송 (1)_p3_id47",
+    "doc": "2023년11월전력수요예측전망_전송 (1)",
+    "page": 3,
+    "id": 47,
+    "category": "table",
+    "path": "/home/user/langchain-study/2023_visuals_output/2023년11월전력수요예측전망_전송 (1)/page3_id47_table.png",
+    "summary": "The table presents the forecasted maximum electricity demand (in megawatts, MW) for each week of December 2023. Here's a detailed summary:\n\n- **1st Week (12/4 - 12/10):** The maximum demand is projected to be 87,400 MW.\n- **2nd Week (12/11 - 12/17):** The demand increases to 91,600 MW.\n- **3rd Week (12/18 - 12/24):** A slight increase is expected, with demand reaching 91,800 MW.\n- **4th Week (12/25 - 12/31):** The demand peaks at 92,700 MW.\n\n**Trend Analysis:**\n- There is a consistent increase in electricity demand throughout December.\n- The demand starts at 87,400 MW in the first week and rises steadily to 92,700 MW by the last week.\n- The most significant increase occurs between the 1st and 2nd weeks, with a rise of 4,200 MW.\n- The increase from the 3rd to the 4th week is 900 MW, indicating a continued upward trend."
+  },
+  {
+    "uid": "2023년11월전력수요예측전망_전송 (1)_p4_id55",
+    "doc": "2023년11월전력수요예측전망_전송 (1)",
+    "page": 4,
+    "id": 55,
+    "category": "table",
+    "path": "/home/user/langchain-study/2023_visuals_output/2023년11월전력수요예측전망_전송 (1)/page4_id55_table.png",
+    "summary": "The table provides a weekly forecast for November, focusing on temperature and precipitation probabilities influenced by atmospheric pressure systems.\n\n### Week 1 (10/30–11/5)\n- **Temperature**: There is a 50% chance that the temperature will be higher than the average range of 9.4–11.2°C.\n- **Precipitation**: There is a 40% chance that precipitation will be similar to or exceed the average range of 2.2–6.9mm.\n\n### Week 2 (11/6–11/12)\n- **Temperature**: There is a 40% chance that the temperature will be similar to or higher than the average range of 9.1–10.7°C.\n- **Precipitation**: There is a 50% chance that precipitation will be similar to the average range of 6.9–15.8mm.\n\n### Week 3 (11/13–11/19)\n- **Temperature**: There is a 50% chance that the temperature will be similar to the average range of 6.1–8.3°C.\n- **Precipitation**: There is a 40% chance that precipitation will be similar to or exceed the average range of 3.0–11.3mm.\n\n### Week 4 (11/20–11/26)\n- **Temperature**: There is a 50% chance that the temperature will be higher than the average range of 4.8–6.2°C.\n- **Precipitation**: There is a 50% chance that precipitation will exceed the average range of 3.3–7.8mm.\n\n### Trends and Influences\n- The forecast indicates the influence of moving high-pressure systems, with occasional impacts from low-pressure systems from the south.\n- Temperature and precipitation probabilities vary weekly, with a general trend of higher temperatures and varying precipitation levels compared to historical averages."
+  },
+  {
+    "uid": "2023년11월전력수요예측전망_전송 (1)_p4_id58",
+    "doc": "2023년11월전력수요예측전망_전송 (1)",
+    "page": 4,
+    "id": 58,
+    "category": "table",
+    "path": "/home/user/langchain-study/2023_visuals_output/2023년11월전력수요예측전망_전송 (1)/page4_id58_table.png",
+    "summary": "The table provides a forecast for temperature and precipitation over four weeks, with probabilities for different conditions.\n\n### Temperature:\n- **1st Week:**\n  - Average Range: 9.4°C to 11.2°C\n  - Probability: Low 10%, Normal 40%, High 50%\n  \n- **2nd Week:**\n  - Average Range: 9.1°C to 10.7°C\n  - Probability: Low 20%, Normal 40%, High 40%\n  \n- **3rd Week:**\n  - Average Range: 6.1°C to 8.3°C\n  - Probability: Low 20%, Normal 50%, High 30%\n  \n- **4th Week:**\n  - Average Range: 4.8°C to 6.2°C\n  - Probability: Low 10%, Normal 40%, High 50%\n\n### Precipitation:\n- **1st Week:**\n  - Average Range: 2.2mm to 6.9mm\n  - Probability: Low 20%, Normal 40%, High 40%\n  \n- **2nd Week:**\n  - Average Range: 6.9mm to 15.8mm\n  - Probability: Low 20%, Normal 50%, High 30%\n  \n- **3rd Week:**\n  - Average Range: 3.0mm to 11.3mm\n  - Probability: Low 20%, Normal 40%, High 40%\n  \n- **4th Week:**\n  - Average Range: 3.3mm to 7.8mm\n  - Probability: Low 20%, Normal 30%, High 50%\n\n### Trends:\n- **Temperature:** The average temperature decreases from the 1st to the 4th week. The probability of high temperatures is significant in the 1st and 4th weeks.\n- **Precipitation:** The average precipitation is highest in the 2nd week. The probability of high precipitation is highest in the 4th week."
+  },
+  {
+    "uid": "2023년11월전력수요예측전망_전송 (1)_p5_id62",
+    "doc": "2023년11월전력수요예측전망_전송 (1)",
+    "page": 5,
+    "id": 62,
+    "category": "figure",
+    "path": "/home/user/langchain-study/2023_visuals_output/2023년11월전력수요예측전망_전송 (1)/page5_id62_figure.png",
+    "summary": "The figure and table provide a forecast of temperature changes across various regions in South Korea for November, December, and January.\n\n### Figure Analysis\n\n- **November**: \n  - Most regions show a temperature range of 20 to 30 degrees.\n  - Jeju-do is slightly warmer, ranging from 30 to 40 degrees.\n\n- **December**: \n  - Temperatures drop, with most regions showing a range of 10 to 20 degrees.\n  - Jeju-do remains warmer, ranging from 20 to 30 degrees.\n\n- **January**: \n  - Further decrease in temperatures, with most regions showing a range of 0 to 10 degrees.\n  - Jeju-do shows a range of 10 to 20 degrees.\n\n### Table Analysis\n\n- **National Average**:\n  - November: 7.0 to 8.2 degrees\n  - December: 0.5 to 1.7 degrees\n  - January: -1.5 to -0.3 degrees\n\n- **Regional Breakdown**:\n  - **Seoul, Incheon, Gyeonggi-do**:\n    - November: 6.1 to 7.3 degrees\n    - December: -1.0 to 0.3 degrees\n    - January: -3.2 to -1.8 degrees\n\n  - **Gangwon-do (Yeongseo)**:\n    - November: 4.0 to 5.2 degrees\n    - December: -3.3 to -1.9 degrees\n    - January: -5.7 to -4.1 degrees\n\n  - **Jeju-do**:\n    - November: 10.0 to 11.6 degrees\n    - December: 5.8 to 7.0 degrees\n    - January: 3.7 to 5.1 degrees\n\n### Trends\n\n- A clear downward trend in temperatures from November to January across all regions.\n- Jeju-do consistently remains the warmest region.\n- The most significant temperature drop is observed from November to December."
+  },
+  {
+    "uid": "2023년11월전력수요예측전망_전송 (1)_p6_id66",
+    "doc": "2023년11월전력수요예측전망_전송 (1)",
+    "page": 6,
+    "id": 66,
+    "category": "figure",
+    "path": "/home/user/langchain-study/2023_visuals_output/2023년11월전력수요예측전망_전송 (1)/page6_id66_figure.png",
+    "summary": "The figure consists of two bar charts representing the occurrence of abnormal temperatures, divided into \"abnormally low\" and \"abnormally high\" temperature events.\n\n### Left Chart: Abnormally Low Temperature Occurrences\n- **Categories**: 적음 (Low), 비슷 (Similar), 많음 (High)\n- **Distribution**:\n  - **적음 (Low)**: 40%\n  - **비슷 (Similar)**: 40%\n  - **많음 (High)**: 20%\n\n### Right Chart: Abnormally High Temperature Occurrences\n- **Categories**: 적음 (Low), 비슷 (Similar), 많음 (High)\n- **Distribution**:\n  - **적음 (Low)**: 20%\n  - **비슷 (Similar)**: 40%\n  - **많음 (High)**: 40%\n\n### Summary\n- For abnormally low temperatures, occurrences are evenly split between low and similar, with fewer high occurrences.\n- For abnormally high temperatures, occurrences are more frequent in the similar and high categories, with fewer low occurrences."
+  }
+]
