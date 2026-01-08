@@ -1,0 +1,83 @@
+[
+  {
+    "uid": "2021년7월전력수요예측전망_p2_id37",
+    "doc": "2021년7월전력수요예측전망",
+    "page": 2,
+    "id": 37,
+    "category": "chart",
+    "path": "/home/user/langchain-study/2021_visuals_output/2021년7월전력수요예측전망/page2_id37_chart.png",
+    "summary": "이 차트는 2017년부터 2021년까지의 월별 전력 수요 예측을 나타내고 있습니다. \n\n- **Y축**: 전력 수요를 MW 단위로 표시하고 있으며, 범위는 60,000MW에서 95,000MW까지입니다.\n- **X축**: 월을 나타내며, 1월부터 12월까지의 데이터를 포함하고 있습니다.\n\n**2021년 전력 수요 추세**:\n- 1월에 90,564MW로 시작하여 5월에 69,318MW로 감소합니다.\n- 이후 8월에 89,300MW로 다시 증가합니다.\n- 연말인 12월에는 86,217MW로 마무리됩니다.\n\n**다른 연도와 비교**:\n- 2018년과 2019년의 경우, 2021년과 유사한 패턴을 보이지만, 2021년의 수요가 전반적으로 더 높습니다.\n- 2020년은 다른 해에 비해 전력 수요가 낮은 편입니다.\n\n이 차트는 전력 수요가 여름과 겨울에 높고, 봄과 가을에 낮은 경향을 보임을 시사합니다.\n\n---\n\nThis chart shows the monthly electricity demand forecast from 2017 to 2021.\n\n- **Y-axis**: Represents electricity demand in MW, ranging from 60,000MW to 95,000MW.\n- **X-axis**: Represents months, from January to December.\n\n**2021 Electricity Demand Trend**:\n- Starts at 90,564MW in January, decreasing to 69,318MW in May.\n- Increases again to 89,300MW in August.\n- Ends the year at 86,217MW in December.\n\n**Comparison with Other Years**:\n- 2018 and 2019 show similar patterns to 2021, but 2021 generally has higher demand.\n- 2020 has relatively lower electricity demand compared to other years.\n\nThe chart indicates that electricity demand tends to be higher in summer and winter, and lower in spring and fall."
+  },
+  {
+    "uid": "2021년7월전력수요예측전망_p2_id40",
+    "doc": "2021년7월전력수요예측전망",
+    "page": 2,
+    "id": 40,
+    "category": "table",
+    "path": "/home/user/langchain-study/2021_visuals_output/2021년7월전력수요예측전망/page2_id40_table.png",
+    "summary": "이 표는 2017년부터 2021년까지 7월의 전력 수요 예측을 최대부하와 평균부하로 나누어 보여주고 있습니다. \n\n1. **최대부하 (MW)**:\n   - 2017년 7월: 86,458 MW (+6.4%)\n   - 2018년 7월: 92,488 MW (+7.0%)\n   - 2019년 7월: 84,399 MW (-8.7%)\n   - 2020년 7월: 76,058 MW (-9.9%)\n   - 2021년 7월: 89,300 MW (+17.4%)\n\n   최대부하는 2018년까지 증가하다가 2019년과 2020년에 감소하였으며, 2021년에 다시 크게 증가하는 추세를 보입니다.\n\n2. **평균부하 (MW)**:\n   - 2017년 7월: 66,391 MW (+5.5%)\n   - 2018년 7월: 69,154 MW (+4.2%)\n   - 2019년 7월: 65,875 MW (-4.7%)\n   - 2020년 7월: 61,154 MW (-7.2%)\n   - 2021년 7월: 64,800 MW (+6.0%)\n\n   평균부하 역시 2018년까지 증가하다가 2019년과 2020년에 감소하였으며, 2021년에 다시 증가하는 경향을 보입니다.\n\n이 표는 전력 수요가 2021년에 다시 증가세로 돌아섰음을 보여주고 있습니다."
+  },
+  {
+    "uid": "2021년7월전력수요예측전망_p3_id46",
+    "doc": "2021년7월전력수요예측전망",
+    "page": 3,
+    "id": 46,
+    "category": "table",
+    "path": "/home/user/langchain-study/2021_visuals_output/2021년7월전력수요예측전망/page3_id46_table.png",
+    "summary": "이 표는 2021년 7월의 주별 최대 부하(MW)를 예측한 것입니다. \n\n- **1주차 (6/28~7/4):** 최대 부하는 77,400 MW입니다.\n- **2주차 (7/5~7/11):** 최대 부하는 80,600 MW로 증가했습니다.\n- **3주차 (7/12~7/18):** 최대 부하는 84,400 MW로 계속 증가했습니다.\n- **4주차 (7/19~7/25):** 최대 부하는 89,300 MW로 증가세를 유지했습니다.\n- **5주차 (7/26~8/1):** 최대 부하는 89,300 MW로 4주차와 동일하게 유지되었습니다.\n\n이 데이터는 7월 동안 최대 부하가 지속적으로 증가하다가 4주차 이후로는 안정화되는 추세를 보여줍니다.\n\n---\n\nThis table forecasts the weekly maximum load (MW) for July 2021.\n\n- **Week 1 (6/28~7/4):** The maximum load is 77,400 MW.\n- **Week 2 (7/5~7/11):** The maximum load increases to 80,600 MW.\n- **Week 3 (7/12~7/18):** The maximum load continues to rise to 84,400 MW.\n- **Week 4 (7/19~7/25):** The maximum load reaches 89,300 MW.\n- **Week 5 (7/26~8/1):** The maximum load remains stable at 89,300 MW, the same as in week 4.\n\nThis data shows a continuous increase in maximum load throughout July, stabilizing after the fourth week."
+  },
+  {
+    "uid": "2021년7월전력수요예측전망_p3_id49",
+    "doc": "2021년7월전력수요예측전망",
+    "page": 3,
+    "id": 49,
+    "category": "table",
+    "path": "/home/user/langchain-study/2021_visuals_output/2021년7월전력수요예측전망/page3_id49_table.png",
+    "summary": "이 표는 2021년 8월의 주별 최대 전력 부하(MW)를 예측한 것입니다. \n\n- **1주 (8/2~8/8):** 최대 부하는 86,900 MW입니다.\n- **2주 (8/9~8/15):** 최대 부하는 90,900 MW로, 1주에 비해 증가했습니다.\n- **3주 (8/16~8/22):** 최대 부하는 88,200 MW로, 2주에 비해 감소했습니다.\n- **4주 (8/23~8/29):** 최대 부하는 86,200 MW로, 3주에 비해 다시 감소했습니다.\n\n**추세:** 2주차에 최대 부하가 가장 높았으며, 이후로는 감소하는 경향을 보입니다. \n\n**Summary in English:**\n\nThis table forecasts the weekly maximum power load (MW) for August 2021.\n\n- **Week 1 (8/2~8/8):** The maximum load is 86,900 MW.\n- **Week 2 (8/9~8/15):** The maximum load increases to 90,900 MW.\n- **Week 3 (8/16~8/22):** The maximum load decreases to 88,200 MW.\n- **Week 4 (8/23~8/29):** The maximum load further decreases to 86,200 MW.\n\n**Trend:** The maximum load peaks in the second week and then shows a decreasing trend."
+  },
+  {
+    "uid": "2021년7월전력수요예측전망_p4_id57",
+    "doc": "2021년7월전력수요예측전망",
+    "page": 4,
+    "id": 57,
+    "category": "table",
+    "path": "/home/user/langchain-study/2021_visuals_output/2021년7월전력수요예측전망/page4_id57_table.png",
+    "summary": "이 표는 2021년 7월의 주별 기상 예측을 나타내고 있습니다. 각 주의 기온과 강수량에 대한 예측이 포함되어 있습니다.\n\n1주 (6.28~7.4):\n- 고기압의 가장자리에 들거나 남쪽을 지나는 저기압의 영향을 받을 것으로 예상됩니다.\n- 주평균기온은 평년(22.6~23.6℃)과 비슷하거나 낮을 확률이 각각 40%입니다.\n- 주강수량은 평년(54.0~83.6mm)과 비슷하거나 많을 확률이 각각 40%입니다.\n\n2주 (7.5~7.11):\n- 대체로 흐린 날이 많고, 남서쪽에서 다가오는 저기압의 영향으로 지역에 따라 많은 비가 내릴 가능성이 있습니다.\n- 주평균기온은 평년(22.9~24.3℃)과 비슷할 확률이 50%입니다.\n- 주강수량은 평년(44.2~92.5mm)과 비슷하거나 많을 확률이 각각 40%입니다.\n\n3주 (7.12~7.18):\n- 고기압의 가장자리에 들거나 저기압의 영향으로 구름 많은 날이 많을 것으로 예상됩니다.\n- 주평균기온은 평년(23.5~24.9℃)과 비슷하거나 높을 확률이 각각 40%입니다.\n- 주강수량은 평년(42.5~86.7mm)과 비슷할 확률이 50%입니다.\n\n4주 (7.19~7.25):\n- 고기압의 가장자리에 들거나 저기압의 영향으로 구름 많은 날이 많을 것으로 예상됩니다.\n- 주평균기온은 평년(24.7~26.3℃)과 비슷할 확률이 50%입니다.\n- 주강수량은 평년(36.2~55.8mm)과 비슷할 확률이 50%입니다.\n\n이 표는 각 주의 기상 조건이 평년과 비슷할 가능성이 높음을 보여주고 있으며, 특히 강수량의 변동성이 클 수 있음을 시사합니다."
+  },
+  {
+    "uid": "2021년7월전력수요예측전망_p4_id61",
+    "doc": "2021년7월전력수요예측전망",
+    "page": 4,
+    "id": 61,
+    "category": "table",
+    "path": "/home/user/langchain-study/2021_visuals_output/2021년7월전력수요예측전망/page4_id61_table.png",
+    "summary": "이 표는 2021년 7월의 주별 평균 기온과 강수량 예측을 나타냅니다.\n\n### 평균기온\n- **1주차**: 22.6°C ~ 23.6°C\n  - 낮음: 40%\n  - 비슷: 40%\n  - 높음: 20%\n- **2주차**: 22.9°C ~ 24.3°C\n  - 낮음: 30%\n  - 비슷: 50%\n  - 높음: 20%\n- **3주차**: 23.5°C ~ 24.9°C\n  - 낮음: 20%\n  - 비슷: 40%\n  - 높음: 40%\n- **4주차**: 24.7°C ~ 26.3°C\n  - 낮음: 20%\n  - 비슷: 50%\n  - 높음: 30%\n\n### 강수량\n- **1주차**: 54.0mm ~ 83.6mm\n  - 적음: 20%\n  - 비슷: 40%\n  - 많음: 40%\n- **2주차**: 44.2mm ~ 92.5mm\n  - 적음: 20%\n  - 비슷: 40%\n  - 많음: 40%\n- **3주차**: 42.5mm ~ 86.7mm\n  - 적음: 30%\n  - 비슷: 50%\n  - 많음: 20%\n- **4주차**: 36.2mm ~ 55.8mm\n  - 적음: 20%\n  - 비슷: 50%\n  - 많음: 30%\n\n### 요약\n- **기온**: 시간이 지남에 따라 평균 기온이 점차 상승하는 경향을 보입니다. 3주차와 4주차에는 높은 기온의 확률이 증가합니다.\n- **강수량**: 1주차와 2주차에는 강수량이 많을 확률이 높으며, 3주차와 4주차에는 비슷한 강수량이 나타날 확률이 높습니다. 4주차에는 강수량이 감소하는 경향을 보입니다."
+  },
+  {
+    "uid": "2021년7월전력수요예측전망_p5_id64",
+    "doc": "2021년7월전력수요예측전망",
+    "page": 5,
+    "id": 64,
+    "category": "figure",
+    "path": "/home/user/langchain-study/2021_visuals_output/2021년7월전력수요예측전망/page5_id64_figure.png",
+    "summary": "이 이미지는 2021년 7월부터 9월까지의 전력 수요 예측을 지역별로 나타낸 것입니다. 각 지역의 전력 수요는 '낮음', '비슷', '높음'으로 구분되어 있으며, 색상으로 표시됩니다. '낮음'은 파란색, '비슷'은 회색, '높음'은 빨간색으로 나타납니다.\n\n### 7월\n- 대부분의 지역에서 전력 수요가 '높음'(빨간색)으로 예측되었습니다.\n- 서울, 인천, 경기, 강원영서, 충청북도, 전라북도, 전라남도, 경상북도, 경상남도, 제주도 모두 '높음'으로 표시되었습니다.\n- 강원영동과 대전, 세종, 충청남도는 '비슷'(회색)으로 예측되었습니다.\n\n### 8월\n- 전반적으로 7월과 비슷하게 '높음'으로 예측된 지역이 많습니다.\n- 강원영동과 충청북도는 '낮음'(파란색)으로 예측되었습니다.\n- 나머지 지역은 대부분 '높음'으로 유지되었습니다.\n\n### 9월\n- 전력 수요가 '비슷'하거나 '낮음'으로 예측된 지역이 증가했습니다.\n- 강원영동, 충청북도, 전라북도, 전라남도, 경상북도, 경상남도, 제주도는 '비슷'으로 예측되었습니다.\n- 서울, 인천, 경기, 강원영서, 대전, 세종, 충청남도는 '낮음'으로 예측되었습니다.\n\n이러한 예측은 여름철 전력 수요가 높아지는 경향을 반영하며, 9월로 갈수록 수요가 감소하는 추세를 보여줍니다."
+  },
+  {
+    "uid": "2021년7월전력수요예측전망_p6_id68",
+    "doc": "2021년7월전력수요예측전망",
+    "page": 6,
+    "id": 68,
+    "category": "figure",
+    "path": "/home/user/langchain-study/2021_visuals_output/2021년7월전력수요예측전망/page6_id68_figure.png",
+    "summary": "이 이미지는 이상저온과 이상고온 발생일수에 대한 확률을 보여줍니다.\n\n1. **이상저온 발생일수**:\n   - 적음: 20%\n   - 비슷: 50%\n   - 많음: 30%\n   - 평균(3일)과 비슷할 확률이 50%입니다.\n\n2. **이상고온 발생일수**:\n   - 적음: 20%\n   - 비슷: 40%\n   - 많음: 40%\n   - 평균(3일)과 비슷하거나 많을 확률이 각각 40%입니다.\n\n이 그래프는 이상저온과 이상고온의 발생일수가 평균과 비슷하거나 많은 경우가 각각 50%와 80%로 나타나고 있음을 보여줍니다.\n\n---\n\nThis image shows the probability of occurrence days for abnormal low and high temperatures.\n\n1. **Abnormal Low Temperature Occurrence Days**:\n   - Low: 20%\n   - Similar: 50%\n   - High: 30%\n   - There is a 50% probability of being similar to the average (3 days).\n\n2. **Abnormal High Temperature Occurrence Days**:\n   - Low: 20%\n   - Similar: 40%\n   - High: 40%\n   - There is a 40% probability of being similar to or higher than the average (3 days).\n\nThe graph indicates that the probability of occurrence days being similar to or higher than average is 50% and 80% for abnormal low and high temperatures, respectively."
+  },
+  {
+    "uid": "2021년7월전력수요예측전망_p6_id71",
+    "doc": "2021년7월전력수요예측전망",
+    "page": 6,
+    "id": 71,
+    "category": "figure",
+    "path": "/home/user/langchain-study/2021_visuals_output/2021년7월전력수요예측전망/page6_id71_figure.png",
+    "summary": "이 이미지는 전력 수요 예측의 불확실성을 나타내는 지표로 보입니다. \n\n- **축 설명**: \n  - 왼쪽 끝은 \"매우 낮음\"으로 표시되어 있으며, 수치로는 10을 나타냅니다.\n  - 오른쪽 끝은 \"매우 높음\"으로 표시되어 있으며, 수치로는 90을 나타냅니다.\n  - 가운데는 \"기준\"으로 표시되어 있습니다.\n\n- **추세 설명**:\n  - \"매우 낮음\"은 최저 예측 기준인 10퍼센타일 미만을 의미합니다.\n  - \"매우 높음\"은 최고 예측 기준인 90퍼센타일 초과를 의미합니다.\n\n이 지표는 전력 수요가 예측보다 낮거나 높을 가능성을 시각적으로 표현하고 있으며, 예측의 불확실성을 이해하는 데 도움을 줍니다. \n\n---\n\nThis image represents an indicator of uncertainty in power demand forecasting.\n\n- **Axis Explanation**:\n  - The left end is labeled \"Very Low\" with a numerical value of 10.\n  - The right end is labeled \"Very High\" with a numerical value of 90.\n  - The center is labeled \"Standard.\"\n\n- **Trend Explanation**:\n  - \"Very Low\" indicates below the 10th percentile of the lowest forecast.\n  - \"Very High\" indicates above the 90th percentile of the highest forecast.\n\nThis indicator visually expresses the likelihood of power demand being lower or higher than forecasted, aiding in understanding the uncertainty of the forecast."
+  }
+]

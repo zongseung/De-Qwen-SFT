@@ -1,0 +1,83 @@
+[
+  {
+    "uid": "2021년12월전력수요예측전망_p2_id37",
+    "doc": "2021년12월전력수요예측전망",
+    "page": 2,
+    "id": 37,
+    "category": "chart",
+    "path": "/home/user/langchain-study/2021_visuals_output/2021년12월전력수요예측전망/page2_id37_chart.png",
+    "summary": "이 차트는 2017년부터 2021년까지의 월별 전력 수요를 나타내고 있습니다. \n\n- **축**: \n  - 세로축은 전력 수요(MW)를 나타내며, 60,000에서 95,000까지 범위입니다.\n  - 가로축은 월을 나타내며, 1월부터 12월까지입니다.\n\n- **수치**:\n  - 2021년의 전력 수요는 1월에 90,564MW로 시작하여 6월에 69,318MW로 최저점을 기록했습니다.\n  - 이후 12월에 89,000MW로 다시 증가하는 추세를 보입니다.\n\n- **추세**:\n  - 2021년은 전반적으로 다른 해에 비해 높은 수요를 보였습니다.\n  - 1월부터 6월까지 감소하다가, 7월부터 다시 증가하는 패턴을 보입니다.\n  - 특히 2021년의 수요는 2018년과 2019년의 수요와 비슷한 경향을 보이지만, 2020년보다는 전반적으로 높습니다.\n\n이 차트는 2021년의 전력 수요가 다른 해에 비해 상대적으로 높았으며, 여름철에 수요가 감소하고 겨울철에 다시 증가하는 전형적인 계절적 패턴을 보여줍니다.\n\n---\n\nThis chart shows the monthly electricity demand from 2017 to 2021.\n\n- **Axes**:\n  - The vertical axis represents electricity demand in MW, ranging from 60,000 to 95,000.\n  - The horizontal axis represents months, from January to December.\n\n- **Figures**:\n  - In 2021, electricity demand started at 90,564 MW in January, reaching a low of 69,318 MW in June.\n  - It then increased to 89,000 MW in December.\n\n- **Trends**:\n  - Overall, 2021 showed higher demand compared to other years.\n  - There is a decrease from January to June, followed by an increase from July onwards.\n  - Notably, the demand in 2021 is similar to 2018 and 2019 but generally higher than in 2020.\n\nThis chart indicates that 2021 had relatively high electricity demand compared to other years, with a typical seasonal pattern of lower demand in summer and higher demand in winter."
+  },
+  {
+    "uid": "2021년12월전력수요예측전망_p2_id40",
+    "doc": "2021년12월전력수요예측전망",
+    "page": 2,
+    "id": 40,
+    "category": "table",
+    "path": "/home/user/langchain-study/2021_visuals_output/2021년12월전력수요예측전망/page2_id40_table.png",
+    "summary": "이 표는 2017년부터 2021년까지 12월의 최대부하와 평균부하를 나타내고 있습니다. \n\n1. **최대부하 (MW)**:\n   - 2017년 12월: 85,846 MW (+7.3%)\n   - 2018년 12월: 86,217 MW (+0.4%)\n   - 2019년 12월: 82,223 MW (-4.6%)\n   - 2020년 12월: 85,448 MW (+3.9%)\n   - 2021년 12월: 89,000 MW (+4.2%)\n\n   최대부하는 2017년부터 2018년까지 소폭 증가하다가 2019년에 감소했으며, 이후 2020년과 2021년에는 다시 증가하는 추세를 보였습니다.\n\n2. **평균부하 (MW)**:\n   - 2017년 12월: 69,337 MW (+5.4%)\n   - 2018년 12월: 68,849 MW (-0.7%)\n   - 2019년 12월: 66,657 MW (-3.2%)\n   - 2020년 12월: 67,922 MW (+1.9%)\n   - 2021년 12월: 69,400 MW (+2.2%)\n\n   평균부하는 2017년부터 2019년까지 감소하다가 2020년과 2021년에는 증가하는 경향을 보였습니다.\n\n이 표는 전력 수요가 2021년 12월에 전년 대비 증가했음을 보여주며, 이는 최대부하와 평균부하 모두에서 확인할 수 있습니다."
+  },
+  {
+    "uid": "2021년12월전력수요예측전망_p3_id46",
+    "doc": "2021년12월전력수요예측전망",
+    "page": 3,
+    "id": 46,
+    "category": "table",
+    "path": "/home/user/langchain-study/2021_visuals_output/2021년12월전력수요예측전망/page3_id46_table.png",
+    "summary": "이 표는 2021년 12월의 주별 최대 전력 수요 예측을 나타내고 있습니다. 각 주의 최대 부하(MW)는 다음과 같습니다:\n\n- 1주 (11/29~12/5): 84,000 MW\n- 2주 (12/6~12/12): 88,100 MW\n- 3주 (12/13~12/19): 88,700 MW\n- 4주 (12/20~12/26): 89,000 MW\n- 5주 (12/27~1/2): 88,700 MW\n\n추세를 보면, 1주에서 2주로 갈수록 수요가 증가하며, 3주와 4주에 걸쳐 최고치를 기록한 후 5주에 약간 감소하는 경향을 보입니다. 이는 연말로 갈수록 전력 수요가 증가하는 경향을 반영한 것으로 보입니다."
+  },
+  {
+    "uid": "2021년12월전력수요예측전망_p3_id49",
+    "doc": "2021년12월전력수요예측전망",
+    "page": 3,
+    "id": 49,
+    "category": "table",
+    "path": "/home/user/langchain-study/2021_visuals_output/2021년12월전력수요예측전망/page3_id49_table.png",
+    "summary": "이 표는 2022년 1월의 주별 최대 전력 부하(MW)를 예측한 것입니다. 각 주의 최대 부하는 다음과 같습니다:\n\n- 1주 (1월 3일 ~ 1월 9일): 90,300 MW\n- 2주 (1월 10일 ~ 1월 16일): 90,100 MW\n- 3주 (1월 17일 ~ 1월 23일): 90,300 MW\n- 4주 (1월 24일 ~ 1월 31일): 90,300 MW\n\n추세를 보면, 2주차에 약간 감소한 90,100 MW를 기록한 후, 나머지 주차에서는 90,300 MW로 일정하게 유지되고 있습니다. 이는 1월 동안 전력 수요가 비교적 안정적으로 유지될 것으로 예상된다는 것을 나타냅니다.\n\nThis table forecasts the maximum power load (MW) for each week of January 2022. The maximum load for each week is as follows:\n\n- Week 1 (Jan 3 - Jan 9): 90,300 MW\n- Week 2 (Jan 10 - Jan 16): 90,100 MW\n- Week 3 (Jan 17 - Jan 23): 90,300 MW\n- Week 4 (Jan 24 - Jan 31): 90,300 MW\n\nThe trend shows a slight decrease to 90,100 MW in the second week, followed by a consistent 90,300 MW in the remaining weeks, indicating relatively stable power demand throughout January."
+  },
+  {
+    "uid": "2021년12월전력수요예측전망_p4_id57",
+    "doc": "2021년12월전력수요예측전망",
+    "page": 4,
+    "id": 57,
+    "category": "table",
+    "path": "/home/user/langchain-study/2021_visuals_output/2021년12월전력수요예측전망/page4_id57_table.png",
+    "summary": "이 표는 2021년 12월의 주별 기온과 강수량 예측을 나타냅니다. 각 주의 기상 조건은 다음과 같습니다:\n\n1주 (11.29~12.5):\n- 찬 대륙고기압이 확장되면서 추운 날이 많을 것으로 예상됩니다.\n- 주평균기온은 평년(9.5~11.3°C)보다 낮을 확률이 50%입니다.\n- 주강수량은 평년(3.6~9.7mm)과 비슷하거나 낮을 확률이 각각 40%입니다.\n\n2주 (12.6~12.12):\n- 대륙고기압과 이동성 고기압의 영향을 받아 기온의 변동폭이 클 것으로 보입니다.\n- 주평균기온은 평년(8.4~10.0°C)과 비슷하거나 낮을 확률이 각각 40%입니다.\n- 주강수량은 평년(3.7~14.2mm)과 비슷하거나 적을 확률이 각각 40%입니다.\n\n3주 (12.13~12.19):\n- 대륙고기압과 이동성 고기압의 영향을 받아 기온의 변동폭이 클 것으로 보입니다.\n- 주평균기온은 평년(5.2~7.4°C)과 비슷하거나 낮을 확률이 각각 40%입니다.\n- 주강수량은 평년(2.7~11.0mm)과 비슷하거나 적을 확률이 각각 40%입니다.\n\n4주 (12.20~12.26):\n- 대륙고기압과 이동성 고기압의 영향을 받겠으나, 일시적으로 기온이 큰 폭으로 떨어질 때가 있을 것으로 예상됩니다.\n- 주평균기온은 평년(4.5~6.1°C)과 비슷하거나 낮을 확률이 각각 40%입니다.\n- 주강수량은 평년(3.9~7.4mm)과 비슷하거나 적을 확률이 각각 40%입니다.\n\n이 표는 12월 동안 대체로 기온이 평년보다 낮고, 강수량은 평년과 비슷하거나 적을 가능성이 높음을 보여줍니다."
+  },
+  {
+    "uid": "2021년12월전력수요예측전망_p4_id61",
+    "doc": "2021년12월전력수요예측전망",
+    "page": 4,
+    "id": 61,
+    "category": "table",
+    "path": "/home/user/langchain-study/2021_visuals_output/2021년12월전력수요예측전망/page4_id61_table.png",
+    "summary": "이 표는 2021년 12월의 주별 평균 기온과 강수량 예측을 나타냅니다.\n\n### 평균 기온\n- **1주차**: 2.8°C ~ 4.4°C\n  - 낮음 확률: 50%\n  - 비슷 확률: 40%\n  - 높음 확률: 10%\n  \n- **2주차**: 0.8°C ~ 2.8°C\n  - 낮음 확률: 40%\n  - 비슷 확률: 40%\n  - 높음 확률: 20%\n  \n- **3주차**: -0.5°C ~ 1.7°C\n  - 낮음 확률: 30%\n  - 비슷 확률: 50%\n  - 높음 확률: 20%\n  \n- **4주차**: -0.1°C ~ 1.9°C\n  - 낮음 확률: 20%\n  - 비슷 확률: 50%\n  - 높음 확률: 30%\n\n### 강수량\n- **1주차**: 2.4mm ~ 14.5mm\n  - 적음 확률: 50%\n  - 비슷 확률: 40%\n  - 많음 확률: 10%\n  \n- **2주차**: 3.2mm ~ 7.9mm\n  - 적음 확률: 40%\n  - 비슷 확률: 40%\n  - 많음 확률: 20%\n  \n- **3주차**: 1.9mm ~ 3.6mm\n  - 적음 확률: 30%\n  - 비슷 확률: 50%\n  - 많음 확률: 20%\n  \n- **4주차**: 1.4mm ~ 3.7mm\n  - 적음 확률: 20%\n  - 비슷 확률: 50%\n  - 많음 확률: 30%\n\n### 요약\n- 기온은 시간이 지남에 따라 점차 낮아지는 경향을 보입니다.\n- 강수량은 1주차에 가장 많고, 이후 주차로 갈수록 감소하는 경향을 보입니다.\n- 기온과 강수량 모두 비슷한 확률이 가장 높게 예측되고 있습니다."
+  },
+  {
+    "uid": "2021년12월전력수요예측전망_p5_id64",
+    "doc": "2021년12월전력수요예측전망",
+    "page": 5,
+    "id": 64,
+    "category": "figure",
+    "path": "/home/user/langchain-study/2021_visuals_output/2021년12월전력수요예측전망/page5_id64_figure.png",
+    "summary": "이 이미지는 2021년 12월부터 2022년 2월까지의 전력 수요 예측을 지역별로 나타낸 것입니다. 각 지역의 평균 기온에 따라 전력 수요가 낮음, 보통, 높음으로 구분되어 있습니다.\n\n- **12월**: 대부분의 지역에서 전력 수요가 '보통' (40)으로 예측되었으며, 경상남도와 제주도는 '낮음' (20)으로 예측되었습니다.\n\n- **1월**: 모든 지역에서 전력 수요가 '보통' (40)으로 예측되었습니다.\n\n- **2월**: 전력 수요가 '보통' (50)으로 증가한 지역이 많으며, 경상남도와 제주도는 '높음' (30)으로 예측되었습니다.\n\n전반적으로 1월에 전력 수요가 가장 높게 예측되었으며, 2월에는 일부 지역에서 수요가 더 증가할 것으로 예상됩니다. 이는 겨울철 기온 변화에 따른 전력 수요의 변동을 반영한 것으로 보입니다.\n\n---\n\nThis image shows the forecasted power demand from December 2021 to February 2022 by region. The power demand is categorized as low, normal, or high based on average temperature.\n\n- **December**: Most regions are expected to have a 'normal' (40) power demand, with Gyeongsangnam-do and Jeju-do predicted to have a 'low' (20) demand.\n\n- **January**: All regions are expected to have a 'normal' (40) power demand.\n\n- **February**: Many regions see an increase to a 'normal' (50) demand, with Gyeongsangnam-do and Jeju-do predicted to have a 'high' (30) demand.\n\nOverall, January is expected to have the highest power demand, with some regions seeing further increases in February. This reflects the changes in power demand due to temperature variations in winter."
+  },
+  {
+    "uid": "2021년12월전력수요예측전망_p6_id68",
+    "doc": "2021년12월전력수요예측전망",
+    "page": 6,
+    "id": 68,
+    "category": "figure",
+    "path": "/home/user/langchain-study/2021_visuals_output/2021년12월전력수요예측전망/page6_id68_figure.png",
+    "summary": "이 이미지는 이상저온과 이상고온의 발생일수에 대한 예측을 보여줍니다.\n\n### 이상저온 발생일수\n- **적음**: 20%\n- **비슷**: 40%\n- **많음**: 40%\n- 설명: 평년(3일)과 비슷하거나 많을 확률이 각각 40%입니다.\n\n### 이상고온 발생일수\n- **적음**: 30%\n- **비슷**: 50%\n- **많음**: 20%\n- 설명: 평년(3일)과 비슷할 확률이 50%입니다.\n\n이 그래프는 이상저온과 이상고온의 발생일수가 평년과 비슷하거나 많은 경우가 많음을 시사합니다. 특히 이상고온의 경우 평년과 비슷할 확률이 절반을 차지하고 있습니다.\n\n---\n\nThis image shows the predicted occurrence days of abnormal cold and hot temperatures.\n\n### Abnormal Cold Occurrence Days\n- **Low**: 20%\n- **Similar**: 40%\n- **High**: 40%\n- Explanation: There is a 40% probability of being similar to or more than the average year (3 days).\n\n### Abnormal Hot Occurrence Days\n- **Low**: 30%\n- **Similar**: 50%\n- **High**: 20%\n- Explanation: There is a 50% probability of being similar to the average year (3 days).\n\nThis graph suggests that the occurrence days of abnormal cold and hot temperatures are likely to be similar to or more than the average year. Notably, for abnormal hot temperatures, there is a 50% probability of being similar to the average year."
+  },
+  {
+    "uid": "2021년12월전력수요예측전망_p6_id70",
+    "doc": "2021년12월전력수요예측전망",
+    "page": 6,
+    "id": 70,
+    "category": "figure",
+    "path": "/home/user/langchain-study/2021_visuals_output/2021년12월전력수요예측전망/page6_id70_figure.png",
+    "summary": "이 이미지는 전력 수요 예측에서의 이상 저온과 이상 고온을 나타내는 지표입니다. \n\n- **이상저온 (파란색)**: 온도가 최저 최고기온 10퍼센타일 미만일 때를 의미합니다. 이는 일반적으로 예상보다 기온이 낮은 상황을 나타냅니다.\n- **이상고온 (빨간색)**: 온도가 최저 최고기온 90퍼센타일 초과일 때를 의미합니다. 이는 예상보다 기온이 높은 상황을 나타냅니다.\n\n이 지표는 전력 수요에 영향을 미치는 기온 변화를 시각적으로 표현하여, 기온이 극단적으로 낮거나 높은 경우를 구분하는 데 사용됩니다. 이러한 기온 변화는 전력 수요에 직접적인 영향을 미칠 수 있습니다."
+  }
+]

@@ -1,0 +1,83 @@
+[
+  {
+    "uid": "2021년5월전력수요예측전망_p2_id37",
+    "doc": "2021년5월전력수요예측전망",
+    "page": 2,
+    "id": 37,
+    "category": "chart",
+    "path": "/home/user/langchain-study/2021_visuals_output/2021년5월전력수요예측전망/page2_id37_chart.png",
+    "summary": "이 차트는 2017년부터 2021년까지의 월별 전력 수요 예측을 나타내고 있습니다. \n\n- **축**: \n  - 세로축은 전력 수요를 MW 단위로 나타내며, 70,000에서 95,000까지의 범위를 가집니다.\n  - 가로축은 월을 나타내며, 1월부터 12월까지의 범위를 가집니다.\n\n- **수치 및 추세**:\n  - 2021년의 경우, 1월에 90,564MW로 시작하여 5월에 69,813MW로 감소한 후, 12월에 86,217MW로 증가하는 추세를 보입니다.\n  - 다른 연도와 비교했을 때, 2021년의 전력 수요는 1월에 가장 높았으며, 5월에 가장 낮았습니다.\n  - 2018년과 2019년은 8월에 최고점을 기록했으며, 2017년과 2020년은 1월에 최고점을 기록했습니다.\n  - 모든 연도에서 전력 수요는 여름과 겨울에 증가하고 봄과 가을에 감소하는 경향을 보입니다.\n\n이 차트는 계절에 따른 전력 수요의 변동을 시각적으로 보여주며, 2021년의 경우 다른 연도에 비해 1월의 수요가 특히 높았음을 알 수 있습니다.\n\n---\n\nThis chart shows the monthly electricity demand forecast from 2017 to 2021.\n\n- **Axes**:\n  - The vertical axis represents electricity demand in MW, ranging from 70,000 to 95,000.\n  - The horizontal axis represents months, ranging from January to December.\n\n- **Figures and Trends**:\n  - For 2021, it starts at 90,564 MW in January, decreases to 69,813 MW in May, and then increases to 86,217 MW in December.\n  - Compared to other years, 2021 had the highest demand in January and the lowest in May.\n  - 2018 and 2019 peaked in August, while 2017 and 2020 peaked in January.\n  - All years show a trend of increasing demand in summer and winter, and decreasing in spring and fall.\n\nThis chart visually represents the seasonal fluctuations in electricity demand, highlighting that January 2021 had particularly high demand compared to other years."
+  },
+  {
+    "uid": "2021년5월전력수요예측전망_p2_id40",
+    "doc": "2021년5월전력수요예측전망",
+    "page": 2,
+    "id": 40,
+    "category": "table",
+    "path": "/home/user/langchain-study/2021_visuals_output/2021년5월전력수요예측전망/page2_id40_table.png",
+    "summary": "이 표는 2017년부터 2021년까지 5월의 최대부하와 평균부하를 나타내고 있습니다. 각 연도의 수치와 전년 대비 증가율(%)이 포함되어 있습니다.\n\n1. **최대부하 (MW)**:\n   - 2017년 5월: 70,072 MW (+2.5%)\n   - 2018년 5월: 73,227 MW (+4.5%)\n   - 2019년 5월: 71,467 MW (-2.4%)\n   - 2020년 5월: 65,700 MW (-8.1%)\n   - 2021년 5월: 70,200 MW (+6.8%)\n\n   **추세**: 2018년까지 증가하다가 2019년과 2020년에 감소했으며, 2021년에 다시 증가했습니다.\n\n2. **평균부하 (MW)**:\n   - 2017년 5월: 56,713 MW (+1.4%)\n   - 2018년 5월: 58,898 MW (+3.9%)\n   - 2019년 5월: 58,126 MW (-1.3%)\n   - 2020년 5월: 53,720 MW (-7.6%)\n   - 2021년 5월: 57,000 MW (+6.1%)\n\n   **추세**: 2018년까지 증가하다가 2019년과 2020년에 감소했으며, 2021년에 다시 증가했습니다.\n\n이 표는 전력 수요의 변동성을 보여주며, 2021년에는 전년 대비 수요가 회복되는 경향을 보였습니다.\n\n---\n\nThis table shows the maximum and average power load for May from 2017 to 2021, including the figures and year-on-year growth rates (%).\n\n1. **Maximum Load (MW)**:\n   - May 2017: 70,072 MW (+2.5%)\n   - May 2018: 73,227 MW (+4.5%)\n   - May 2019: 71,467 MW (-2.4%)\n   - May 2020: 65,700 MW (-8.1%)\n   - May 2021: 70,200 MW (+6.8%)\n\n   **Trend**: Increased until 2018, decreased in 2019 and 2020, and increased again in 2021.\n\n2. **Average Load (MW)**:\n   - May 2017: 56,713 MW (+1.4%)\n   - May 2018: 58,898 MW (+3.9%)\n   - May 2019: 58,126 MW (-1.3%)\n   - May 2020: 53,720 MW (-7.6%)\n   - May 2021: 57,000 MW (+6.1%)\n\n   **Trend**: Increased until 2018, decreased in 2019 and 2020, and increased again in 2021.\n\nThis table illustrates the volatility in power demand, showing a recovery trend in 2021 compared to the previous year."
+  },
+  {
+    "uid": "2021년5월전력수요예측전망_p3_id46",
+    "doc": "2021년5월전력수요예측전망",
+    "page": 3,
+    "id": 46,
+    "category": "table",
+    "path": "/home/user/langchain-study/2021_visuals_output/2021년5월전력수요예측전망/page3_id46_table.png",
+    "summary": "이 표는 2021년 5월의 주별 최대 부하(MW)를 예측한 것입니다. \n\n- **1주 (5/3~5/9):** 최대 부하는 67,400 MW입니다.\n- **2주 (5/10~5/16):** 최대 부하는 67,900 MW로, 1주에 비해 500 MW 증가했습니다.\n- **3주 (5/17~5/23):** 최대 부하는 68,400 MW로, 2주에 비해 500 MW 증가했습니다.\n- **4주 (5/24~5/30):** 최대 부하는 70,200 MW로, 3주에 비해 1,800 MW 증가했습니다.\n\n전체적으로 주마다 최대 부하가 증가하는 추세를 보이며, 특히 4주 차에 가장 큰 증가폭을 보입니다. 이는 5월 말로 갈수록 전력 수요가 증가할 것으로 예상된다는 것을 나타냅니다.\n\n---\n\nThis table forecasts the weekly maximum load (MW) for May 2021.\n\n- **Week 1 (5/3~5/9):** The maximum load is 67,400 MW.\n- **Week 2 (5/10~5/16):** The maximum load is 67,900 MW, an increase of 500 MW from week 1.\n- **Week 3 (5/17~5/23):** The maximum load is 68,400 MW, an increase of 500 MW from week 2.\n- **Week 4 (5/24~5/30):** The maximum load is 70,200 MW, an increase of 1,800 MW from week 3.\n\nOverall, there is an increasing trend in the maximum load each week, with the most significant increase in week 4, indicating a projected rise in power demand towards the end of May."
+  },
+  {
+    "uid": "2021년5월전력수요예측전망_p3_id49",
+    "doc": "2021년5월전력수요예측전망",
+    "page": 3,
+    "id": 49,
+    "category": "table",
+    "path": "/home/user/langchain-study/2021_visuals_output/2021년5월전력수요예측전망/page3_id49_table.png",
+    "summary": "이 표는 2021년 5월 말부터 6월 말까지의 주별 최대 부하(MW)를 예측한 것입니다. \n\n- **1주차 (5/31~6/6):** 최대 부하는 71,500 MW입니다.\n- **2주차 (6/7~6/13):** 최대 부하는 72,600 MW로, 전주 대비 1,100 MW 증가했습니다.\n- **3주차 (6/14~6/20):** 최대 부하는 74,400 MW로, 전주 대비 1,800 MW 증가했습니다.\n- **4주차 (6/21~6/28):** 최대 부하는 75,200 MW로, 전주 대비 800 MW 증가했습니다.\n\n전체적으로 주차가 지남에 따라 최대 부하가 꾸준히 증가하는 추세를 보이고 있습니다. 이는 여름철로 접어들면서 전력 수요가 증가하는 경향을 반영한 것으로 보입니다.\n\n---\n\nThis table forecasts the weekly maximum load (MW) from the end of May to the end of June 2021.\n\n- **Week 1 (5/31~6/6):** The maximum load is 71,500 MW.\n- **Week 2 (6/7~6/13):** The maximum load is 72,600 MW, an increase of 1,100 MW from the previous week.\n- **Week 3 (6/14~6/20):** The maximum load is 74,400 MW, an increase of 1,800 MW from the previous week.\n- **Week 4 (6/21~6/28):** The maximum load is 75,200 MW, an increase of 800 MW from the previous week.\n\nOverall, there is a consistent upward trend in maximum load as the weeks progress, likely reflecting increased power demand as summer approaches."
+  },
+  {
+    "uid": "2021년5월전력수요예측전망_p4_id57",
+    "doc": "2021년5월전력수요예측전망",
+    "page": 4,
+    "id": 57,
+    "category": "table",
+    "path": "/home/user/langchain-study/2021_visuals_output/2021년5월전력수요예측전망/page4_id57_table.png",
+    "summary": "이 표는 2021년 5월의 주간 기온 및 강수량 예측을 나타냅니다. 각 주의 기상 조건과 관련된 예측이 포함되어 있습니다.\n\n1주 (5.3~5.9):\n- 고기압의 영향으로 건조한 날이 많을 것으로 예상됩니다.\n- 일시적인 상층 찬 공기의 영향으로 기온 변화가 클 것으로 보입니다.\n- 평년대비 주평균기온은 비슷할 확률이 50%, 주강수량은 비슷하거나 적을 확률이 각각 40%입니다.\n\n2주 (5.10~5.16):\n- 따뜻한 공기의 영향을 주로 받으며, 일교차가 큰 날이 많을 것으로 예상됩니다.\n- 평년대비 주평균기온은 높을 확률이 70%, 주강수량은 비슷할 확률이 50%입니다.\n\n3주 (5.17~5.23):\n- 이동성 고기압의 영향을 주로 받으며, 남서쪽에서 다가오는 저기압의 영향을 받을 때가 있을 것으로 보입니다.\n- 평년대비 주평균기온은 높을 확률이 70%, 주강수량은 비슷하거나 많을 확률이 각각 40%입니다.\n\n4주 (5.24~5.30):\n- 따뜻한 공기의 영향을 주로 받으며, 일교차가 큰 날이 많을 것으로 예상됩니다.\n- 평년대비 주평균기온은 높을 확률이 60%, 주강수량은 비슷할 확률이 50%입니다.\n\n이 표는 5월 동안 기온이 대체로 평년보다 높을 가능성이 크며, 강수량은 대체로 평년과 비슷하거나 적을 것으로 예측하고 있습니다."
+  },
+  {
+    "uid": "2021년5월전력수요예측전망_p4_id61",
+    "doc": "2021년5월전력수요예측전망",
+    "page": 4,
+    "id": 61,
+    "category": "table",
+    "path": "/home/user/langchain-study/2021_visuals_output/2021년5월전력수요예측전망/page4_id61_table.png",
+    "summary": "이 표는 2021년 5월의 주별 평균 기온과 강수량 예측을 나타냅니다.\n\n1. **1주차:**\n   - **평균 기온:** 15.6°C ~ 16.8°C\n     - 낮음 확률: 20%\n     - 비슷 확률: 50%\n     - 높음 확률: 30%\n   - **강수량:** 9.2mm ~ 29.8mm\n     - 적음 확률: 40%\n     - 비슷 확률: 40%\n     - 많음 확률: 20%\n\n2. **2주차:**\n   - **평균 기온:** 15.9°C ~ 17.1°C\n     - 낮음 확률: 10%\n     - 비슷 확률: 20%\n     - 높음 확률: 70%\n   - **강수량:** 13.2mm ~ 31.0mm\n     - 적음 확률: 20%\n     - 비슷 확률: 50%\n     - 많음 확률: 30%\n\n3. **3주차:**\n   - **평균 기온:** 17.4°C ~ 18.4°C\n     - 낮음 확률: 10%\n     - 비슷 확률: 20%\n     - 높음 확률: 70%\n   - **강수량:** 6.5mm ~ 29.8mm\n     - 적음 확률: 20%\n     - 비슷 확률: 40%\n     - 많음 확률: 40%\n\n4. **4주차:**\n   - **평균 기온:** 18.1°C ~ 19.5°C\n     - 낮음 확률: 10%\n     - 비슷 확률: 30%\n     - 높음 확률: 60%\n   - **강수량:** 5.3mm ~ 25.0mm\n     - 적음 확률: 20%\n     - 비슷 확률: 50%\n     - 많음 확률: 30%\n\n**추세 요약:**\n- 기온은 주차가 지날수록 점차 상승하는 경향을 보입니다.\n- 강수량은 2주차와 3주차에 비슷하거나 많은 확률이 높아지며, 4주차에는 비슷한 확률이 가장 높습니다."
+  },
+  {
+    "uid": "2021년5월전력수요예측전망_p5_id64",
+    "doc": "2021년5월전력수요예측전망",
+    "page": 5,
+    "id": 64,
+    "category": "figure",
+    "path": "/home/user/langchain-study/2021_visuals_output/2021년5월전력수요예측전망/page5_id64_figure.png",
+    "summary": "이 이미지는 2021년 5월, 6월, 7월의 한국 지역별 전력 수요 예측을 나타내고 있습니다. 각 지역의 전력 수요는 '낮음', '보통', '높음' 세 가지 기준으로 나뉘어 있으며, 각각 파란색, 분홍색, 빨간색으로 표시되어 있습니다.\n\n- **5월**: 대부분의 지역에서 전력 수요가 '높음'(빨간색)으로 예측되었습니다. 서울, 인천, 경기, 강원, 충북, 대전, 세종, 충남, 전북, 광주, 전남, 대구, 경북, 부산, 울산, 경남, 제주 등에서 '높음' 수요가 나타났습니다. 일부 지역은 '낮음'(파란색)으로 예측되었습니다.\n\n- **6월**: 전력 수요가 '보통'(분홍색)으로 예측된 지역이 많아졌습니다. 서울, 인천, 경기, 강원, 충북, 대전, 세종, 충남, 전북, 광주, 전남, 대구, 경북, 부산, 울산, 경남, 제주 등에서 '보통' 수요가 나타났습니다. 일부 지역은 '낮음'으로 예측되었습니다.\n\n- **7월**: 5월과 유사하게 대부분의 지역에서 전력 수요가 '높음'으로 예측되었습니다. 서울, 인천, 경기, 강원, 충북, 대전, 세종, 충남, 전북, 광주, 전남, 대구, 경북, 부산, 울산, 경남, 제주 등에서 '높음' 수요가 나타났습니다. 일부 지역은 '낮음'으로 예측되었습니다.\n\n전반적으로 5월과 7월에는 전력 수요가 높을 것으로 예상되며, 6월에는 다소 완화될 것으로 보입니다."
+  },
+  {
+    "uid": "2021년5월전력수요예측전망_p6_id68",
+    "doc": "2021년5월전력수요예측전망",
+    "page": 6,
+    "id": 68,
+    "category": "figure",
+    "path": "/home/user/langchain-study/2021_visuals_output/2021년5월전력수요예측전망/page6_id68_figure.png",
+    "summary": "이 이미지는 이상저온과 이상고온 발생일수에 대한 확률을 보여줍니다.\n\n- **이상저온 발생일수**:\n  - 적음: 50%\n  - 비슷: 30%\n  - 많음: 20%\n  - 이는 평년(3일)보다 적을 확률이 50%임을 나타냅니다.\n\n- **이상고온 발생일수**:\n  - 적음: 20%\n  - 비슷: 30%\n  - 많음: 50%\n  - 이는 평년(3일)보다 많을 확률이 50%임을 나타냅니다.\n\n이 그래프는 이상저온의 경우 발생일수가 평년보다 적을 가능성이 높고, 이상고온의 경우 발생일수가 평년보다 많을 가능성이 높다는 것을 시사합니다.\n\n---\n\nThis image shows the probability of occurrence days for abnormal low and high temperatures.\n\n- **Abnormal Low Temperature Occurrence Days**:\n  - Less: 50%\n  - Similar: 30%\n  - More: 20%\n  - Indicates a 50% probability of being less than the average (3 days).\n\n- **Abnormal High Temperature Occurrence Days**:\n  - Less: 20%\n  - Similar: 30%\n  - More: 50%\n  - Indicates a 50% probability of being more than the average (3 days).\n\nThe graph suggests that abnormal low temperatures are likely to occur less frequently than average, while abnormal high temperatures are likely to occur more frequently than average."
+  },
+  {
+    "uid": "2021년5월전력수요예측전망_p6_id70",
+    "doc": "2021년5월전력수요예측전망",
+    "page": 6,
+    "id": 70,
+    "category": "figure",
+    "path": "/home/user/langchain-study/2021_visuals_output/2021년5월전력수요예측전망/page6_id70_figure.png",
+    "summary": "이 이미지는 전력 수요 예측에서의 불확실성을 나타내는 지표로 보입니다. \n\n- **축**: 중앙에 '기준'이 위치하고 있으며, 왼쪽으로는 '예상낮음', 오른쪽으로는 '예상높음'이 표시되어 있습니다.\n- **수치**: '예상낮음'은 기준보다 10% 이상 낮은 경우를 의미하고, '예상높음'은 기준보다 10% 이상 높은 경우를 의미합니다.\n- **추세**: 이 지표는 전력 수요가 기준치보다 얼마나 벗어날 수 있는지를 시각적으로 보여주며, 예상보다 낮거나 높은 경우를 각각 파란색과 빨간색으로 구분하고 있습니다.\n\n이러한 정보는 전력 수요 예측의 변동성을 이해하는 데 도움을 줄 수 있습니다.\n\n---\n\nThis image represents an indicator of uncertainty in electricity demand forecasting.\n\n- **Axis**: The center is labeled as 'Standard', with 'Expected Low' on the left and 'Expected High' on the right.\n- **Values**: 'Expected Low' indicates a scenario where demand is more than 10% below the standard, while 'Expected High' indicates a scenario where demand is more than 10% above the standard.\n- **Trend**: This indicator visually shows how much the electricity demand can deviate from the standard, with lower and higher expectations marked in blue and red, respectively.\n\nThis information helps in understanding the variability in electricity demand forecasts."
+  }
+]

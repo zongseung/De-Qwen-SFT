@@ -1,0 +1,56 @@
+[
+  {
+    "uid": "2021년1월전력수요예측전망_v2_p2_id35",
+    "doc": "2021년1월전력수요예측전망_v2",
+    "page": 2,
+    "id": 35,
+    "category": "chart",
+    "path": "/home/user/langchain-study/2021_visuals_output/2021년1월전력수요예측전망_v2/page2_id35_chart.png",
+    "summary": "이 차트는 2017년부터 2021년까지의 월별 전력 수요 예측을 보여줍니다. \n\n- **Y축**: 전력 수요 (단위: 만 kW)\n- **X축**: 월 (1월부터 12월까지)\n\n### 2021년\n- 1월에 가장 높은 수요인 8,900만 kW를 기록했습니다.\n- 이후 5월에 6,570만 kW로 최저점을 찍고, 다시 증가하여 12월에 8,365만 kW로 마무리됩니다.\n\n### 2020년\n- 1월에 8,904만 kW로 시작하여, 5월에 5,936.5만 kW로 최저점을 기록했습니다.\n- 이후 증가하여 12월에 8,365만 kW로 마무리됩니다.\n\n### 2019년\n- 1월에 8,547만 kW로 시작하여, 5월에 6,918.67만 kW로 최저점을 기록했습니다.\n- 8월에 9,249만 kW로 최고점을 기록한 후 감소하여 12월에 8,222만 kW로 마무리됩니다.\n\n### 2018년\n- 1월에 8,374만 kW로 시작하여, 5월에 6,670만 kW로 최저점을 기록했습니다.\n- 8월에 9,249만 kW로 최고점을 기록한 후 감소하여 12월에 8,222만 kW로 마무리됩니다.\n\n### 2017년\n- 1월에 8,268만 kW로 시작하여, 5월에 6,570만 kW로 최저점을 기록했습니다.\n- 이후 증가하여 12월에 8,222만 kW로 마무리됩니다.\n\n### 추세\n- 모든 해에서 전력 수요는 1월에 높고, 5월에 최저점을 기록한 후 다시 증가하는 패턴을 보입니다.\n- 여름철인 7월과 8월에 수요가 다시 증가하는 경향이 있습니다.\n\n이 차트는 계절에 따른 전력 수요의 변동을 명확히 보여주며, 여름과 겨울에 수요가 높아지는 경향을 확인할 수 있습니다.\n\n---\n\nThis chart shows the monthly electricity demand forecast from 2017 to 2021.\n\n- **Y-axis**: Electricity demand (unit: 10,000 kW)\n- **X-axis**: Month (from January to December)\n\n### 2021\n- The highest demand was recorded in January at 8,900,000 kW.\n- It then dropped to a low of 6,570,000 kW in May and increased again to 8,365,000 kW in December.\n\n### 2020\n- Started at 8,904,000 kW in January, hitting a low of 5,936,500 kW in May.\n- It increased to end at 8,365,000 kW in December.\n\n### 2019\n- Began at 8,547,000 kW in January, with a low of 6,918,670 kW in May.\n- Peaked at 9,249,000 kW in August, then decreased to 8,222,000 kW in December.\n\n### 2018\n- Started at 8,374,000 kW in January, with a low of 6,670,000 kW in May.\n- Peaked at 9,249,000 kW in August, then decreased to 8,222,000 kW in December.\n\n### 2017\n- Began at 8,268,000 kW in January, with a low of 6,570,000 kW in May.\n- Increased to end at 8,222,000 kW in December.\n\n### Trend\n- In all years, electricity demand is high in January, hits a low in May, and then increases again.\n- There is a tendency for demand to rise again in the summer months of July and August.\n\nThis chart clearly shows the seasonal fluctuations in electricity demand, with higher demand in summer and winter."
+  },
+  {
+    "uid": "2021년1월전력수요예측전망_v2_p2_id38",
+    "doc": "2021년1월전력수요예측전망_v2",
+    "page": 2,
+    "id": 38,
+    "category": "table",
+    "path": "/home/user/langchain-study/2021_visuals_output/2021년1월전력수요예측전망_v2/page2_id38_table.png",
+    "summary": "이 표는 2017년 1월부터 2021년 1월까지의 최대부하와 평균부하를 나타내고 있습니다. \n\n1. **최대부하 (만kW)**:\n   - 2017년 1월: 8,374 (+0.3%)\n   - 2018년 1월: 8,904 (+6.3%)\n   - 2019년 1월: 8,547 (-4.0%)\n   - 2020년 1월: 8,268 (-3.3%)\n   - 2021년 1월: 8,900 (+7.6%)\n\n   최대부하는 2018년에 큰 증가(+6.3%)를 보였으나, 2019년과 2020년에는 감소세를 보였습니다. 2021년에는 다시 증가(+7.6%)했습니다.\n\n2. **평균부하 (만kW)**:\n   - 2017년 1월: 6,602 (-1.1%)\n   - 2018년 1월: 7,151 (+8.3%)\n   - 2019년 1월: 7,036 (-1.6%)\n   - 2020년 1월: 6,547 (-7.0%)\n   - 2021년 1월: 6,800 (+3.9%)\n\n   평균부하는 2018년에 증가(+8.3%)했으나, 2019년과 2020년에는 감소했습니다. 2021년에는 다시 증가(+3.9%)했습니다.\n\n이 표는 전력 수요의 변동성을 보여주며, 2021년에는 최대부하와 평균부하 모두 증가세로 돌아섰음을 알 수 있습니다.\n\n---\n\nThis table shows the maximum and average loads from January 2017 to January 2021.\n\n1. **Maximum Load (10,000 kW)**:\n   - January 2017: 8,374 (+0.3%)\n   - January 2018: 8,904 (+6.3%)\n   - January 2019: 8,547 (-4.0%)\n   - January 2020: 8,268 (-3.3%)\n   - January 2021: 8,900 (+7.6%)\n\n   The maximum load saw a significant increase in 2018 (+6.3%), but decreased in 2019 and 2020. It increased again in 2021 (+7.6%).\n\n2. **Average Load (10,000 kW)**:\n   - January 2017: 6,602 (-1.1%)\n   - January 2018: 7,151 (+8.3%)\n   - January 2019: 7,036 (-1.6%)\n   - January 2020: 6,547 (-7.0%)\n   - January 2021: 6,800 (+3.9%)\n\n   The average load increased in 2018 (+8.3%) but decreased in 2019 and 2020. It increased again in 2021 (+3.9%).\n\nThis table illustrates the volatility in power demand, with both maximum and average loads returning to an upward trend in 2021."
+  },
+  {
+    "uid": "2021년1월전력수요예측전망_v2_p3_id44",
+    "doc": "2021년1월전력수요예측전망_v2",
+    "page": 3,
+    "id": 44,
+    "category": "table",
+    "path": "/home/user/langchain-study/2021_visuals_output/2021년1월전력수요예측전망_v2/page3_id44_table.png",
+    "summary": "이 표는 2021년 1월의 주별 최대 부하(만 kW)를 나타내고 있습니다. \n\n- **1주차 (1/4~1/10):** 최대 부하는 8,760만 kW입니다.\n- **2주차 (1/11~1/17):** 최대 부하는 8,760만 kW로, 1주차와 동일합니다.\n- **3주차 (1/18~1/24):** 최대 부하는 8,900만 kW로 증가했습니다.\n- **4주차 (1/25~1/31):** 최대 부하는 8,820만 kW로, 3주차보다 약간 감소했습니다.\n\n전반적으로 1주차와 2주차는 동일한 부하를 유지하다가, 3주차에 증가한 후 4주차에 소폭 감소하는 추세를 보입니다.\n\nThis table shows the weekly maximum load (in ten thousand kW) for January 2021.\n\n- **Week 1 (1/4~1/10):** The maximum load is 87,600 MW.\n- **Week 2 (1/11~1/17):** The maximum load remains the same at 87,600 MW.\n- **Week 3 (1/18~1/24):** The maximum load increases to 89,000 MW.\n- **Week 4 (1/25~1/31):** The maximum load slightly decreases to 88,200 MW.\n\nOverall, the load remains constant in weeks 1 and 2, increases in week 3, and slightly decreases in week 4."
+  },
+  {
+    "uid": "2021년1월전력수요예측전망_v2_p3_id47",
+    "doc": "2021년1월전력수요예측전망_v2",
+    "page": 3,
+    "id": 47,
+    "category": "table",
+    "path": "/home/user/langchain-study/2021_visuals_output/2021년1월전력수요예측전망_v2/page3_id47_table.png",
+    "summary": "이 표는 2021년 2월의 주별 최대 부하(만 kW)를 나타내고 있습니다. \n\n- **1주 (2/1~2/7):** 최대 부하는 8,700만 kW입니다.\n- **2주 (2/8~2/14):** 최대 부하는 8,330만 kW로 감소했습니다.\n- **3주 (2/15~2/21):** 최대 부하는 8,470만 kW로 다시 증가했습니다.\n- **4주 (2/22~2/28):** 최대 부하는 8,250만 kW로 감소했습니다.\n\n전반적으로 1주에서 2주로 감소한 후, 3주에 다시 증가하고 4주에 다시 감소하는 추세를 보입니다. \n\nIn English:\n\nThis table shows the weekly maximum load (in ten thousand kW) for February 2021.\n\n- **Week 1 (2/1~2/7):** The maximum load is 87,000 kW.\n- **Week 2 (2/8~2/14):** The maximum load decreases to 83,300 kW.\n- **Week 3 (2/15~2/21):** The maximum load increases to 84,700 kW.\n- **Week 4 (2/22~2/28):** The maximum load decreases to 82,500 kW.\n\nOverall, there is a decrease from week 1 to week 2, an increase in week 3, and a decrease again in week 4."
+  },
+  {
+    "uid": "2021년1월전력수요예측전망_v2_p4_id54",
+    "doc": "2021년1월전력수요예측전망_v2",
+    "page": 4,
+    "id": 54,
+    "category": "table",
+    "path": "/home/user/langchain-study/2021_visuals_output/2021년1월전력수요예측전망_v2/page4_id54_table.png",
+    "summary": "이 표는 2021년 1월의 주별 기상 전망을 나타내고 있습니다. 각 주의 기온과 강수량에 대한 예측이 포함되어 있습니다.\n\n1주 (1.4~1.10):\n- 상층 찬 공기의 영향으로 추운 날이 많을 것으로 예상됩니다.\n- 서해안과 제주도에 다소 많은 눈이 내릴 가능성이 있습니다.\n- 평년 대비 기온은 낮고, 강수량은 비슷하거나 적을 것으로 보입니다.\n\n2주 (1.11~1.17):\n- 1주와 마찬가지로 상층 찬 공기의 영향으로 추운 날이 많을 것입니다.\n- 서해안과 제주도에 다소 많은 눈이 내릴 가능성이 있습니다.\n- 평년 대비 기온은 비슷하거나 낮고, 강수량은 비슷하거나 적을 것으로 예상됩니다.\n\n3주 (1.18~1.24):\n- 대륙고기압과 이동성 고기압의 영향으로 기온의 변동폭이 클 것입니다.\n- 평년 대비 기온은 비슷할 것으로 보이며, 강수량은 비슷하거나 적을 것으로 예상됩니다.\n\n4주 (1.25~1.31):\n- 3주와 마찬가지로 대륙고기압과 이동성 고기압의 영향으로 기온의 변동폭이 클 것입니다.\n- 평년 대비 기온은 비슷할 것으로 보이며, 강수량은 비슷할 것으로 예상됩니다.\n\nOverall, the month is expected to be colder than average with variable precipitation, particularly in coastal and island regions."
+  },
+  {
+    "uid": "2021년1월전력수요예측전망_v2_p4_id57",
+    "doc": "2021년1월전력수요예측전망_v2",
+    "page": 4,
+    "id": 57,
+    "category": "table",
+    "path": "/home/user/langchain-study/2021_visuals_output/2021년1월전력수요예측전망_v2/page4_id57_table.png",
+    "summary": "이 표는 2021년 1월의 주별 평균 기온과 강수량에 대한 예측을 나타냅니다.\n\n1. **평균 기온:**\n   - **1주:** -1.8°C ~ 0.2°C, 낮을 확률 60%, 비슷할 확률 30%, 높을 확률 10%\n   - **2주:** -2.2°C ~ 0.2°C, 낮을 확률 40%, 비슷할 확률 40%, 높을 확률 20%\n   - **3주:** -2.1°C ~ -0.3°C, 낮을 확률 30%, 비슷할 확률 50%, 높을 확률 20%\n   - **4주:** -2.2°C ~ -0.4°C, 낮을 확률 20%, 비슷할 확률 50%, 높을 확률 30%\n\n2. **강수량:**\n   - **1주:** 1.6mm ~ 6.1mm, 적을 확률 60%, 비슷할 확률 30%, 많을 확률 10%\n   - **2주:** 1.4mm ~ 7.7mm, 적을 확률 40%, 비슷할 확률 40%, 많을 확률 20%\n   - **3주:** 2.9mm ~ 7.5mm, 적을 확률 40%, 비슷할 확률 40%, 많을 확률 20%\n   - **4주:** 0.9mm ~ 5.2mm, 적을 확률 20%, 비슷할 확률 50%, 많을 확률 30%\n\n**추세 요약:**\n- 기온은 전반적으로 낮을 확률이 높지만, 주가 지날수록 비슷하거나 높을 확률이 증가합니다.\n- 강수량은 1주차에 적을 확률이 높고, 이후 주차에서는 비슷하거나 많을 확률이 증가하는 경향을 보입니다.\n\n---\n\nThis table presents the weekly forecast for average temperature and precipitation in January 2021.\n\n1. **Average Temperature:**\n   - **Week 1:** -1.8°C to 0.2°C, 60% chance of being low, 30% similar, 10% high\n   - **Week 2:** -2.2°C to 0.2°C, 40% chance of being low, 40% similar, 20% high\n   - **Week 3:** -2.1°C to -0.3°C, 30% chance of being low, 50% similar, 20% high\n   - **Week 4:** -2.2°C to -0.4°C, 20% chance of being low, 50% similar, 30% high\n\n2. **Precipitation:**\n   - **Week 1:** 1.6mm to 6.1mm, 60% chance of being low, 30% similar, 10% high\n   - **Week 2:** 1.4mm to 7.7mm, 40% chance of being low, 40% similar, 20% high\n   - **Week 3:** 2.9mm to 7.5mm, 40% chance of being low, 40% similar, 20% high\n   - **Week 4:** 0.9mm to 5.2mm, 20% chance of being low, 50% similar, 30% high\n\n**Trend Summary:**\n- The temperature is generally more likely to be low, but the probability of being similar or high increases over the weeks.\n- Precipitation is most likely to be low in the first week, with increasing chances of being similar or high in the following weeks."
+  }
+]
