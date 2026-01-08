@@ -1,0 +1,101 @@
+[
+  {
+    "uid": "2024년2월전력수요예측전망_p2_id36",
+    "doc": "2024년2월전력수요예측전망",
+    "page": 2,
+    "id": 36,
+    "category": "figure",
+    "path": "/home/user/langchain-study/2024_visuals_output/2024년2월전력수요예측전망/page2_id36_figure.png",
+    "summary": "The graph illustrates electricity demand forecasts for different years, with the x-axis representing months (1 to 12) and the y-axis showing demand in units (ranging from 65,000 to 100,000).\n\n### Key Observations:\n\n- **2024 Forecast (Red Line):**\n  - Starts at 92,000 in January.\n  - Decreases to 87,200 in February.\n  - Further drops to 80,400 in March.\n  - Shows a gradual increase, peaking at around 93,263 in August.\n  - Ends at 91,556 in December.\n\n- **2023 Data (Blue Line):**\n  - Begins at 92,613 in January.\n  - Dips to 84,250 in March.\n  - Peaks at 93,615 in August.\n  - Ends at 94,509 in December.\n\n- **2022 Data (Pink Line):**\n  - Starts at 90,441 in January.\n  - Lowest point is 71,891 in April.\n  - Peaks at 92,990 in August.\n  - Ends at 91,141 in December.\n\n- **2021 Data (Green Line):**\n  - Begins at 82,392 in January.\n  - Lowest point is 66,539 in April.\n  - Peaks at 86,553 in August.\n  - Ends at 85,132 in December.\n\n- **2020 Data (Black Line):**\n  - Starts at 82,352 in January.\n  - Lowest point is 68,454 in April.\n  - Peaks at 82,091 in August.\n  - Ends at 82,086 in December.\n\n### Trends:\n\n- **Seasonal Variation:**\n  - All years show a similar pattern of lower demand in spring (March-April) and higher demand in summer (July-August).\n\n- **Yearly Comparison:**\n  - 2024 is projected to have higher demand compared to previous years, especially in the early months and towards the end of the year.\n  - 2023 shows a consistent increase in demand, peaking higher than previous years.\n\nThis graph provides a clear view of the expected increase in electricity demand for 2024, with significant peaks during the summer months."
+  },
+  {
+    "uid": "2024년2월전력수요예측전망_p2_id39",
+    "doc": "2024년2월전력수요예측전망",
+    "page": 2,
+    "id": 39,
+    "category": "table",
+    "path": "/home/user/langchain-study/2024_visuals_output/2024년2월전력수요예측전망/page2_id39_table.png",
+    "summary": "The table provides data on electricity demand forecasts for February from 2020 to 2024, focusing on two main metrics: maximum demand (최대부하) and average demand (평균부하), both measured in megawatts (MW). It also includes the year-on-year growth rates in percentages.\n\n### Maximum Demand (최대부하)\n- **2020.2월**: 81,493 MW with a decrease of 1.7% from the previous year.\n- **2021.2월**: 84,749 MW, showing an increase of 4.0%.\n- **2022.2월**: 87,351 MW, with a growth of 3.1%.\n- **2023.2월**: 84,290 MW, experiencing a decrease of 3.5%.\n- **2024.2월**: Forecasted to be 87,200 MW, with an expected increase of 3.5%.\n\n### Average Demand (평균부하)\n- **2020.2월**: 65,053 MW, a decrease of 0.5%.\n- **2021.2월**: 64,837 MW, a slight decrease of 0.3%.\n- **2022.2월**: 69,609 MW, showing a significant increase of 7.4%.\n- **2023.2월**: 68,952 MW, a decrease of 0.9%.\n- **2024.2월**: Forecasted to be 68,600 MW, with a decrease of 0.5%.\n\n### Trends\n- The maximum demand shows fluctuations with increases in 2021 and 2022, a decrease in 2023, and a forecasted increase in 2024.\n- The average demand shows a similar pattern, with a notable increase in 2022, followed by decreases in 2023 and a forecasted decrease in 2024.\n\nOverall, the data indicates variability in electricity demand, with both maximum and average demands expected to rise in 2024 compared to 2023."
+  },
+  {
+    "uid": "2024년2월전력수요예측전망_p3_id45",
+    "doc": "2024년2월전력수요예측전망",
+    "page": 3,
+    "id": 45,
+    "category": "table",
+    "path": "/home/user/langchain-study/2024_visuals_output/2024년2월전력수요예측전망/page3_id45_table.png",
+    "summary": "The table presents the forecasted maximum electricity demand in megawatts (MW) for each week from January 29 to March 3, 2024. Here's a detailed summary:\n\n- **1st Week (1/29 - 2/4):** The maximum demand is projected to be 87,200 MW.\n- **2nd Week (2/5 - 2/11):** The demand decreases to 85,900 MW.\n- **3rd Week (2/12 - 2/18):** The demand further decreases to 84,900 MW.\n- **4th Week (2/19 - 2/25):** The demand continues to decrease to 82,900 MW.\n- **5th Week (2/26 - 3/3):** The demand reaches its lowest at 80,100 MW.\n\n**Trend Analysis:**\n- There is a consistent downward trend in the maximum electricity demand over the five-week period.\n- The demand decreases by 7,100 MW from the first to the fifth week.\n\nThis trend may indicate a seasonal reduction in electricity usage, possibly due to milder weather conditions or other factors affecting demand."
+  },
+  {
+    "uid": "2024년2월전력수요예측전망_p3_id48",
+    "doc": "2024년2월전력수요예측전망",
+    "page": 3,
+    "id": 48,
+    "category": "table",
+    "path": "/home/user/langchain-study/2024_visuals_output/2024년2월전력수요예측전망/page3_id48_table.png",
+    "summary": "The table presents the maximum electricity demand forecast for February 2024, broken down by week. The values are given in megawatts (MW).\n\n- **1st Week (3/4 - 3/10):** The maximum demand is forecasted at 80,400 MW.\n- **2nd Week (3/11 - 3/17):** The demand decreases to 78,800 MW.\n- **3rd Week (3/18 - 3/24):** The demand further decreases to 76,400 MW.\n- **4th Week (3/25 - 3/31):** The demand slightly decreases to 76,000 MW.\n\n**Trend Analysis:**\n- There is a consistent decrease in maximum electricity demand from the 1st week to the 4th week.\n- The largest drop occurs between the 1st and 2nd weeks, with a decrease of 1,600 MW.\n- The decrease from the 2nd to the 3rd week is 2,400 MW, and from the 3rd to the 4th week is 400 MW.\n\nThis trend suggests a gradual reduction in electricity demand as the month progresses."
+  },
+  {
+    "uid": "2024년2월전력수요예측전망_p4_id56",
+    "doc": "2024년2월전력수요예측전망",
+    "page": 4,
+    "id": 56,
+    "category": "table",
+    "path": "/home/user/langchain-study/2024_visuals_output/2024년2월전력수요예측전망/page4_id56_table.png",
+    "summary": "The table provides a weekly forecast for February, focusing on the influence of high and low-pressure systems on temperature and precipitation.\n\n### Week 1 (1/29 - 2/4)\n- **Pressure Influence**: Mainly influenced by mobile high pressure, with potential low-pressure influence.\n- **Temperature**: 60% probability of being higher than the average range (-1.8 to 0.2°C).\n- **Precipitation**: 40% probability of being similar to or more than the average (1.1 to 3.1mm).\n\n### Week 2 (2/5 - 2/11)\n- **Pressure Influence**: Influenced by both mobile and stationary high pressure, with potential low-pressure influence.\n- **Temperature**: 40% probability of being similar to or higher than the average range (-0.8 to 1.0°C).\n- **Precipitation**: 40% probability of being similar to or more than the average (1.0 to 3.8mm).\n\n### Week 3 (2/12 - 2/18)\n- **Pressure Influence**: Influenced by both mobile and stationary high pressure, with potential low-pressure influence.\n- **Temperature**: 40% probability of being similar to or higher than the average range (0.6 to 2.2°C).\n- **Precipitation**: 40% probability of being similar to or more than the average (3.1 to 9.3mm).\n\n### Week 4 (2/19 - 2/25)\n- **Pressure Influence**: Influenced by both mobile and stationary high pressure, with significant temperature fluctuations.\n- **Temperature**: 40% probability of being similar to or higher than the average range (1.2 to 3.4°C).\n- **Precipitation**: 50% probability of being similar to the average (1.8 to 16.2mm).\n\nOverall, the forecast suggests a general trend of higher temperatures and varying precipitation levels, with significant influence from high-pressure systems throughout February."
+  },
+  {
+    "uid": "2024년2월전력수요예측전망_p4_id59",
+    "doc": "2024년2월전력수요예측전망",
+    "page": 4,
+    "id": 59,
+    "category": "table",
+    "path": "/home/user/langchain-study/2024_visuals_output/2024년2월전력수요예측전망/page4_id59_table.png",
+    "summary": "The table provides a forecast for temperature and precipitation over four weeks in February 2024. Here's a detailed summary:\n\n### Temperature Forecast\n- **1st Week:**\n  - **Range:** -1.8°C to 0.2°C\n  - **Probability:** Low (10%), Normal (30%), High (60%)\n\n- **2nd Week:**\n  - **Range:** -0.8°C to 1.0°C\n  - **Probability:** Low (20%), Normal (40%), High (40%)\n\n- **3rd Week:**\n  - **Range:** 0.6°C to 2.2°C\n  - **Probability:** Low (20%), Normal (40%), High (40%)\n\n- **4th Week:**\n  - **Range:** 1.2°C to 3.4°C\n  - **Probability:** Low (20%), Normal (50%), High (30%)\n\n### Precipitation Forecast\n- **1st Week:**\n  - **Range:** 1.1mm to 3.1mm\n  - **Probability:** Low (20%), Normal (40%), High (40%)\n\n- **2nd Week:**\n  - **Range:** 1.0mm to 3.8mm\n  - **Probability:** Low (30%), Normal (50%), High (20%)\n\n- **3rd Week:**\n  - **Range:** 3.1mm to 9.3mm\n  - **Probability:** Low (30%), Normal (50%), High (20%)\n\n- **4th Week:**\n  - **Range:** 1.8mm to 16.2mm\n  - **Probability:** Low (20%), Normal (40%), High (40%)\n\n### Trends\n- **Temperature:** There is a gradual increase in the temperature range from the 1st to the 4th week.\n- **Precipitation:** The 3rd week shows the highest potential range of precipitation, while the 4th week has the widest range.\n\nThis forecast suggests a warming trend throughout February, with varying precipitation levels, particularly in the 3rd and 4th weeks."
+  },
+  {
+    "uid": "2024년2월전력수요예측전망_p5_id63",
+    "doc": "2024년2월전력수요예측전망",
+    "page": 5,
+    "id": 63,
+    "category": "figure",
+    "path": "/home/user/langchain-study/2024_visuals_output/2024년2월전력수요예측전망/page5_id63_figure.png",
+    "summary": "The figure and table provide an overview of electricity demand forecasts for February, March, and April across various regions in South Korea. The maps show the expected demand levels, categorized as low (blue), medium (gray), and high (red).\n\n### February\n- **Regions with High Demand (40):** Seoul, Incheon, Gyeonggi-do, Gangwon-do, Chungcheongbuk-do, Jeollabuk-do, Gyeongsangbuk-do, Gyeongsangnam-do.\n- **Regions with Medium Demand (30):** Daejeon, Sejong, Chungcheongnam-do, Jeollanam-do.\n- **Regions with Low Demand (20):** Gwangju, Daegu, Ulsan, Busan, Jeju-do.\n\n### March\n- **Regions with High Demand (50):** Seoul, Incheon, Gyeonggi-do, Gangwon-do, Chungcheongbuk-do, Jeollabuk-do, Gyeongsangbuk-do, Gyeongsangnam-do.\n- **Regions with Medium Demand (40):** Daejeon, Sejong, Chungcheongnam-do, Jeollanam-do.\n- **Regions with Low Demand (20):** Gwangju, Daegu, Ulsan, Busan, Jeju-do.\n\n### April\n- **Regions with High Demand (50):** Jeju-do.\n- **Regions with Medium Demand (40):** Seoul, Incheon, Gyeonggi-do, Gangwon-do, Chungcheongbuk-do, Jeollabuk-do, Gyeongsangbuk-do, Gyeongsangnam-do.\n- **Regions with Low Demand (20):** Daejeon, Sejong, Chungcheongnam-do, Jeollanam-do, Gwangju, Daegu, Ulsan, Busan.\n\n### Table Summary\n- **February:** Nationwide average temperature range is 0.6 - 1.8°C.\n- **March:** Nationwide average temperature range is 5.6 - 6.6°C.\n- **April:** Nationwide average temperature range is 11.6 - 12.6°C.\n\nThe data indicates a general increase in electricity demand from February to March, with a slight decrease in April, except for Jeju-do, which shows a high demand in April. The temperature ranges suggest a correlation between rising temperatures and increased electricity demand, likely due to heating needs in the earlier months and cooling needs in April."
+  },
+  {
+    "uid": "2024년2월전력수요예측전망_p6_id67",
+    "doc": "2024년2월전력수요예측전망",
+    "page": 6,
+    "id": 67,
+    "category": "figure",
+    "path": "/home/user/langchain-study/2024_visuals_output/2024년2월전력수요예측전망/page6_id67_figure.png",
+    "summary": "The figure presents two bar charts comparing the occurrence probabilities of abnormal low and high temperatures.\n\n### Abnormal Low Temperatures (이상저온):\n- **Adequate (적음):** 40%\n- **Similar (비슷):** 40%\n- **Many (많음):** 20%\n\nThe chart indicates that there is a 40% probability of experiencing either adequate or similar occurrences of abnormal low temperatures compared to the average of 3 days, with a 20% probability of many occurrences.\n\n### Abnormal High Temperatures (이상고온):\n- **Adequate (적음):** 20%\n- **Similar (비슷):** 40%\n- **Many (많음):** 40%\n\nFor abnormal high temperatures, there is a 20% probability of adequate occurrences, while the probabilities for similar and many occurrences are both 40%.\n\n### Summary:\nBoth charts show a balanced probability distribution for similar occurrences (40%) in both low and high temperatures. However, there is a higher probability of many occurrences for high temperatures (40%) compared to low temperatures (20%)."
+  },
+  {
+    "uid": "2024년2월전력수요예측전망_p6_id70",
+    "doc": "2024년2월전력수요예측전망",
+    "page": 6,
+    "id": 70,
+    "category": "figure",
+    "path": "/home/user/langchain-study/2024_visuals_output/2024년2월전력수요예측전망/page6_id70_figure.png",
+    "summary": "The image is a color-coded bar indicating temperature conditions. It is divided into two sections:\n\n1. **Left Section (Blue - 이상저온):**\n   - Represents \"abnormally low temperatures.\"\n   - The arrow points left, indicating temperatures below the 10th percentile.\n\n2. **Right Section (Red - 이상고온):**\n   - Represents \"abnormally high temperatures.\"\n   - The arrow points right, indicating temperatures above the 90th percentile.\n\nThis figure likely relates to the context of electricity demand forecasting for February 2024, suggesting that temperature extremes (either too low or too high) could impact electricity consumption patterns."
+  },
+  {
+    "uid": "2024년2월전력수요예측전망_p7_id79",
+    "doc": "2024년2월전력수요예측전망",
+    "page": 7,
+    "id": 79,
+    "category": "figure",
+    "path": "/home/user/langchain-study/2024_visuals_output/2024년2월전력수요예측전망/page7_id79_figure.png",
+    "summary": "The figure provides a forecast for average temperature and precipitation for February, March, and April.\n\n### Average Temperature (평균기온)\n\n- **February:**\n  - Range: 0.6°C to 1.8°C\n  - Expected: 1.2°C\n  - Probability: 20% chance of being below average, 40% chance of being average or above.\n\n- **March:**\n  - Range: 5.6°C to 6.6°C\n  - Expected: 6.1°C\n  - Probability: 20% chance of being below average, 30% chance of being average, 50% chance of being above average.\n\n- **April:**\n  - Range: 11.6°C to 12.6°C\n  - Expected: 12.1°C\n  - Probability: 20% chance of being below average, 40% chance of being average or above.\n\n### Precipitation (강수량)\n\n- **February:**\n  - Range: 27.5mm to 44.9mm\n  - Expected: 32.3mm\n  - Probability: 20% chance of being below average, 40% chance of being average or above.\n\n- **March:**\n  - Range: 42.7mm to 58.5mm\n  - Expected: 52.4mm\n  - Probability: 20% chance of being below average, 50% chance of being average or above.\n\n- **April:**\n  - Range: 70.3mm to 99.3mm\n  - Expected: 81.7mm\n  - Probability: 20% chance of being below average, 40% chance of being average or above.\n\n### Trends\n\n- **Temperature:** \n  - Gradual increase from February to April.\n  - Higher probability of above-average temperatures in March.\n\n- **Precipitation:**\n  - Increase from February to April.\n  - March has a higher probability of above-average precipitation compared to February and April."
+  },
+  {
+    "uid": "2024년2월전력수요예측전망_p8_id82",
+    "doc": "2024년2월전력수요예측전망",
+    "page": 8,
+    "id": 82,
+    "category": "chart",
+    "path": "/home/user/langchain-study/2024_visuals_output/2024년2월전력수요예측전망/page8_id82_chart.png",
+    "summary": "The chart provides a monthly overview of various weather and environmental factors affecting electricity demand throughout the year. Here's a detailed summary:\n\n### Axes:\n- **Horizontal Axis:** Represents the months from January (1월) to December (12월).\n- **Vertical Axis:** Lists different factors such as weather anomalies, temperature deviations, construction, and natural events.\n\n### Trends and Numerical Values:\n1. **Weather Anomalies (기상개황 오차):**\n   - Occur in January, February, and December.\n\n2. **Temperature Levels (기온급변, 기온예보 오차):**\n   - Temperature fluctuations are noted in February, March, and June.\n   - Temperature forecast errors are observed in January, February, and March.\n\n3. **Construction (건조):**\n   - Significant activity from January to May, with a peak in March.\n\n4. **Heatwaves (폭염·열대야):**\n   - Predominantly in July and August.\n\n5. **Cold Waves (낙하집중호우):**\n   - Notable in June and September.\n\n6. **Typhoons (태풍):**\n   - Monitored from June to September, with a focus in August.\n\n7. **Special Weather Patterns (특성·한파):**\n   - Occur in January, February, and December.\n\n8. **Fine Dust (미세먼지):**\n   - High levels from January to May, with a peak in March.\n\n9. **Rainy Season (장마):**\n   - Primarily in July.\n\n10. **Autumn Rainy Season (가을장마):**\n    - Observed in September.\n\n11. **Showers (소나기):**\n    - Occur in June and July.\n\n### Additional Monitoring Periods:\n- **Weather Forecast Testing (기상예보관계 시험):** January to March.\n- **Electricity Demand Measures (전력수급대책기간):** June to August.\n- **Construction Monitoring (산불 집중감시 기간):** January to May.\n- **Typhoon Monitoring (태풍 집중감시 기간):** June to September.\n- **Seasonal Monitoring (춘·추계 강부하 기간):** March to May and September to November.\n\nThis chart helps in understanding the seasonal impacts on electricity demand, highlighting periods of increased monitoring and potential challenges due to weather and environmental factors."
+  }
+]
