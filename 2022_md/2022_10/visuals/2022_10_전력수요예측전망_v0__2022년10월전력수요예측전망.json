@@ -1,0 +1,74 @@
+[
+  {
+    "uid": "2022년10월전력수요예측전망_p2_id36",
+    "doc": "2022년10월전력수요예측전망",
+    "page": 2,
+    "id": 36,
+    "category": "chart",
+    "path": "/home/user/langchain-study/2022_visuals_output/2022년10월전력수요예측전망/page2_id36_chart.png",
+    "summary": "The chart displays electricity demand forecasts for different years, with the y-axis representing demand in megawatts (MW) ranging from 60,000 to 95,000 MW, and the x-axis representing months from January (1) to December (12).\n\n### Key Observations:\n\n- **2022 (Red Line):**\n  - Peaks in January at 90,564 MW.\n  - Lowest demand in May at 71,879 MW.\n  - Another peak in August at 92,990 MW.\n  - Ends the year in December with 86,083 MW.\n\n- **2021 (Blue Line):**\n  - Starts at 89,391 MW in January.\n  - Lowest point in May at 68,966 MW.\n  - Peaks in August at 89,263 MW.\n  - Ends at 85,134 MW in December.\n\n- **2018 (Black Line):**\n  - Peaks in August at 91,548 MW.\n  - Lowest in May at 66,599 MW.\n\n- **2019 (Green Line):**\n  - Peaks in August at 90,311 MW.\n  - Lowest in May at 65,700 MW.\n\n- **2020 (Purple Line):**\n  - Peaks in August at 89,091 MW.\n  - Lowest in May at 65,700 MW.\n\n### Trends:\n\n- **Seasonal Variation:**\n  - All years show a similar pattern with peaks in winter (January) and summer (August), and lower demand in spring (May).\n\n- **2022 Forecast:**\n  - Shows higher peaks compared to previous years, indicating an expected increase in demand.\n\nThis chart provides a clear visualization of the seasonal fluctuations in electricity demand and highlights the anticipated increase in demand for 2022."
+  },
+  {
+    "uid": "2022년10월전력수요예측전망_p2_id39",
+    "doc": "2022년10월전력수요예측전망",
+    "page": 2,
+    "id": 39,
+    "category": "table",
+    "path": "/home/user/langchain-study/2022_visuals_output/2022년10월전력수요예측전망/page2_id39_table.png",
+    "summary": "The table presents electricity demand forecasts for October from 2018 to 2022, focusing on two key metrics: maximum load (최대부하) and average load (평균부하), both measured in megawatts (MW). The table also shows the year-on-year growth rate in percentage.\n\n### Maximum Load (최대부하)\n- **2018.10월**: 70,329 MW with a growth rate of +0.3%\n- **2019.10월**: 73,550 MW with a growth rate of +4.6%\n- **2020.10월**: 68,454 MW with a growth rate of -6.9%\n- **2021.10월**: 75,698 MW with a growth rate of +10.6%\n- **2022.10월**: 75,400 MW with a growth rate of -0.4%\n\n### Average Load (평균부하)\n- **2018.10월**: 59,587 MW with a growth rate of -1.6%\n- **2019.10월**: 58,363 MW with a growth rate of +1.5%\n- **2020.10월**: 56,627 MW with a growth rate of -0.4%\n- **2021.10월**: 59,775 MW with a growth rate of +1.3%\n- **2022.10월**: 61,800 MW with a growth rate of +3.1%\n\n### Trends\n- **Maximum Load**: There was a significant increase in 2021 (+10.6%) after a decrease in 2020 (-6.9%). However, in 2022, the maximum load slightly decreased by 0.4%.\n- **Average Load**: The average load showed a consistent increase from 2020 to 2022, with the highest growth rate in 2022 (+3.1%).\n\nOverall, the data indicates fluctuations in maximum load, while the average load shows a more stable upward trend in recent years."
+  },
+  {
+    "uid": "2022년10월전력수요예측전망_p3_id45",
+    "doc": "2022년10월전력수요예측전망",
+    "page": 3,
+    "id": 45,
+    "category": "table",
+    "path": "/home/user/langchain-study/2022_visuals_output/2022년10월전력수요예측전망/page3_id45_table.png",
+    "summary": "The table presents the maximum electricity demand forecast in megawatts (MW) for October 2022, broken down by week. Here's a detailed summary:\n\n- **1st Week (10/3 - 10/9):** The maximum demand is forecasted to be 75,400 MW.\n- **2nd Week (10/10 - 10/16):** The demand decreases to 73,000 MW.\n- **3rd Week (10/17 - 10/23):** The demand further decreases to 71,200 MW.\n- **4th Week (10/24 - 10/30):** The demand reaches its lowest at 69,700 MW.\n\n**Trend Analysis:**\n- There is a consistent decrease in the maximum electricity demand over the four weeks of October.\n- The demand drops by 5,700 MW from the first to the fourth week, indicating a gradual reduction in electricity needs as the month progresses."
+  },
+  {
+    "uid": "2022년10월전력수요예측전망_p3_id48",
+    "doc": "2022년10월전력수요예측전망",
+    "page": 3,
+    "id": 48,
+    "category": "table",
+    "path": "/home/user/langchain-study/2022_visuals_output/2022년10월전력수요예측전망/page3_id48_table.png",
+    "summary": "The table presents the maximum electricity demand forecast in megawatts (MW) for four consecutive weeks. Here's a detailed summary:\n\n- **1st Week (10/31 - 11/6):** The maximum demand is forecasted at 72,800 MW.\n- **2nd Week (11/7 - 11/13):** The demand increases to 75,300 MW.\n- **3rd Week (11/14 - 11/20):** The demand further rises to 77,300 MW.\n- **4th Week (11/21 - 11/27):** The demand peaks at 82,600 MW.\n\n**Trend Analysis:**\n- There is a consistent upward trend in electricity demand over the four weeks.\n- The increase from the 1st to the 4th week is 9,800 MW, indicating a significant rise in demand as the month progresses."
+  },
+  {
+    "uid": "2022년10월전력수요예측전망_p4_id57",
+    "doc": "2022년10월전력수요예측전망",
+    "page": 4,
+    "id": 57,
+    "category": "table",
+    "path": "/home/user/langchain-study/2022_visuals_output/2022년10월전력수요예측전망/page4_id57_table.png",
+    "summary": "The table provides a weekly forecast for October, focusing on temperature and precipitation influenced by atmospheric pressure systems.\n\n### Week 1 (10/3 - 10/9)\n- **Temperature**: The average temperature is expected to be between 15.7°C and 16.9°C. There is a 40% chance of temperatures being similar or higher.\n- **Precipitation**: The average rainfall is expected to be between 1.1mm and 10.2mm, with a 40% chance of being similar or more.\n\n### Week 2 (10/10 - 10/16)\n- **Temperature**: The average temperature is expected to be between 14.5°C and 15.5°C, with a 50% chance of being similar.\n- **Precipitation**: The average rainfall is expected to be between 1.6mm and 9.9mm, with a 50% chance of being similar.\n\n### Week 3 (10/17 - 10/23)\n- **Temperature**: The average temperature is expected to be between 12.8°C and 14.4°C. There is a 40% chance of temperatures being similar or higher.\n- **Precipitation**: The average rainfall is expected to be between 1.6mm and 9.7mm, with a 50% chance of being similar.\n\n### Week 4 (10/24 - 10/30)\n- **Temperature**: The average temperature is expected to be between 11.1°C and 12.5°C. There is a 40% chance of temperatures being similar or lower.\n- **Precipitation**: The average rainfall is expected to be between 1.9mm and 8.6mm, with a 50% chance of being similar.\n\n### Trends\n- The influence of high-pressure systems is predominant throughout the month.\n- There is a gradual decrease in average temperatures from week 1 to week 4.\n- Precipitation levels show slight variations but remain relatively consistent in terms of probability."
+  },
+  {
+    "uid": "2022년10월전력수요예측전망_p4_id60",
+    "doc": "2022년10월전력수요예측전망",
+    "page": 4,
+    "id": 60,
+    "category": "table",
+    "path": "/home/user/langchain-study/2022_visuals_output/2022년10월전력수요예측전망/page4_id60_table.png",
+    "summary": "The table provides a forecast for temperature and precipitation over four weeks in October 2022. Here's a detailed summary:\n\n### Temperature (평균기온)\n- **1st Week (1주):** \n  - Average Range: 15.7°C to 16.9°C\n  - Probability: Low 20%, Normal 40%, High 40%\n  \n- **2nd Week (2주):** \n  - Average Range: 14.5°C to 15.5°C\n  - Probability: Low 20%, Normal 50%, High 30%\n  \n- **3rd Week (3주):** \n  - Average Range: 12.8°C to 14.4°C\n  - Probability: Low 20%, Normal 40%, High 40%\n  \n- **4th Week (4주):** \n  - Average Range: 11.1°C to 12.5°C\n  - Probability: Low 40%, Normal 40%, High 20%\n\n### Precipitation (강수량)\n- **1st Week (1주):** \n  - Average Range: 1.1mm to 10.2mm\n  - Probability: Low 20%, Normal 40%, High 40%\n  \n- **2nd Week (2주):** \n  - Average Range: 1.6mm to 9.9mm\n  - Probability: Low 20%, Normal 50%, High 30%\n  \n- **3rd Week (3주):** \n  - Average Range: 1.6mm to 9.7mm\n  - Probability: Low 30%, Normal 50%, High 20%\n  \n- **4th Week (4주):** \n  - Average Range: 1.9mm to 8.6mm\n  - Probability: Low 30%, Normal 50%, High 20%\n\n### Trends\n- **Temperature:** The average temperature decreases progressively from the 1st to the 4th week. The probability of normal temperatures is highest in the 2nd week.\n- **Precipitation:** The average precipitation range slightly decreases over the weeks. The probability of normal precipitation is consistently high, especially in the 2nd and 3rd weeks.\n\nThis forecast suggests a gradual cooling trend with relatively stable precipitation probabilities throughout October."
+  },
+  {
+    "uid": "2022년10월전력수요예측전망_p5_id63",
+    "doc": "2022년10월전력수요예측전망",
+    "page": 5,
+    "id": 63,
+    "category": "figure",
+    "path": "/home/user/langchain-study/2022_visuals_output/2022년10월전력수요예측전망/page5_id63_figure.png",
+    "summary": "The figure presents electricity demand forecasts for October, November, and December across various regions in South Korea. Each region is represented with a bar chart indicating three categories: below average (blue), average (gray), and above average (red) demand.\n\n### October:\n- **Seoul and surrounding areas**: 40% above average, 30% average, 30% below average.\n- **Gangwon Province**: 40% above average, 30% average, 30% below average.\n- **Chungcheong Provinces**: 40% above average, 30% average, 30% below average.\n- **Jeolla Provinces**: 40% above average, 30% average, 30% below average.\n- **Gyeongsang Provinces**: 40% above average, 30% average, 30% below average.\n- **Jeju Island**: 40% above average, 30% average, 30% below average.\n\n### November:\n- **Seoul and surrounding areas**: 30% above average, 40% average, 30% below average.\n- **Gangwon Province**: 30% above average, 40% average, 30% below average.\n- **Chungcheong Provinces**: 30% above average, 40% average, 30% below average.\n- **Jeolla Provinces**: 30% above average, 40% average, 30% below average.\n- **Gyeongsang Provinces**: 30% above average, 40% average, 30% below average.\n- **Jeju Island**: 30% above average, 40% average, 30% below average.\n\n### December:\n- **Seoul and surrounding areas**: 40% above average, 30% average, 30% below average.\n- **Gangwon Province**: 40% above average, 30% average, 30% below average.\n- **Chungcheong Provinces**: 40% above average, 30% average, 30% below average.\n- **Jeolla Provinces**: 40% above average, 30% average, 30% below average.\n- **Gyeongsang Provinces**: 40% above average, 30% average, 30% below average.\n- **Jeju Island**: 40% above average, 30% average, 30% below average.\n\n### Trends:\n- **October and December** show a higher percentage of above-average demand across all regions.\n- **November** indicates a more balanced distribution with a higher percentage of average demand.\n\nThis suggests a seasonal increase in electricity demand in October and December, possibly due to heating needs as temperatures drop."
+  },
+  {
+    "uid": "2022년10월전력수요예측전망_p6_id67",
+    "doc": "2022년10월전력수요예측전망",
+    "page": 6,
+    "id": 67,
+    "category": "figure",
+    "path": "/home/user/langchain-study/2022_visuals_output/2022년10월전력수요예측전망/page6_id67_figure.png",
+    "summary": "The figure consists of two bar charts, each representing the occurrence of abnormal temperatures.\n\n### Left Chart: Abnormal Low Temperatures\n- **Categories**: 적음 (Low), 비슷 (Similar), 많음 (High)\n- **Values**:\n  - Low: 20%\n  - Similar: 50%\n  - High: 30%\n- **Context**: The probability of having similar conditions to the average (3 days) is 50%.\n\n### Right Chart: Abnormal High Temperatures\n- **Categories**: 적음 (Low), 비슷 (Similar), 많음 (High)\n- **Values**:\n  - Low: 20%\n  - Similar: 40%\n  - High: 40%\n- **Context**: The probability of having similar or higher conditions than the average (3 days) is 40% each.\n\n### Summary\n- For abnormal low temperatures, there is a higher likelihood (50%) of conditions being similar to the average.\n- For abnormal high temperatures, there is an equal probability (40%) of conditions being similar or higher than the average."
+  }
+]

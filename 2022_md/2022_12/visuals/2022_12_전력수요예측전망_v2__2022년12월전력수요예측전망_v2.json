@@ -1,0 +1,83 @@
+[
+  {
+    "uid": "2022년12월전력수요예측전망_v2_p2_id36",
+    "doc": "2022년12월전력수요예측전망_v2",
+    "page": 2,
+    "id": 36,
+    "category": "chart",
+    "path": "/home/user/langchain-study/2022_visuals_output/2022년12월전력수요예측전망_v2/page2_id36_chart.png",
+    "summary": "The chart displays electricity demand forecasts from 2018 to 2022, measured in megawatts (MW). The x-axis represents the months from January (1) to December (12), while the y-axis shows the demand in MW, ranging from 60,000 to 95,000 MW.\n\n### Key Observations:\n\n- **2022 (Red Line):**\n  - Peaks at 92,930 MW in August.\n  - Lowest demand is 71,879 MW in May.\n  - December demand is projected at 90,000 MW.\n\n- **2021 (Blue Line):**\n  - Peaks at 90,708 MW in August.\n  - Lowest demand is 66,939 MW in May.\n\n- **2020 (Pink Line):**\n  - Peaks at 89,263 MW in August.\n  - Lowest demand is 65,700 MW in May.\n\n- **2019 (Green Line):**\n  - Peaks at 91,141 MW in August.\n  - Lowest demand is 68,454 MW in May.\n\n- **2018 (Black Line):**\n  - Peaks at 92,478 MW in August.\n  - Lowest demand is 70,506 MW in May.\n\n### Trends:\n\n- **Seasonal Variation:**\n  - All years show a similar pattern with peaks in summer (July-August) and troughs in spring (April-May).\n  \n- **Yearly Comparison:**\n  - 2022 shows a higher peak compared to 2021 and 2020, indicating an increase in demand.\n  - The lowest demand in 2022 is higher than in previous years, suggesting a general upward trend in electricity demand.\n\nThis chart highlights the seasonal nature of electricity demand and the gradual increase over the years."
+  },
+  {
+    "uid": "2022년12월전력수요예측전망_v2_p2_id39",
+    "doc": "2022년12월전력수요예측전망_v2",
+    "page": 2,
+    "id": 39,
+    "category": "table",
+    "path": "/home/user/langchain-study/2022_visuals_output/2022년12월전력수요예측전망_v2/page2_id39_table.png",
+    "summary": "The table provides data on electricity demand in megawatts (MW) for December from 2018 to 2022, focusing on two metrics: maximum demand (최대부하) and average demand (평균부하). It also includes the year-on-year growth rates in percentages.\n\n### Maximum Demand (최대부하)\n- **2018.12**: 86,083 MW, with a growth rate of +1.1%.\n- **2019.12**: 81,787 MW, with a decrease of -5.0%.\n- **2020.12**: 85,132 MW, with an increase of +4.1%.\n- **2021.12**: 90,708 MW, with an increase of +6.5%.\n- **2022.12**: 90,000 MW, with a decrease of -0.8%.\n\n### Average Demand (평균부하)\n- **2018.12**: 68,849 MW, with a decrease of -0.7%.\n- **2019.12**: 66,657 MW, with a decrease of -3.2%.\n- **2020.12**: 67,922 MW, with an increase of +1.9%.\n- **2021.12**: 70,013 MW, with an increase of +3.1%.\n- **2022.12**: 70,600 MW, with an increase of +0.8%.\n\n### Trends\n- **Maximum Demand**: After a decrease in 2019, there was a recovery in 2020 and 2021, followed by a slight decrease in 2022.\n- **Average Demand**: There was a decline in 2019, followed by consistent growth from 2020 to 2022.\n\nOverall, the data shows fluctuations in electricity demand, with a notable recovery in both maximum and average demand after 2019, although maximum demand slightly decreased in 2022."
+  },
+  {
+    "uid": "2022년12월전력수요예측전망_v2_p3_id45",
+    "doc": "2022년12월전력수요예측전망_v2",
+    "page": 3,
+    "id": 45,
+    "category": "table",
+    "path": "/home/user/langchain-study/2022_visuals_output/2022년12월전력수요예측전망_v2/page3_id45_table.png",
+    "summary": "The table presents the maximum electricity demand forecast in megawatts (MW) for each week from late November 2022 to early January 2023. Here's a detailed summary:\n\n- **Week 1 (11/28 - 12/4):** The maximum demand is 83,100 MW.\n- **Week 2 (12/5 - 12/11):** The demand increases to 85,400 MW.\n- **Week 3 (12/12 - 12/18):** The demand further rises to 89,200 MW.\n- **Week 4 (12/19 - 12/25):** The demand slightly increases to 89,600 MW.\n- **Week 5 (12/26 - 1/1):** The demand reaches 90,000 MW.\n\n**Trend Analysis:**\n- There is a consistent upward trend in electricity demand over the five-week period.\n- The demand increases by 6,900 MW from Week 1 to Week 5.\n- The most significant increase occurs between Week 2 and Week 3, with a rise of 3,800 MW."
+  },
+  {
+    "uid": "2022년12월전력수요예측전망_v2_p3_id48",
+    "doc": "2022년12월전력수요예측전망_v2",
+    "page": 3,
+    "id": 48,
+    "category": "table",
+    "path": "/home/user/langchain-study/2022_visuals_output/2022년12월전력수요예측전망_v2/page3_id48_table.png",
+    "summary": "The table presents the maximum electricity demand (in megawatts, MW) forecasted for each week of January 2022. Here's a detailed summary:\n\n- **1st Week (1/2 - 1/8):** The maximum demand is projected to be 91,600 MW.\n- **2nd Week (1/9 - 1/15):** The demand increases slightly to 91,900 MW.\n- **3rd Week (1/16 - 1/22):** The demand reaches its peak at 92,200 MW.\n- **4th Week (1/23 - 1/29):** The demand decreases slightly to 91,800 MW.\n\n**Trend Analysis:**\n- There is a gradual increase in demand from the 1st to the 3rd week, with the highest demand in the 3rd week.\n- The demand slightly decreases in the 4th week compared to the 3rd week but remains higher than the 1st week.\n\nThis trend suggests a peak in electricity demand in mid-January, followed by a slight reduction towards the end of the month."
+  },
+  {
+    "uid": "2022년12월전력수요예측전망_v2_p4_id57",
+    "doc": "2022년12월전력수요예측전망_v2",
+    "page": 4,
+    "id": 57,
+    "category": "table",
+    "path": "/home/user/langchain-study/2022_visuals_output/2022년12월전력수요예측전망_v2/page4_id57_table.png",
+    "summary": "The table provides a weekly forecast for December, focusing on temperature and precipitation trends influenced by atmospheric conditions.\n\n### Week 1 (11/28 - 12/4)\n- **Temperature**: The average temperature is expected to be similar to or lower than 3.2°C to 4.8°C, with a 40% probability.\n- **Precipitation**: The average precipitation is expected to be similar to 2.7mm to 12.5mm, with a 50% probability.\n\n### Week 2 (12/5 - 12/11)\n- **Temperature**: The average temperature is expected to be similar to or lower than 1.0°C to 3.0°C, with a 40% probability.\n- **Precipitation**: The average precipitation is expected to be similar to 3.1mm to 11.0mm, with a 40% probability.\n\n### Week 3 (12/12 - 12/18)\n- **Temperature**: The average temperature is expected to be similar to -0.3°C to 1.7°C, with a 50% probability.\n- **Precipitation**: The average precipitation is expected to be similar to or lower than 2.3mm to 3.8mm, with a 40% probability.\n\n### Week 4 (12/19 - 12/25)\n- **Temperature**: The average temperature is expected to be similar to 0.0°C to 2.0°C, with a 50% probability.\n- **Precipitation**: The average precipitation is expected to be similar to 1.4mm to 4.2mm, with a 50% probability.\n\n### Trends\n- **Temperature**: There is a general trend of decreasing temperatures from Week 1 to Week 3, with a slight increase in Week 4.\n- **Precipitation**: The expected precipitation decreases from Week 1 to Week 4.\n\nThe forecast indicates a cold December with varying precipitation levels, influenced by atmospheric conditions."
+  },
+  {
+    "uid": "2022년12월전력수요예측전망_v2_p4_id60",
+    "doc": "2022년12월전력수요예측전망_v2",
+    "page": 4,
+    "id": 60,
+    "category": "table",
+    "path": "/home/user/langchain-study/2022_visuals_output/2022년12월전력수요예측전망_v2/page4_id60_table.png",
+    "summary": "The table provides a forecast for temperature and precipitation over four weeks, likely related to electricity demand analysis for December 2022.\n\n### Temperature Forecast:\n- **1st Week:**\n  - Average Range: 3.2°C to 4.8°C\n  - Probability: Low (40%), Normal (40%), High (20%)\n\n- **2nd Week:**\n  - Average Range: 1.0°C to 3.0°C\n  - Probability: Low (40%), Normal (40%), High (20%)\n\n- **3rd Week:**\n  - Average Range: -0.3°C to 1.7°C\n  - Probability: Low (30%), Normal (50%), High (20%)\n\n- **4th Week:**\n  - Average Range: 0.0°C to 2.0°C\n  - Probability: Low (20%), Normal (50%), High (30%)\n\n### Precipitation Forecast:\n- **1st Week:**\n  - Average Range: 2.7mm to 12.5mm\n  - Probability: Low (30%), Normal (50%), High (20%)\n\n- **2nd Week:**\n  - Average Range: 3.1mm to 11.0mm\n  - Probability: Low (40%), Normal (40%), High (20%)\n\n- **3rd Week:**\n  - Average Range: 2.3mm to 3.8mm\n  - Probability: Low (40%), Normal (40%), High (20%)\n\n- **4th Week:**\n  - Average Range: 1.4mm to 4.2mm\n  - Probability: Low (30%), Normal (50%), High (20%)\n\n### Trends:\n- **Temperature:** The average temperature decreases from the 1st to the 3rd week, with a slight increase in the 4th week. The probability of normal temperatures is highest in the 3rd and 4th weeks.\n- **Precipitation:** The average precipitation is highest in the 1st week and decreases towards the 4th week. The probability of normal precipitation is consistently high across all weeks.\n\nThis data can be used to anticipate changes in electricity demand based on weather conditions."
+  },
+  {
+    "uid": "2022년12월전력수요예측전망_v2_p5_id63",
+    "doc": "2022년12월전력수요예측전망_v2",
+    "page": 5,
+    "id": 63,
+    "category": "figure",
+    "path": "/home/user/langchain-study/2022_visuals_output/2022년12월전력수요예측전망_v2/page5_id63_figure.png",
+    "summary": "The figure shows electricity demand forecasts for December and January across different regions in South Korea. Each region is represented with a bar chart indicating three values: 40, 40, and 20 for December, and 30, 50, and 20 for January. These values likely represent different categories or scenarios of electricity demand.\n\n### December:\n- **All regions**: The bars show values of 40, 40, and 20.\n- This suggests a consistent forecast across all regions for December.\n\n### January:\n- **All regions**: The bars show values of 30, 50, and 20.\n- This indicates a shift in the forecast compared to December, with an increase in one category (from 40 to 50) and a decrease in another (from 40 to 30).\n\n### Regional Consistency:\n- The forecast is uniform across all regions for both months, indicating a broad, nationwide trend rather than regional variations.\n\n### Interpretation:\n- The consistent values across regions suggest a standardized approach to forecasting or a uniform expectation of electricity demand changes from December to January.\n- The increase in one category from December to January might indicate a higher expected demand or a different scenario being prioritized.\n\nThis analysis provides a clear view of the expected electricity demand trends across South Korea for the specified months."
+  },
+  {
+    "uid": "2022년12월전력수요예측전망_v2_p5_id64",
+    "doc": "2022년12월전력수요예측전망_v2",
+    "page": 5,
+    "id": 64,
+    "category": "figure",
+    "path": "/home/user/langchain-study/2022_visuals_output/2022년12월전력수요예측전망_v2/page5_id64_figure.png",
+    "summary": "The figure represents electricity demand forecasts for February across various regions in South Korea. Each region is marked with two bars indicating different demand levels.\n\n- **Regions and Values:**\n  - **Seoul, Incheon, Gyeonggi-do:** 50, 30\n  - **Gangwon Yeongseo:** 50, 30\n  - **Gangwon Yeongdong:** 50, 30\n  - **Chungcheongbuk-do:** 50, 30\n  - **Daejeon, Sejong, Chungcheongnam-do:** 50, 30\n  - **Daegu, Gyeongsangbuk-do:** 50, 30\n  - **Jeollabuk-do:** 50, 30\n  - **Gwangju, Jeollanam-do:** 50, 30\n  - **Busan, Ulsan, Gyeongsangnam-do:** 50, 30\n  - **Jeju-do:** 50, 30\n  - **Hwanghaebuk-do, Hwanghaenam-do:** 50, 30\n\n- **Bar Colors:**\n  - The bars are colored in two shades, likely representing different scenarios or time frames.\n\n- **Trends:**\n  - All regions show the same values of 50 and 30, indicating a uniform forecast across the country for this period.\n\nThis suggests a consistent electricity demand pattern across all regions for February, with no significant regional variations."
+  },
+  {
+    "uid": "2022년12월전력수요예측전망_v2_p6_id68",
+    "doc": "2022년12월전력수요예측전망_v2",
+    "page": 6,
+    "id": 68,
+    "category": "figure",
+    "path": "/home/user/langchain-study/2022_visuals_output/2022년12월전력수요예측전망_v2/page6_id68_figure.png",
+    "summary": "The figure consists of two bar charts, each representing the occurrence probability of abnormal temperatures.\n\n### Left Chart: 이상저온 (Abnormal Low Temperature)\n- **20%**: The probability of having fewer occurrences than average.\n- **40%**: The probability of having occurrences similar to the average.\n- **40%**: The probability of having more occurrences than average.\n\nThe text below indicates that the probability of having occurrences similar to or more than the average (3 days) is 40%.\n\n### Right Chart: 이상고온 (Abnormal High Temperature)\n- **30%**: The probability of having fewer occurrences than average.\n- **50%**: The probability of having occurrences similar to the average.\n- **20%**: The probability of having more occurrences than average.\n\nThe text below indicates that the probability of having occurrences similar to the average (3 days) is 50%.\n\n### Summary\n- For abnormal low temperatures, there is an equal probability (40%) of having occurrences similar to or more than the average.\n- For abnormal high temperatures, there is a higher probability (50%) of having occurrences similar to the average, with fewer occurrences being more likely than more occurrences."
+  }
+]

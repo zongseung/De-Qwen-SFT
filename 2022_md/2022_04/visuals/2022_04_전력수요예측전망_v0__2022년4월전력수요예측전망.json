@@ -1,0 +1,83 @@
+[
+  {
+    "uid": "2022년4월전력수요예측전망_p2_id37",
+    "doc": "2022년4월전력수요예측전망",
+    "page": 2,
+    "id": 37,
+    "category": "chart",
+    "path": "/home/user/langchain-study/2022_visuals_output/2022년4월전력수요예측전망/page2_id37_chart.png",
+    "summary": "The chart displays electricity demand forecasts from 2018 to 2022, measured in megawatts (MW) on the y-axis, with months on the x-axis.\n\n### Key Observations:\n\n- **2022 Forecast (Red Line):**\n  - Starts at 89,391 MW in January.\n  - Peaks at 87,351 MW in February.\n  - Declines to a low of 71,900 MW in April.\n  - Gradually increases to 78,233 MW by December.\n\n- **2021 Data (Blue Line):**\n  - Begins at 90,564 MW in January.\n  - Peaks at 91,548 MW in August.\n  - Drops to 73,350 MW in October.\n  - Ends at 86,083 MW in December.\n\n- **2020 Data (Pink Line):**\n  - Starts at 89,091 MW in January.\n  - Peaks at 90,314 MW in August.\n  - Lowest point is 65,700 MW in October.\n  - Ends at 85,132 MW in December.\n\n- **2019 Data (Green Line):**\n  - Begins at 87,247 MW in January.\n  - Peaks at 92,478 MW in August.\n  - Lowest point is 69,140 MW in October.\n  - Ends at 81,787 MW in December.\n\n- **2018 Data (Black Line):**\n  - Starts at 85,352 MW in January.\n  - Peaks at 92,478 MW in August.\n  - Lowest point is 66,699 MW in October.\n  - Ends at 84,164 MW in December.\n\n### Trends:\n\n- **Seasonal Variation:**\n  - All years show a peak in demand during the summer months (July-August).\n  - Demand typically decreases in the fall, reaching the lowest in October.\n\n- **Yearly Comparison:**\n  - 2022 shows a slightly lower peak compared to previous years.\n  - The lowest demand in 2022 is higher than in 2020 and 2018.\n\nThis chart provides a clear view of the seasonal fluctuations in electricity demand and highlights the expected trends for 2022 compared to previous years."
+  },
+  {
+    "uid": "2022년4월전력수요예측전망_p2_id40",
+    "doc": "2022년4월전력수요예측전망",
+    "page": 2,
+    "id": 40,
+    "category": "table",
+    "path": "/home/user/langchain-study/2022_visuals_output/2022년4월전력수요예측전망/page2_id40_table.png",
+    "summary": "The table presents electricity demand forecasts for April from 2018 to 2022, focusing on two metrics: maximum demand (최대부하) and average demand (평균부하), both measured in megawatts (MW). The table also shows the year-on-year growth rates in percentages.\n\n### Maximum Demand (최대부하)\n\n- **2018.4월**: 70,520 MW with a growth rate of +2.0%\n- **2019.4월**: 73,010 MW with a growth rate of +3.5%\n- **2020.4월**: 66,699 MW with a decrease of -8.6%\n- **2021.4월**: 68,966 MW with a growth rate of +3.4%\n- **2022.4월**: 71,900 MW with a growth rate of +4.3%\n\n### Average Demand (평균부하)\n\n- **2018.4월**: 59,331 MW with a growth rate of +3.0%\n- **2019.4월**: 60,058 MW with a growth rate of +1.2%\n- **2020.4월**: 56,289 MW with a decrease of -6.3%\n- **2021.4월**: 58,030 MW with a growth rate of +3.1%\n- **2022.4월**: 60,700 MW with a growth rate of +4.6%\n\n### Trends\n\n- **Maximum Demand**: After a decline in 2020, there is a consistent increase in demand in 2021 and 2022, with the highest growth rate observed in 2022 (+4.3%).\n- **Average Demand**: Similar to maximum demand, average demand decreased in 2020 but rebounded in 2021 and 2022, with the highest growth rate in 2022 (+4.6%).\n\nOverall, both maximum and average electricity demands show recovery and growth in 2021 and 2022 after a decline in 2020."
+  },
+  {
+    "uid": "2022년4월전력수요예측전망_p3_id46",
+    "doc": "2022년4월전력수요예측전망",
+    "page": 3,
+    "id": 46,
+    "category": "table",
+    "path": "/home/user/langchain-study/2022_visuals_output/2022년4월전력수요예측전망/page3_id46_table.png",
+    "summary": "The table presents the maximum electricity demand forecast in megawatts (MW) for April 2022, broken down by week:\n\n- **1st Week (4/4 - 4/10):** The maximum demand is forecasted at 71,900 MW.\n- **2nd Week (4/11 - 4/17):** The demand decreases to 70,100 MW.\n- **3rd Week (4/18 - 4/24):** The demand further decreases to 69,100 MW.\n- **4th Week (4/25 - 5/1):** The demand remains steady at 69,100 MW.\n\n**Trend Analysis:**\n- There is a clear downward trend in the maximum electricity demand from the 1st to the 3rd week.\n- The demand stabilizes in the 3rd and 4th weeks at 69,100 MW.\n\nThis trend might indicate a seasonal change or other factors affecting electricity consumption during this period."
+  },
+  {
+    "uid": "2022년4월전력수요예측전망_p3_id49",
+    "doc": "2022년4월전력수요예측전망",
+    "page": 3,
+    "id": 49,
+    "category": "table",
+    "path": "/home/user/langchain-study/2022_visuals_output/2022년4월전력수요예측전망/page3_id49_table.png",
+    "summary": "The table presents the forecasted maximum electricity demand (in megawatts, MW) for four weeks in May 2022. Here's a detailed summary:\n\n- **1st Week (5/2 - 5/8):** The maximum demand is projected to be 68,800 MW.\n- **2nd Week (5/9 - 5/15):** The demand increases slightly to 69,200 MW.\n- **3rd Week (5/16 - 5/22):** The demand continues to rise, reaching 70,000 MW.\n- **4th Week (5/23 - 5/29):** The highest demand is expected, at 71,100 MW.\n\n**Trend Analysis:**\n- There is a consistent upward trend in electricity demand over the four weeks.\n- The increase from the 1st to the 4th week is 2,300 MW, indicating a gradual rise in demand as the month progresses."
+  },
+  {
+    "uid": "2022년4월전력수요예측전망_p4_id57",
+    "doc": "2022년4월전력수요예측전망",
+    "page": 4,
+    "id": 57,
+    "category": "table",
+    "path": "/home/user/langchain-study/2022_visuals_output/2022년4월전력수요예측전망/page4_id57_table.png",
+    "summary": "The table provides a weekly forecast for April 2022, focusing on temperature and precipitation trends influenced by high-pressure systems.\n\n### Week 1 (4/4 - 4/10)\n- **Temperature**: The weekly average temperature is expected to be similar to or higher than the historical average of 9.7 to 11.3°C, with a 40% probability.\n- **Precipitation**: The weekly precipitation is expected to be similar to or less than the historical average of 3.8 to 30.3mm, with a 40% probability.\n- **Additional Note**: There will be many days with large temperature fluctuations.\n\n### Week 2 (4/11 - 4/17)\n- **Temperature**: The weekly average temperature is expected to be similar to or higher than the historical average of 11.0 to 12.6°C, with a 40% probability.\n- **Precipitation**: The weekly precipitation is expected to be similar to or less than the historical average of 6.3 to 19.7mm, with a 40% probability.\n\n### Week 3 (4/18 - 4/24)\n- **Temperature**: The weekly average temperature is expected to be similar to the historical average of 12.4 to 14.2°C, with a 50% probability.\n- **Precipitation**: The weekly precipitation is expected to be similar to or less than the historical average of 12.5 to 29.8mm, with a 40% probability.\n- **Additional Note**: There may be temporary drops in temperature.\n\n### Week 4 (4/25 - 5/1)\n- **Temperature**: The weekly average temperature is expected to be similar to the historical average of 13.7 to 15.1°C, with a 50% probability.\n- **Precipitation**: The weekly precipitation is expected to be similar to the historical average of 4.9 to 30.5mm, with a 50% probability.\n- **Additional Note**: There may be temporary drops in temperature.\n\nOverall, the forecast suggests a general influence of high-pressure systems with some variability in temperature and precipitation, particularly in the first and last weeks."
+  },
+  {
+    "uid": "2022년4월전력수요예측전망_p4_id61",
+    "doc": "2022년4월전력수요예측전망",
+    "page": 4,
+    "id": 61,
+    "category": "table",
+    "path": "/home/user/langchain-study/2022_visuals_output/2022년4월전력수요예측전망/page4_id61_table.png",
+    "summary": "The table provides a forecast for temperature and precipitation over four weeks, likely related to electricity demand analysis for April 2022.\n\n### Temperature Forecast:\n- **1st Week:** \n  - Average Range: 9.7°C to 11.3°C\n  - Probability: Low (20%), Normal (40%), High (40%)\n\n- **2nd Week:** \n  - Average Range: 11.0°C to 12.6°C\n  - Probability: Low (20%), Normal (40%), High (40%)\n\n- **3rd Week:** \n  - Average Range: 12.4°C to 14.2°C\n  - Probability: Low (20%), Normal (50%), High (30%)\n\n- **4th Week:** \n  - Average Range: 13.7°C to 15.1°C\n  - Probability: Low (20%), Normal (50%), High (30%)\n\n### Precipitation Forecast:\n- **1st Week:** \n  - Average Range: 3.8mm to 30.3mm\n  - Probability: Low (40%), Normal (40%), High (20%)\n\n- **2nd Week:** \n  - Average Range: 6.3mm to 19.7mm\n  - Probability: Low (40%), Normal (40%), High (20%)\n\n- **3rd Week:** \n  - Average Range: 12.5mm to 29.8mm\n  - Probability: Low (40%), Normal (40%), High (20%)\n\n- **4th Week:** \n  - Average Range: 4.9mm to 30.5mm\n  - Probability: Low (30%), Normal (50%), High (20%)\n\n### Trends:\n- **Temperature:** Gradual increase in average temperature from the 1st to the 4th week.\n- **Precipitation:** Varies each week, with the 3rd week showing a higher average range.\n\nThis data can help in predicting electricity demand, as temperature and precipitation can influence energy consumption patterns."
+  },
+  {
+    "uid": "2022년4월전력수요예측전망_p5_id64",
+    "doc": "2022년4월전력수요예측전망",
+    "page": 5,
+    "id": 64,
+    "category": "figure",
+    "path": "/home/user/langchain-study/2022_visuals_output/2022년4월전력수요예측전망/page5_id64_figure.png",
+    "summary": "The figure shows electricity demand forecasts for different regions in South Korea over three months: April, May, and June. Each map displays three categories of demand: low (blue), medium (gray), and high (red).\n\n### April\n- **Low Demand (20)**: Observed in most regions, including Seoul-Incheon-Gyeonggi, Gangwon, Chungcheongbuk-do, and others.\n- **Medium Demand (40)**: Present in regions like Gwangju-Jeollanam-do and Jeju-do.\n- **High Demand (40)**: Not indicated separately, as medium and high are both marked as 40.\n\n### May\n- **Low Demand (20)**: Continues in regions such as Seoul-Incheon-Gyeonggi, Gangwon, and Jeollabuk-do.\n- **Medium Demand (40)**: Seen in areas like Gwangju-Jeollanam-do and Jeju-do.\n- **High Demand (40)**: Again, not separately indicated.\n\n### June\n- **Low Demand (20)**: Present in regions like Seoul-Incheon-Gyeonggi and Jeollabuk-do.\n- **Medium Demand (30)**: Observed in areas such as Gangwon and Jeju-do.\n- **High Demand (50)**: Noted in regions like Gwangju-Jeollanam-do and Jeju-do.\n\n### Trends\n- **April and May**: Similar patterns with most regions showing low demand and some medium.\n- **June**: A shift with some regions moving to medium and high demand, indicating an increase in electricity usage as summer approaches.\n\nThe maps illustrate a gradual increase in electricity demand from April to June, with more regions experiencing higher demand as temperatures likely rise."
+  },
+  {
+    "uid": "2022년4월전력수요예측전망_p6_id68",
+    "doc": "2022년4월전력수요예측전망",
+    "page": 6,
+    "id": 68,
+    "category": "figure",
+    "path": "/home/user/langchain-study/2022_visuals_output/2022년4월전력수요예측전망/page6_id68_figure.png",
+    "summary": "The figure consists of two bar charts, each representing the occurrence probability of abnormal temperatures.\n\n### Left Chart: 이상저온 (Abnormal Low Temperature)\n- **20%**: 적음 (Low)\n- **50%**: 비슷 (Similar)\n- **30%**: 많음 (High)\n\nThe text below indicates that the probability of having similar conditions to the average (3 days) is 50%.\n\n### Right Chart: 이상고온 (Abnormal High Temperature)\n- **20%**: 적음 (Low)\n- **40%**: 비슷 (Similar)\n- **40%**: 많음 (High)\n\nThe text below states that the probability of having conditions similar to or higher than the average (3 days) is 40% each.\n\n### Summary\n- For abnormal low temperatures, there is a higher probability (50%) of conditions being similar to the average.\n- For abnormal high temperatures, there is an equal probability (40%) of conditions being similar to or higher than the average."
+  },
+  {
+    "uid": "2022년4월전력수요예측전망_p6_id71",
+    "doc": "2022년4월전력수요예측전망",
+    "page": 6,
+    "id": 71,
+    "category": "figure",
+    "path": "/home/user/langchain-study/2022_visuals_output/2022년4월전력수요예측전망/page6_id71_figure.png",
+    "summary": "The image appears to be a scale or gauge with two sections, labeled in Korean. \n\n- The left section is blue and labeled \"이상저온\" (abnormally low temperature), with an arrow pointing left. It indicates temperatures below the average maximum temperature for April.\n- The right section is red and labeled \"이상고온\" (abnormally high temperature), with an arrow pointing right. It indicates temperatures above the average maximum temperature for April.\n\nThe scale seems to measure deviations from the average maximum temperature for April, with the midpoint likely representing the average. The numerical value \"0\" is at the center, suggesting no deviation, while the scale extends in both directions to indicate deviations from this average."
+  }
+]

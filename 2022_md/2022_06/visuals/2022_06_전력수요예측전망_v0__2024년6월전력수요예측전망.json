@@ -1,0 +1,83 @@
+[
+  {
+    "uid": "2024년6월전력수요예측전망_p2_id10",
+    "doc": "2024년6월전력수요예측전망",
+    "page": 2,
+    "id": 10,
+    "category": "chart",
+    "path": "/home/user/langchain-study/2024_visuals_output/2024년6월전력수요예측전망/page2_id10_chart.png",
+    "summary": "The chart displays electricity demand forecasts from 2020 to 2024, with the x-axis representing months (1 to 12) and the y-axis showing demand in MW, ranging from 65,000 to 100,000 MW.\n\n### Key Observations:\n\n- **2024 Forecast (Red Line):**\n  - Peaks at 93,400 MW in July.\n  - Lowest demand is 69,074 MW in May.\n  - Starts at 89,231 MW in January and ends at 84,093 MW in December.\n\n- **2023 Data (Pink Line):**\n  - Peaks at 94,509 MW in August.\n  - Lowest demand is 72,544 MW in November.\n  - Starts at 92,613 MW in January and ends at 91,556 MW in December.\n\n- **2022 Data (Purple Line):**\n  - Peaks at 93,400 MW in July.\n  - Lowest demand is 72,292 MW in May.\n  - Starts at 89,337 MW in January and ends at 84,742 MW in December.\n\n- **2021 Data (Green Line):**\n  - Peaks at 89,091 MW in August.\n  - Lowest demand is 66,699 MW in May.\n  - Starts at 90,654 MW in January and ends at 86,555 MW in December.\n\n- **2020 Data (Black Line):**\n  - Peaks at 86,682 MW in August.\n  - Lowest demand is 65,700 MW in May.\n  - Starts at 82,352 MW in January and ends at 85,132 MW in December.\n\n### Trends:\n\n- **Seasonal Variation:**\n  - All years show a similar pattern with peaks in summer months (July-August) and troughs in spring (May) and late autumn (November).\n\n- **Increasing Demand:**\n  - There is a general upward trend in peak demand from 2020 to 2024, indicating growing electricity needs.\n\nThis chart provides a clear visualization of the seasonal and annual changes in electricity demand, highlighting the increasing trend over the years."
+  },
+  {
+    "uid": "2024년6월전력수요예측전망_p2_id13",
+    "doc": "2024년6월전력수요예측전망",
+    "page": 2,
+    "id": 13,
+    "category": "table",
+    "path": "/home/user/langchain-study/2024_visuals_output/2024년6월전력수요예측전망/page2_id13_table.png",
+    "summary": "The table provides data on electricity demand for June from 2020 to 2024, focusing on two metrics: maximum demand (최대부하) and average demand (평균부하), both measured in megawatts (MW). It also includes the year-on-year growth rate in percentage.\n\n### Maximum Demand (최대부하)\n\n- **2020.6월**: 75,247 MW with a growth rate of 0.1%\n- **2021.6월**: 75,854 MW with a growth rate of 0.8%\n- **2022.6월**: 84,742 MW with a growth rate of 11.7%\n- **2023.6월**: 82,196 MW with a decrease of -3.0%\n- **2024.6월**: 82,100 MW with a decrease of -0.1%\n\n**Trend**: There was a significant increase in 2022, followed by a decrease in 2023 and a slight decrease projected for 2024.\n\n### Average Demand (평균부하)\n\n- **2020.6월**: 58,680 MW with a decrease of -1.7%\n- **2021.6월**: 61,202 MW with a growth rate of 4.3%\n- **2022.6월**: 63,726 MW with a growth rate of 4.1%\n- **2023.6월**: 62,444 MW with a decrease of -2.0%\n- **2024.6월**: 61,700 MW with a decrease of -1.2%\n\n**Trend**: After increases in 2021 and 2022, there was a decline in 2023, with a further decrease projected for 2024.\n\nOverall, both maximum and average demand show a peak in 2022, followed by a downward trend in the subsequent years."
+  },
+  {
+    "uid": "2024년6월전력수요예측전망_p3_id19",
+    "doc": "2024년6월전력수요예측전망",
+    "page": 3,
+    "id": 19,
+    "category": "table",
+    "path": "/home/user/langchain-study/2024_visuals_output/2024년6월전력수요예측전망/page3_id19_table.png",
+    "summary": "The table presents the projected maximum electricity demand (in megawatts, MW) for June 2024, broken down by week. Here's a detailed summary:\n\n- **1st Week (6/3 - 6/9):** The maximum demand is projected to be 76,800 MW.\n- **2nd Week (6/10 - 6/16):** The demand increases to 78,800 MW.\n- **3rd Week (6/17 - 6/23):** The demand further rises to 81,700 MW.\n- **4th Week (6/24 - 6/30):** The highest demand for the month is projected at 82,100 MW.\n\n**Trend Analysis:**\n- There is a consistent upward trend in electricity demand throughout June 2024.\n- The demand increases by 2,000 MW from the 1st to the 2nd week.\n- From the 2nd to the 3rd week, the increase is 2,900 MW.\n- The increase from the 3rd to the 4th week is 400 MW.\n\nOverall, the data indicates a steady rise in electricity demand as the month progresses."
+  },
+  {
+    "uid": "2024년6월전력수요예측전망_p3_id23",
+    "doc": "2024년6월전력수요예측전망",
+    "page": 3,
+    "id": 23,
+    "category": "table",
+    "path": "/home/user/langchain-study/2024_visuals_output/2024년6월전력수요예측전망/page3_id23_table.png",
+    "summary": "The table presents the projected maximum electricity demand (in megawatts, MW) for each week of July 2024. Here's a detailed summary:\n\n- **1st Week (7/1 - 7/7):** The maximum demand is projected to be 86,000 MW.\n- **2nd Week (7/8 - 7/14):** The demand increases to 89,400 MW.\n- **3rd Week (7/15 - 7/21):** The demand further rises to 91,000 MW.\n- **4th Week (7/22 - 7/28):** The highest demand is expected, reaching 93,400 MW.\n\n**Trend Analysis:**\n- There is a consistent upward trend in electricity demand throughout the month.\n- The demand increases by 3,400 MW from the 1st to the 2nd week, 1,600 MW from the 2nd to the 3rd week, and 2,400 MW from the 3rd to the 4th week.\n- Overall, the demand grows by 7,400 MW from the beginning to the end of the month."
+  },
+  {
+    "uid": "2024년6월전력수요예측전망_p4_id33",
+    "doc": "2024년6월전력수요예측전망",
+    "page": 4,
+    "id": 33,
+    "category": "figure",
+    "path": "/home/user/langchain-study/2024_visuals_output/2024년6월전력수요예측전망/page4_id33_figure.png",
+    "summary": "The figure provides a forecast for average temperature and precipitation for June, July, and August 2024, along with probability estimates for these conditions.\n\n### Average Temperature (°C)\n\n- **June:**\n  - Range: 21.4°C to 23.1°C\n  - Average: 21.7°C\n\n- **July:**\n  - Range: 24.0°C to 25.2°C\n  - Average: 24.6°C\n\n- **August:**\n  - Range: 24.6°C to 25.6°C\n  - Average: 25.1°C\n\n#### Probability Forecast for Temperature:\n- **June:** 50% chance of being higher than average.\n- **July:** 40% chance of being similar to or higher than average.\n- **August:** 50% chance of being higher than average.\n\n### Precipitation (mm)\n\n- **June:**\n  - Range: 101.6 mm to 174.0 mm\n  - Average: 148.6 mm\n\n- **July:**\n  - Range: 245.9 mm to 308.2 mm\n  - Average: 280.7 mm\n\n- **August:**\n  - Range: 225.3 mm to 346.7 mm\n  - Average: 293.5 mm\n\n#### Probability Forecast for Precipitation:\n- **June:** 50% chance of being similar to average.\n- **July:** 40% chance of being similar to or more than average.\n- **August:** 40% chance of being similar to or more than average.\n\n### Summary:\n- The temperature is expected to be higher than average in June and August, with July having a moderate chance of being similar or higher.\n- Precipitation is expected to be around average in June, with a higher chance of being similar or more in July and August."
+  },
+  {
+    "uid": "2024년6월전력수요예측전망_p4_id34",
+    "doc": "2024년6월전력수요예측전망",
+    "page": 4,
+    "id": 34,
+    "category": "figure",
+    "path": "/home/user/langchain-study/2024_visuals_output/2024년6월전력수요예측전망/page4_id34_figure.png",
+    "summary": "The figure illustrates a comparison of average ranges and precipitation levels. Here's a detailed breakdown:\n\n1. **평년범위 (Average Range):**\n   - The left side shows a box plot with a square representing the current period's average.\n   - The upper and lower lines indicate the range of averages over the past 30 years (1991-2020), specifically the 33% to 66% range.\n\n2. **강수량 (Precipitation):**\n   - The right side shows a similar box plot for precipitation.\n   - The square represents the median precipitation level.\n   - The upper and lower lines indicate the range of precipitation levels.\n\n3. **Color Indicators:**\n   - **평균기온 (Average Temperature):** \n     - 낮음 (Low): Dark blue\n     - 비슷 (Similar): Gray\n     - 높음 (High): Pink\n   - **강수량 (Precipitation):**\n     - 적음 (Low): Orange\n     - 비슷 (Similar): Gray\n     - 많음 (High): Green\n\n4. **Additional Notes:**\n   - The average range is based on 30 years of data, focusing on the middle third (33%-66%).\n   - Institutions receiving long-term forecasts should contact the relevant meteorological agency for updates.\n\nThis figure provides a visual representation of how current averages and precipitation compare to historical data, using color coding to indicate deviations from the norm."
+  },
+  {
+    "uid": "2024년6월전력수요예측전망_p5_id38",
+    "doc": "2024년6월전력수요예측전망",
+    "page": 5,
+    "id": 38,
+    "category": "figure",
+    "path": "/home/user/langchain-study/2024_visuals_output/2024년6월전력수요예측전망/page5_id38_figure.png",
+    "summary": "The document provides forecasts for June to August regarding temperature, precipitation, typhoons, and El Niño/La Niña conditions:\n\n1. **Temperature Forecast**:\n   - June and August have a 50% probability of being warmer than average.\n   - July has a 40% probability of being similar to or warmer than average.\n\n2. **Precipitation Forecast**:\n   - June has a 50% probability of having average precipitation.\n   - July and August each have a 40% probability of having similar or higher precipitation than average.\n\n3. **Typhoon Forecast**:\n   - The number of typhoons affecting the country is expected to be similar to or slightly below the average of 2.5 during the summer, with a 40% probability.\n\n4. **El Niño/La Niña Forecast**:\n   - There is a high likelihood of transitioning to neutral or La Niña conditions from June to August.\n\nThe next three-month forecast will be released on June 24, 2024."
+  },
+  {
+    "uid": "2024년6월전력수요예측전망_p7_id48",
+    "doc": "2024년6월전력수요예측전망",
+    "page": 7,
+    "id": 48,
+    "category": "figure",
+    "path": "/home/user/langchain-study/2024_visuals_output/2024년6월전력수요예측전망/page7_id48_figure.png",
+    "summary": "The figure provides a forecast for electricity demand and related weather conditions for June 2024, divided into four weekly periods.\n\n### Temperature Forecast (°C)\n- **06.03 - 06.09**: \n  - Average range: 19.9 to 21.1°C\n  - Median: 20.5°C\n- **06.10 - 06.16**: \n  - Average range: 20.7 to 21.7°C\n  - Median: 21.2°C\n- **06.17 - 06.23**: \n  - Average range: 21.5 to 22.5°C\n  - Median: 22.0°C\n- **06.24 - 06.30**: \n  - Average range: 21.9 to 23.0°C\n  - Median: 22.5°C\n\n### Temperature Probability\n- **06.03 - 06.16**: 50% chance of being higher than average.\n- **06.17 - 06.23**: 50% chance of being higher than average.\n- **06.24 - 06.30**: 40% chance of being similar or higher than average.\n\n### Precipitation Forecast (mm)\n- **06.03 - 06.09**: \n  - Range: 3.7 to 17.6 mm\n  - Median: 7.1 mm\n- **06.10 - 06.16**: \n  - Range: 9.8 to 21.6 mm\n  - Median: 12.9 mm\n- **06.17 - 06.23**: \n  - Range: 13.3 to 36.8 mm\n  - Median: 19.9 mm\n- **06.24 - 06.30**: \n  - Range: 34.3 to 80.6 mm\n  - Median: 46.7 mm\n\n### Precipitation Probability\n- **06.03 - 06.09**: 40% chance of being similar or lower than average.\n- **06.10 - 06.16**: 50% chance of being similar to average.\n- **06.17 - 06.30**: 40% chance of being similar or higher than average.\n\n### Summary\n- **Temperature**: A gradual increase is expected throughout June, with a higher probability of above-average temperatures in the middle of the month.\n- **Precipitation**: Varies significantly, with the highest amounts expected in the last week of June. The probability of average or above-average precipitation increases towards the end of the month."
+  },
+  {
+    "uid": "2024년6월전력수요예측전망_p9_id60",
+    "doc": "2024년6월전력수요예측전망",
+    "page": 9,
+    "id": 60,
+    "category": "chart",
+    "path": "/home/user/langchain-study/2024_visuals_output/2024년6월전력수요예측전망/page9_id60_chart.png",
+    "summary": "The chart provides a monthly overview of various weather-related factors and their potential impact on electricity demand throughout the year. Here's a detailed analysis:\n\n### Axes and Structure:\n- **Horizontal Axis (Months):** The chart is divided into months from January to December, grouped by seasons: Winter (1-2, 12), Spring (3-5), Summer (6-8), and Fall (9-11).\n- **Vertical Axis (Factors):** Lists different weather-related factors such as temperature deviation, temperature forecast error, dry conditions, heatwaves, heavy rain, typhoons, snow/cold waves, fine dust, rainy season, autumn rainy season, and showers.\n\n### Trends and Numerical Values:\n- **Temperature Deviation:** High impact in January, February, and December, with a moderate impact in March and November.\n- **Temperature Forecast Error:** Notable in January, February, and December.\n- **Dry Conditions (산불):** Significant in March and April.\n- **Heatwaves:** Predominantly in July and August, with a smaller impact in June.\n- **Heavy Rain:** Peaks in July and August, with some impact in June and September.\n- **Typhoons:** Primarily in August and September.\n- **Snow/Cold Waves:** Occur in January, February, and December.\n- **Fine Dust:** Present in March, April, and November.\n- **Rainy Season (장마):** Occurs in July.\n- **Autumn Rainy Season (가을장마):** Noted in September.\n- **Showers (소나기):** Occur in July and August.\n\n### Additional Information:\n- **Forecast and Supply Measures:** Indicated by black lines, showing periods of active forecasting and electricity supply measures, particularly in summer and winter.\n- **Fire Monitoring Period:** Highlighted in spring.\n- **Typhoon Monitoring Period:** Focused in late summer.\n- **Seasonal Transition Monitoring:** Occurs during spring and fall.\n\nThis chart helps in understanding how different weather conditions can affect electricity demand and the necessary measures to manage supply throughout the year."
+  }
+]

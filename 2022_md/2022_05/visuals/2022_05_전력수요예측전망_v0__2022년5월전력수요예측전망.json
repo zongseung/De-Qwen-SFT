@@ -1,0 +1,83 @@
+[
+  {
+    "uid": "2022년5월전력수요예측전망_p2_id37",
+    "doc": "2022년5월전력수요예측전망",
+    "page": 2,
+    "id": 37,
+    "category": "chart",
+    "path": "/home/user/langchain-study/2022_visuals_output/2022년5월전력수요예측전망/page2_id37_chart.png",
+    "summary": "The chart displays electricity demand forecasts from 2018 to 2022, measured in megawatts (MW) on the y-axis, ranging from 60,000 MW to 95,000 MW. The x-axis represents the months from January (1) to December (12).\n\n### Key Observations:\n\n- **2022 Forecast (Red Line):**\n  - Starts at 89,391 MW in January.\n  - Peaks at 90,564 MW in February.\n  - Declines to a low of 71,879 MW in May.\n  - Rises again to 86,083 MW by December.\n\n- **Comparative Trends:**\n  - **2018 (Black Line):** Peaks at 92,478 MW in July, the highest among all years.\n  - **2019 (Green Line):** Shows a peak of 91,141 MW in July.\n  - **2020 (Pink Line):** Peaks at 89,091 MW in July.\n  - **2021 (Blue Line):** Peaks at 91,548 MW in July, with a notable dip to 71,070 MW in October.\n\n### General Trends:\n- All years show a similar pattern of high demand in the winter months (January-February) and summer months (July-August), with lower demand in spring (April-May) and fall (October-November).\n- The 2022 forecast shows a slightly lower peak compared to previous years, indicating a potential decrease in maximum demand.\n\nThis analysis provides insights into seasonal electricity demand fluctuations and highlights the expected demand for 2022 in comparison to previous years."
+  },
+  {
+    "uid": "2022년5월전력수요예측전망_p2_id40",
+    "doc": "2022년5월전력수요예측전망",
+    "page": 2,
+    "id": 40,
+    "category": "table",
+    "path": "/home/user/langchain-study/2022_visuals_output/2022년5월전력수요예측전망/page2_id40_table.png",
+    "summary": "The table presents electricity demand forecasts for May from 2018 to 2022, focusing on two key metrics: maximum demand (최대부하) and average demand (평균부하), both measured in megawatts (MW). The table also includes the year-over-year growth rates in percentages.\n\n### Maximum Demand (MW)\n- **2018.5월**: 73,173 MW, with a growth rate of +4.7%.\n- **2019.5월**: 70,964 MW, a decrease of -3.0%.\n- **2020.5월**: 65,700 MW, a further decrease of -7.4%.\n- **2021.5월**: 69,140 MW, an increase of +5.3%.\n- **2022.5월**: 71,600 MW, an increase of +3.6%.\n\n### Average Demand (MW)\n- **2018.5월**: 58,898 MW, with a growth rate of +3.9%.\n- **2019.5월**: 58,126 MW, a decrease of -1.3%.\n- **2020.5월**: 53,720 MW, a further decrease of -7.6%.\n- **2021.5월**: 57,188 MW, an increase of +6.5%.\n- **2022.5월**: 59,500 MW, an increase of +4.0%.\n\n### Trends\n- **Maximum Demand**: After a peak in 2018, there was a decline in 2019 and 2020, followed by a recovery in 2021 and 2022.\n- **Average Demand**: Similar to maximum demand, there was a decline in 2019 and 2020, with recovery in 2021 and 2022.\n\nOverall, both maximum and average electricity demands show a recovery trend in 2021 and 2022 after declines in the previous years."
+  },
+  {
+    "uid": "2022년5월전력수요예측전망_p3_id46",
+    "doc": "2022년5월전력수요예측전망",
+    "page": 3,
+    "id": 46,
+    "category": "table",
+    "path": "/home/user/langchain-study/2022_visuals_output/2022년5월전력수요예측전망/page3_id46_table.png",
+    "summary": "The table presents the maximum electricity demand forecast in megawatts (MW) for May 2022, broken down by week. Here's a detailed summary:\n\n- **1st Week (5/2 - 5/8):** The maximum demand is forecasted to be 70,200 MW.\n- **2nd Week (5/9 - 5/15):** The demand remains the same at 70,200 MW.\n- **3rd Week (5/16 - 5/22):** There is a slight increase in demand to 70,600 MW.\n- **4th Week (5/23 - 5/29):** The demand further increases to 71,600 MW.\n\n**Trend Analysis:**\n- The demand is stable in the first two weeks.\n- There is a gradual increase in demand from the third week to the fourth week, with a total increase of 1,400 MW from the first to the last week of May."
+  },
+  {
+    "uid": "2022년5월전력수요예측전망_p3_id49",
+    "doc": "2022년5월전력수요예측전망",
+    "page": 3,
+    "id": 49,
+    "category": "table",
+    "path": "/home/user/langchain-study/2022_visuals_output/2022년5월전력수요예측전망/page3_id49_table.png",
+    "summary": "The table presents the projected maximum electricity demand (in megawatts, MW) for each week from May 30 to July 3, 2022. Here's a detailed summary:\n\n- **1st Week (5/30 - 6/5):** The maximum demand is projected to be 72,500 MW.\n- **2nd Week (6/6 - 6/12):** The demand increases to 74,700 MW.\n- **3rd Week (6/13 - 6/19):** The demand further rises to 76,700 MW.\n- **4th Week (6/20 - 6/26):** The demand continues to increase, reaching 78,300 MW.\n- **5th Week (6/27 - 7/3):** The highest demand in this period is projected at 79,300 MW.\n\n**Trend Analysis:**\n- There is a consistent upward trend in electricity demand over the five-week period.\n- The demand increases by 2,200 MW from the 1st to the 2nd week, 2,000 MW from the 2nd to the 3rd week, 1,600 MW from the 3rd to the 4th week, and 1,000 MW from the 4th to the 5th week.\n- The total increase in demand from the 1st to the 5th week is 6,800 MW."
+  },
+  {
+    "uid": "2022년5월전력수요예측전망_p4_id57",
+    "doc": "2022년5월전력수요예측전망",
+    "page": 4,
+    "id": 57,
+    "category": "table",
+    "path": "/home/user/langchain-study/2022_visuals_output/2022년5월전력수요예측전망/page4_id57_table.png",
+    "summary": "The table provides a weekly forecast for May 2022, focusing on temperature and precipitation probabilities influenced by atmospheric pressure systems.\n\n### Week 1 (5/2~5/8)\n- **Temperature**: The weekly average temperature is expected to be similar to the normal range of 15.6~16.8°C with a 50% probability.\n- **Precipitation**: The weekly precipitation is expected to be similar to the normal range of 6.9~28.7mm with a 50% probability.\n- **Influence**: Mainly influenced by a mobile high-pressure system, with potential effects from a trough passing north.\n\n### Week 2 (5/9~5/15)\n- **Temperature**: The weekly average temperature is expected to be similar to the normal range of 15.9~16.9°C with a 50% probability.\n- **Precipitation**: The weekly precipitation is expected to be similar or less than the normal range of 14.4~27.1mm with a 40% probability each.\n- **Influence**: Mainly influenced by a mobile high-pressure system.\n\n### Week 3 (5/16~5/22)\n- **Temperature**: The weekly average temperature is expected to be similar or higher than the normal range of 17.3~18.1°C with a 40% probability each.\n- **Precipitation**: The weekly precipitation is expected to be similar to the normal range of 7.7~29.8mm with a 50% probability.\n- **Influence**: Mainly influenced by a mobile high-pressure system.\n\n### Week 4 (5/23~5/29)\n- **Temperature**: The weekly average temperature is expected to be similar or higher than the normal range of 18.1~19.5°C with a 40% probability each.\n- **Precipitation**: The weekly precipitation is expected to be similar or more than the normal range of 5.0~24.6mm with a 40% probability each.\n- **Influence**: Mainly influenced by a mobile high-pressure system, with potential effects from a trough passing south.\n\nOverall, the forecast suggests a consistent influence of mobile high-pressure systems throughout May, with varying probabilities of normal temperature and precipitation ranges."
+  },
+  {
+    "uid": "2022년5월전력수요예측전망_p4_id61",
+    "doc": "2022년5월전력수요예측전망",
+    "page": 4,
+    "id": 61,
+    "category": "table",
+    "path": "/home/user/langchain-study/2022_visuals_output/2022년5월전력수요예측전망/page4_id61_table.png",
+    "summary": "The table provides a forecast for temperature and precipitation over four weeks in May 2022. Here's a detailed summary:\n\n### Temperature (평균기온)\n- **1st Week**: \n  - Range: 15.6°C to 16.8°C\n  - Probability: Low 20%, Normal 50%, High 30%\n- **2nd Week**: \n  - Range: 15.9°C to 16.9°C\n  - Probability: Low 20%, Normal 50%, High 30%\n- **3rd Week**: \n  - Range: 17.3°C to 18.1°C\n  - Probability: Low 20%, Normal 40%, High 40%\n- **4th Week**: \n  - Range: 18.1°C to 19.5°C\n  - Probability: Low 20%, Normal 40%, High 40%\n\n### Precipitation (강수량)\n- **1st Week**: \n  - Range: 6.9mm to 28.7mm\n  - Probability: Low 20%, Normal 50%, High 30%\n- **2nd Week**: \n  - Range: 14.4mm to 27.1mm\n  - Probability: Low 40%, Normal 40%, High 20%\n- **3rd Week**: \n  - Range: 7.7mm to 29.8mm\n  - Probability: Low 20%, Normal 50%, High 30%\n- **4th Week**: \n  - Range: 5.0mm to 24.6mm\n  - Probability: Low 20%, Normal 40%, High 40%\n\n### Trends\n- **Temperature**: There is a gradual increase in the temperature range from the 1st to the 4th week.\n- **Precipitation**: The range of precipitation varies each week, with the highest probability of normal precipitation in the 1st and 3rd weeks. The 4th week shows a higher probability of high precipitation compared to the previous weeks."
+  },
+  {
+    "uid": "2022년5월전력수요예측전망_p5_id64",
+    "doc": "2022년5월전력수요예측전망",
+    "page": 5,
+    "id": 64,
+    "category": "figure",
+    "path": "/home/user/langchain-study/2022_visuals_output/2022년5월전력수요예측전망/page5_id64_figure.png",
+    "summary": "The figure shows electricity demand forecasts for May, June, and July across different regions in South Korea. Each map displays three bars for each region, representing different levels of demand: low (blue), medium (gray), and high (red).\n\n### May:\n- Most regions show a low demand of 20, medium demand of 40, and high demand of 40.\n- Jeju-do has a low demand of 20, medium of 40, and high of 40.\n\n### June:\n- Similar to May, with most regions showing low demand of 20, medium of 40, and high of 40.\n- Jeju-do remains consistent with a low of 20, medium of 40, and high of 40.\n\n### July:\n- Demand increases in several regions.\n- Many regions show a low demand of 20, medium of 50, and high of 50.\n- Jeju-do shows a low demand of 20, medium of 40, and high of 50.\n\n### Trends:\n- The demand is generally increasing from May to July.\n- The high demand category shows a noticeable increase in July compared to May and June.\n- Jeju-do consistently shows lower high demand compared to other regions in July.\n\nThis analysis indicates a seasonal increase in electricity demand, peaking in July."
+  },
+  {
+    "uid": "2022년5월전력수요예측전망_p6_id68",
+    "doc": "2022년5월전력수요예측전망",
+    "page": 6,
+    "id": 68,
+    "category": "chart",
+    "path": "/home/user/langchain-study/2022_visuals_output/2022년5월전력수요예측전망/page6_id68_chart.png",
+    "summary": "The chart illustrates the occurrence probabilities of two different events: \"이상저온\" (abnormally low temperatures) and \"이상고온\" (abnormally high temperatures).\n\n### 이상저온 (Abnormally Low Temperatures)\n- **20%**: Low occurrence probability.\n- **50%**: Moderate occurrence probability.\n- **30%**: High occurrence probability.\n- The text indicates that the probability of occurrence similar to the average (3 days) is 50%.\n\n### 이상고온 (Abnormally High Temperatures)\n- **20%**: Low occurrence probability.\n- **40%**: Moderate occurrence probability.\n- **40%**: High occurrence probability.\n- The text states that the probability of occurrence similar to or higher than the average (3 days) is 40%.\n\n### Color Coding\n- **이상저온**: Light green (low), light blue (moderate), dark blue (high).\n- **이상고온**: Light yellow (low), orange (moderate), red (high).\n\nThe chart suggests that for both temperature extremes, there is a significant probability of moderate to high occurrences, with \"이상고온\" having a slightly higher probability of high occurrences compared to \"이상저온.\""
+  },
+  {
+    "uid": "2022년5월전력수요예측전망_p6_id71",
+    "doc": "2022년5월전력수요예측전망",
+    "page": 6,
+    "id": 71,
+    "category": "figure",
+    "path": "/home/user/langchain-study/2022_visuals_output/2022년5월전력수요예측전망/page6_id71_figure.png",
+    "summary": "The image appears to be a gauge or scale with two sections, labeled in Korean. \n\n- The left section is in blue, labeled \"이상치원\" (below normal), with a value of 10. The text below indicates \"피크-최고기온 10미만\" which translates to \"Peak - Maximum temperature below 10.\"\n\n- The right section is in red, labeled \"이상고온\" (above normal), with a value of 30. The text below indicates \"피크-최고기온 30이상\" which translates to \"Peak - Maximum temperature above 30.\"\n\nThis scale seems to represent a range of temperature conditions, with the blue section indicating cooler conditions and the red section indicating hotter conditions. The context suggests that this is related to electricity demand forecasting for May 2022, where temperature extremes could impact electricity usage."
+  }
+]
