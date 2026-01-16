@@ -128,17 +128,32 @@ def build_report_prompt(data: Dict[str, Any]) -> str:
     else:
         weekly_table = "(주별 데이터 미제공)"
 
+    # 기상 데이터 유무에 따라 섹션 구성
+    has_weather = weather_temp_text != "(값 미제공)"
+
+    if has_weather:
+        weather_section = f"""### 기상 데이터
+- 기온: {weather_temp_text}
+- 습도: {weather_humidity_text}
+
+"""
+        weather_instruction = f"""# 1. 기상전망
+- {month}월 기온 전망 (입력된 기상 데이터 기반)
+
+# 2. 과거 전력수요 추이"""
+        forecast_section_num = "3"
+    else:
+        weather_section = ""
+        weather_instruction = "# 1. 과거 전력수요 추이"
+        forecast_section_num = "2"
+
     prompt = f"""[INST]
 너는 전력수요 전망 보고서를 마크다운으로 작성하는 전문가다.
 아래 데이터를 기반으로 {target_period_label} 전력수요 전망 보고서를 작성하라.
 
 ## 입력 데이터
 
-### 기상 데이터
-- 기온: {weather_temp_text}
-- 습도: {weather_humidity_text}
-
-### 과거 5개년 실적
+{weather_section}### 과거 5개년 실적
 | 구분 | {cols[0]} | {cols[1]} | {cols[2]} | {cols[3]} | {cols[4]} |
 |---|---:|---:|---:|---:|---:|
 | 최대부하(만kW) | {max_loads_with_yoy[0]} | {max_loads_with_yoy[1]} | {max_loads_with_yoy[2]} | {max_loads_with_yoy[3]} | {max_loads_with_yoy[4]} |
@@ -149,21 +164,23 @@ def build_report_prompt(data: Dict[str, Any]) -> str:
 
 ## 보고서 구성 (이 순서대로 작성)
 
-# 1. 기상전망
-- {month}월 기온 전망 (입력된 기상 데이터 기반)
-- {month}월 강수량 전망
-
-# 2. 과거 전력수요 추이
+{weather_instruction}
 - 최근 5개년 {month}월 실적 분석 설명
-- 최대부하/평균부하 표 (증감률 포함)
+- "[단위: 만kW, 증감률(%)]" 표기 후 최대부하/평균부하 표 작성
+- 각 수치에 증감률 괄호 포함 (예: "8,546만kW (+10.6%)")
 
-# 3. 전력수요 전망결과
-- {target_period_label} 주차별 최대전력 표
+# {forecast_section_num}. 전력수요 전망결과
+- "[단위: 만kW]" 표기 후 {target_period_label} 주차별 최대전력 표 작성
+- 주차 헤더에 날짜 범위 포함 (예: "1주(8/1~8/4)")
 
 ## 출력 규칙
 - 마크다운 보고서 본문만 출력
 - 표는 Markdown Table 형식
-- 없는 데이터는 "(값 미제공)" 표기
+- 과거 실적 표: 수치 뒤에 증감률 괄호 표기 (예: 8,546만kW (+10.6%))
+- 표 위에 반드시 "[단위: 만kW]" 명시
+- 주차별 표 헤더에 날짜 범위 표기 (예: 1주(8/1~8/4), 2주(8/5~8/11))
+- 입력 데이터의 증감률을 그대로 사용
+- 기상 데이터가 없으면 기상전망 섹션 생략
 [/INST]
 
 # {target_period_label} 전력수요 전망 보고서
