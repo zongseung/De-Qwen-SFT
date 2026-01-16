@@ -35,6 +35,143 @@ sys.path.insert(0, str(Path(__file__).parent))
 from mcp_server.tools import CombinedTools
 
 
+def build_report_prompt(data: Dict[str, Any]) -> str:
+    """보고서 생성용 프롬프트 구성
+
+    Args:
+        data: CombinedTools.get_report_data() 반환값
+    """
+    summary = data.get("summary", {})
+    weather = data.get("weather", {})
+    weekly = data.get("weekly_demand", [])
+    historical = data.get("historical", [])
+
+    year = summary.get("year", 0)
+    month = summary.get("month", 0)
+    target_period_label = f"{year}년 {month}월"
+
+    # 기상 데이터
+    avg_temp = weather.get("temperature_avg", 0) or 0 if weather and not weather.get("error") else 0
+    max_temp = weather.get("temperature_max", 0) or 0 if weather and not weather.get("error") else 0
+    min_temp = weather.get("temperature_min", 0) or 0 if weather and not weather.get("error") else 0
+    humidity = weather.get("humidity_avg", 0) or 0 if weather and not weather.get("error") else 0
+
+    weather_temp_text = f"평균 {avg_temp:.1f}°C (최고 {max_temp:.1f}°C, 최저 {min_temp:.1f}°C)" if avg_temp else "(값 미제공)"
+    weather_humidity_text = f"평균 습도 {humidity:.1f}%" if humidity else "(값 미제공)"
+
+    # 과거 5개년 데이터 처리
+    historical_sorted = sorted(historical, key=lambda x: x.get("year", 0))
+    cols = []
+    max_loads_with_yoy = []
+    avg_loads_with_yoy = []
+
+    for h in historical_sorted[-5:]:
+        cols.append(f"{h.get('year', '')}년{month}월")
+        max_val = h.get("max_demand", 0) or 0
+        avg_val = h.get("avg_demand", 0) or 0
+        max_yoy = h.get("max_yoy")
+        avg_yoy = h.get("avg_yoy")
+
+        if max_val:
+            max_str = f"{max_val/10:,.0f}"
+            if max_yoy is not None:
+                max_str += f" ({max_yoy:+.1f}%)"
+            max_loads_with_yoy.append(max_str)
+        else:
+            max_loads_with_yoy.append("(값 미제공)")
+
+        if avg_val:
+            avg_str = f"{avg_val/10:,.0f}"
+            if avg_yoy is not None:
+                avg_str += f" ({avg_yoy:+.1f}%)"
+            avg_loads_with_yoy.append(avg_str)
+        else:
+            avg_loads_with_yoy.append("(값 미제공)")
+
+    while len(cols) < 5:
+        cols.insert(0, "(값 미제공)")
+        max_loads_with_yoy.insert(0, "(값 미제공)")
+        avg_loads_with_yoy.insert(0, "(값 미제공)")
+
+    # 주차별 테이블 생성
+    weekly_table_rows = []
+    for w in weekly:
+        week_label = f"{w.get('week', '')}주"
+        date_range = w.get("date_range", "")
+        if not date_range:
+            start = w.get("start_date", "")
+            end = w.get("end_date", "")
+            if start and end:
+                try:
+                    from datetime import datetime as dt
+                    s_date = dt.strptime(start, "%Y-%m-%d")
+                    e_date = dt.strptime(end, "%Y-%m-%d")
+                    date_range = f"({s_date.month}/{s_date.day}~{e_date.month}/{e_date.day})"
+                except ValueError:
+                    date_range = ""
+        week_max = w.get("max_demand", 0) or 0
+        weekly_table_rows.append({
+            "label": week_label,
+            "range": date_range,
+            "max": f"{week_max/10:,.0f}" if week_max else "(값 미제공)"
+        })
+
+    week_count = len(weekly_table_rows)
+    week_headers = [f"{w['label']}{w['range']}" for w in weekly_table_rows]
+    week_values = [w['max'] for w in weekly_table_rows]
+
+    if week_count > 0:
+        header_row = "| 구분 | " + " | ".join(week_headers) + " |"
+        align_row = "|---|" + "---:|" * week_count
+        data_row = "| 최대전력(만kW) | " + " | ".join(week_values) + " |"
+        weekly_table = f"{header_row}\n{align_row}\n{data_row}"
+    else:
+        weekly_table = "(주별 데이터 미제공)"
+
+    prompt = f"""[INST]
+너는 전력수요 전망 보고서를 마크다운으로 작성하는 전문가다.
+아래 데이터를 기반으로 {target_period_label} 전력수요 전망 보고서를 작성하라.
+
+## 입력 데이터
+
+### 기상 데이터
+- 기온: {weather_temp_text}
+- 습도: {weather_humidity_text}
+
+### 과거 5개년 실적
+| 구분 | {cols[0]} | {cols[1]} | {cols[2]} | {cols[3]} | {cols[4]} |
+|---|---:|---:|---:|---:|---:|
+| 최대부하(만kW) | {max_loads_with_yoy[0]} | {max_loads_with_yoy[1]} | {max_loads_with_yoy[2]} | {max_loads_with_yoy[3]} | {max_loads_with_yoy[4]} |
+| 평균부하(만kW) | {avg_loads_with_yoy[0]} | {avg_loads_with_yoy[1]} | {avg_loads_with_yoy[2]} | {avg_loads_with_yoy[3]} | {avg_loads_with_yoy[4]} |
+
+### 주차별 전력수요 전망
+{weekly_table}
+
+## 보고서 구성 (이 순서대로 작성)
+
+# 1. 기상전망
+- {month}월 기온 전망 (입력된 기상 데이터 기반)
+- {month}월 강수량 전망
+
+# 2. 과거 전력수요 추이
+- 최근 5개년 {month}월 실적 분석 설명
+- 최대부하/평균부하 표 (증감률 포함)
+
+# 3. 전력수요 전망결과
+- {target_period_label} 주차별 최대전력 표
+
+## 출력 규칙
+- 마크다운 보고서 본문만 출력
+- 표는 Markdown Table 형식
+- 없는 데이터는 "(값 미제공)" 표기
+[/INST]
+
+# {target_period_label} 전력수요 전망 보고서
+
+"""
+    return prompt
+
+
 def generate_weekly_chart(
     weekly_data: List[Dict[str, Any]],
     year: int,
@@ -146,186 +283,80 @@ def generate_weekly_chart(
     return filepath
 
 
-def build_prompt(data: Dict[str, Any]) -> str:
-    """보고서 생성용 프롬프트 구성"""
-    summary = data.get("summary", {})
-    weather = data.get("weather", {})
-    weekly = data.get("weekly_demand", [])
-    historical = data.get("historical", [])
-    peak = data.get("peak_load", {})
+def insert_chart_after_section2(report: str, chart_path: Path) -> str:
+    """# 2. 과거 전력수요 추이 섹션 바로 아래에 실적그래프 삽입"""
+    import re
 
-    year = summary.get("year", 0)
-    month = summary.get("month", 0)
+    chart_markdown = f"\n\n### 실적그래프\n\n![최근 5개년 전력수요 추이](./charts/{chart_path.name})\n"
 
-    # 과거 데이터 문자열
-    hist_lines = []
-    for h in historical:
-        if h.get("max_demand"):
-            hist_lines.append(
-                f"- {h['year']}년: 최대 {h['max_demand']/10000:.1f}만kW, "
-                f"평균 {h['avg_demand']/10000:.1f}만kW"
-            )
-    hist_str = "\n".join(hist_lines) if hist_lines else "데이터 없음"
+    # "# 3." 또는 "## 3." 시작 전에 그래프 삽입
+    pattern = r'(# 3\.|## 3\.)'
+    match = re.search(pattern, report)
 
-    # 주별 데이터 문자열
-    weekly_lines = []
-    for w in weekly:
-        if w.get("max_demand"):
-            weekly_lines.append(
-                f"- {w['week']}주차: 최대 {w['max_demand']/10000:.1f}만kW, "
-                f"평균 {w['avg_demand']/10000:.1f}만kW"
-            )
-    weekly_str = "\n".join(weekly_lines) if weekly_lines else "데이터 없음"
-
-    # 기상 정보
-    temp_info = ""
-    if weather and not weather.get("error"):
-        temp_info = f"""- 평균기온: {weather.get('temperature_avg', 0):.1f}°C
-- 최고기온: {weather.get('temperature_max', 0):.1f}°C
-- 최저기온: {weather.get('temperature_min', 0):.1f}°C
-- 평균습도: {weather.get('humidity_avg', 0):.1f}%"""
+    if match:
+        insert_pos = match.start()
+        return report[:insert_pos] + chart_markdown + "\n" + report[insert_pos:]
     else:
-        temp_info = "기상 데이터 없음"
-
-    # 최대부하 정보
-    peak_info = ""
-    if peak and not peak.get("error"):
-        peak_info = f"- 최대부하 발생: {peak.get('peak_date', '')} {peak.get('peak_hour', 0)}시 ({peak.get('weekday', '')})"
-
-    # YoY 변화
-    yoy = summary.get("yoy_change")
-    yoy_str = f"{yoy:+.1f}%" if yoy else "N/A"
-
-    prompt = f"""당신은 한국전력거래소의 전력수요 예측 전문가입니다.
-다음 데이터를 기반으로 {year}년 {month}월 전력수요 분석 보고서를 작성해주세요.
-
-## 입력 데이터
-
-### 기본 정보
-- 대상 기간: {year}년 {month}월
-- 최대부하: {summary.get('max_demand', 0)/10000:.1f}만kW (전년 동월 대비 {yoy_str})
-- 평균부하: {summary.get('avg_demand', 0)/10000:.1f}만kW
-- 최소부하: {summary.get('min_demand', 0)/10000:.1f}만kW
-{peak_info}
-
-### 기상 현황
-{temp_info}
-
-### 주별 전력수요
-{weekly_str}
-
-### 과거 동월 실적 (최근 5개년)
-{hist_str}
-
-## 보고서 작성 지침
-1. 전문적이고 객관적인 어조로 작성
-2. 수치는 만kW 단위로 표기
-3. 전년 대비 증감 분석 포함
-4. 기상 영향 분석 포함 (데이터 있는 경우)
-
-## 보고서 형식
-
-# {year}년 {month}월 전력수요 분석 보고서
-
-## 1. 개요
-(해당 월 전력수요 요약)
-
-## 2. 전력수요 현황
-(최대/평균/최소 부하 분석, 주별 추이)
-
-## 3. 기상 영향 분석
-(기온과 전력수요 상관관계)
-
-## 4. 전년 동월 대비 분석
-(YoY 변화 원인 분석)
-
-## 5. 결론
-(종합 분석 및 시사점)
-"""
-    return prompt
+        # 섹션 3을 못 찾으면 마지막에 추가
+        return report + chart_markdown
 
 
 def remove_repetitions(text: str) -> str:
     """연속으로 반복되는 문장/단락 제거 및 불필요한 텍스트 정리"""
     import re
-    
+
     if not text or not text.strip():
         return text
-    
-    # 1단계: "## 5. 결론" 섹션까지만 유지 (섹션 5 이후 모든 내용 제거)
-    if "## 5. 결론" in text:
-        parts = text.split("## 5. 결론")
-        before_conclusion = parts[0]
-        conclusion_raw = parts[1] if len(parts) > 1 else ""
-        
-        # 결론 내용에서 첫 번째 문단만 추출 (# 으로 시작하는 새 섹션 전까지)
-        conclusion_lines = []
-        seen_content = set()
-        
-        for line in conclusion_raw.split('\n'):
-            stripped = line.strip()
-            
-            # 새 보고서 시작 패턴 (# 20XX년 ...)
+
+    # 1단계: "# 3. 전력수요 전망결과" 섹션 이후 반복되는 보고서 제거
+    # 패턴: 새 보고서 시작 (# 20XX년 ...) 또는 # 4. 이후 섹션
+    lines = text.split('\n')
+    result_lines = []
+    found_section_3 = False
+
+    for line in lines:
+        stripped = line.strip()
+
+        # 섹션 3 발견
+        if '# 3.' in stripped or '## 3.' in stripped:
+            found_section_3 = True
+
+        # 섹션 3 이후에 새 보고서 시작 패턴 감지 → 중단
+        if found_section_3:
+            # 새 보고서 시작 (# 20XX년 ...)
             if re.match(r'^#\s*20\d{2}년', stripped):
                 break
-            
-            # 새 섹션/새 보고서 시작이면 중단
-            if stripped.startswith("# ") or stripped.startswith("## 6"):
+            # 섹션 4 이상 시작
+            if re.match(r'^#\s*4\.', stripped) or re.match(r'^##\s*4\.', stripped):
                 break
-            
-            # 잘못된 패턴 제거 (# 전력수요, # 결론 등)
-            if stripped.startswith("# ") and "전력수요" in stripped:
+            # [INST] 태그 반복
+            if '[INST]' in stripped:
                 break
-            if stripped.startswith("# ") and "의견" in stripped:
-                break
-            
-            # 마크다운 코드블록 시작이면 중단
-            if stripped.startswith("```"):
-                break
-            
-            # 중복 문장 스킵 (첫 50자로 비교)
-            content_key = stripped[:50] if len(stripped) > 50 else stripped
-            if content_key and content_key in seen_content:
-                continue
-            
-            if content_key:
-                seen_content.add(content_key)
-            
-            conclusion_lines.append(line)
-        
-        # 결론 정리 (마지막 불완전 문장 제거)
-        conclusion_text = '\n'.join(conclusion_lines).strip()
-        
-        # 인라인으로 붙은 새 보고서 제목 제거 (예: "...입니다. # 2025년 6월 전력수요")
-        conclusion_text = re.sub(r'\s*#\s*20\d{2}년.*$', '', conclusion_text, flags=re.DOTALL)
-        
-        # 마지막 문장이 불완전하면 제거 (마침표/느낌표로 끝나지 않음)
-        if conclusion_text and not conclusion_text.rstrip().endswith(('.', '!', '다.')):
-            # 마지막 완전한 문장까지만 유지
-            last_period = conclusion_text.rfind('.')
-            if last_period > 0:
-                conclusion_text = conclusion_text[:last_period + 1]
-        
-        text = before_conclusion + "## 5. 결론\n" + conclusion_text
-    
+
+        result_lines.append(line)
+
+    text = '\n'.join(result_lines)
+
     # 2단계: 불필요한 마커 제거
     text = text.replace('#end', '').replace('#END', '')
-    text = re.sub(r'#\s*전력수요 예측 전문가 의견', '', text)
-    
-    # 3단계: 끝에 잘린 코드블록 제거
-    if "```" in text:
-        code_blocks = text.split("```")
-        if len(code_blocks) % 2 == 0:
-            text = "```".join(code_blocks[:-1])
-    
+    text = re.sub(r'\[INST\].*?\[/INST\]', '', text, flags=re.DOTALL)
+    text = re.sub(r'\[/INST\]', '', text)
+
+    # 3단계: 끝에 불완전한 테이블 행 제거
+    lines = text.rstrip().split('\n')
+    while lines and lines[-1].strip().startswith('|') and lines[-1].count('|') < 3:
+        lines.pop()
+    text = '\n'.join(lines)
+
     # 4단계: 끝에 불완전한 문장 제거
     text = text.rstrip()
-    if text and not text.endswith(('.', '!', '?', '다.', '습니다.', '입니다.')):
-        # 마지막 마침표 찾기
+    if text and not text.endswith(('.', '!', '?', '|', '다.', '습니다.', '입니다.')):
         last_period = text.rfind('.')
-        if last_period > len(text) - 100:  # 마지막 100자 이내에 마침표가 있으면
-            text = text[:last_period + 1]
-    
+        last_table = text.rfind('|')
+        last_complete = max(last_period, last_table)
+        if last_complete > len(text) - 100:
+            text = text[:last_complete + 1]
+
     return text.strip()
 
 
@@ -341,7 +372,7 @@ def generate_with_llm(prompt: str, llm_url: str) -> Optional[str]:
                 "max_tokens": 1500,
                 "temperature": 0.7,
                 "repetition_penalty": 1.15,
-                "stop": ["## 6.", "\n\n\n"],
+                "stop": ["# 4.", "## 4.", "[INST]", "\n\n\n\n"],
             },
             timeout=120.0,
         )
@@ -440,14 +471,11 @@ Examples:
     # 2. 차트 생성 (다년간 비교 포함)
     print("[2/5] 차트 생성 중...")
     
-    # 과거 연도별 동월 데이터 조회 (최대 10년, 요청 연도까지만)
-    historical = tools.get_historical_demand(args.month, years=10)
+    # 과거 연도별 동월 데이터 조회 (최대 10년, 요청 연도까지)
+    historical = tools.get_historical_demand(args.month, years=10, target_year=args.year)
     if historical:
-        # 요청 연도까지의 데이터만 필터링 (미래 데이터 제외)
-        historical = [h for h in historical if h['year'] <= args.year]
-        if historical:
-            years_range = f"{historical[-1]['year']}-{historical[0]['year']}"
-            print(f"  - 히스토리컬 데이터: {args.month}월 ({years_range}, {len(historical)}년간)")
+        years_range = f"{historical[-1]['year']}-{historical[0]['year']}"
+        print(f"  - 히스토리컬 데이터: {args.month}월 ({years_range}, {len(historical)}년간)")
     
     chart_path = generate_weekly_chart(
         data.get("weekly_demand", []),
@@ -463,7 +491,7 @@ Examples:
 
     # 3. 프롬프트 생성
     print("[3/5] 프롬프트 생성 중...")
-    prompt = build_prompt(data)
+    prompt = build_report_prompt(data)
 
     if args.prompt_only:
         print("\n" + "="*60)
@@ -477,10 +505,9 @@ Examples:
         report = generate_with_llm(prompt, args.llm_url)
 
         if report:
-            # 차트를 보고서에 삽입
+            # 차트를 "# 2. 과거 전력수요 추이" 섹션 아래에 삽입
             if chart_path:
-                chart_section = f"\n\n## 6. 주별 전력수요 추이 그래프\n\n![주별 전력수요 추이](./charts/{chart_path.name})\n"
-                report = report + chart_section
+                report = insert_chart_after_section2(report, chart_path)
             
             print("[5/5] 보고서 저장 중...")
             filepath = save_report(report, args.year, args.month, args.output, "_llm")
