@@ -5,7 +5,8 @@ MCP Tools - SQLite DB 직접 조회
 import sqlite3
 from pathlib import Path
 from typing import Dict, Any, List, Optional
-from datetime import datetime
+from datetime import datetime, timedelta
+import calendar
 
 # DB 경로
 DB_PATH = Path(__file__).parent.parent / "demand_data" / "demand.db"
@@ -80,7 +81,7 @@ class DemandTools:
         }
 
     def get_weekly_demand(self, year: int, month: int) -> List[Dict[str, Any]]:
-        """주별 전력수요 조회"""
+        """주별 전력수요 조회 (날짜 범위 포함)"""
         conn = get_db_connection()
         cur = conn.cursor()
 
@@ -89,7 +90,9 @@ class DemandTools:
                 strftime('%W', timestamp) as week,
                 MAX(demand_max) as max_demand,
                 AVG(demand_mean) as avg_demand,
-                MIN(demand_min) as min_demand
+                MIN(demand_min) as min_demand,
+                MIN(date(timestamp)) as start_date,
+                MAX(date(timestamp)) as end_date
             FROM demand_1hour
             WHERE strftime('%Y', timestamp) = ?
               AND strftime('%m', timestamp) = ?
@@ -102,11 +105,28 @@ class DemandTools:
 
         result = []
         for i, row in enumerate(rows, 1):
+            start_date = row[4] if row[4] else ""
+            end_date = row[5] if row[5] else ""
+
+            # 날짜 범위 문자열 생성 (예: "(7/1~7/7)")
+            date_range = ""
+            if start_date and end_date:
+                try:
+                    s_date = datetime.strptime(start_date, "%Y-%m-%d")
+                    e_date = datetime.strptime(end_date, "%Y-%m-%d")
+                    date_range = f"({s_date.month}/{s_date.day}~{e_date.month}/{e_date.day})"
+                except ValueError:
+                    date_range = ""
+
             result.append({
                 "week": i,
+                "week_label": f"{i}주",
                 "max_demand": round(row[1], 0) if row[1] else None,
                 "avg_demand": round(row[2], 0) if row[2] else None,
                 "min_demand": round(row[3], 0) if row[3] else None,
+                "start_date": start_date,
+                "end_date": end_date,
+                "date_range": date_range,
             })
 
         return result
@@ -148,34 +168,82 @@ class DemandTools:
             "weekday": peak_time.strftime("%A"),
         }
 
-    def get_historical_data(self, month: int, years: int = 5) -> List[Dict[str, Any]]:
-        """과거 N년간 동월 데이터 조회"""
+    def get_historical_data(self, month: int, years: int = 5, target_year: int = None) -> List[Dict[str, Any]]:
+        """과거 N년간 동월 데이터 조회 (YoY 증감률 포함)
+
+        Args:
+            month: 조회할 월
+            years: 조회할 연도 수
+            target_year: 기준 연도 (이 연도까지의 데이터만 조회, None이면 전체)
+        """
         conn = get_db_connection()
         cur = conn.cursor()
 
-        cur.execute("""
-            SELECT
-                strftime('%Y', timestamp) as year,
-                MAX(demand_max) as max_demand,
-                AVG(demand_mean) as avg_demand
-            FROM demand_1hour
-            WHERE strftime('%m', timestamp) = ?
-            GROUP BY year
-            ORDER BY year DESC
-            LIMIT ?
-        """, (f"{month:02d}", years))
+        # 충분한 데이터를 가져와서 YoY 계산 가능하도록 (years+1개)
+        if target_year:
+            cur.execute("""
+                SELECT
+                    strftime('%Y', timestamp) as year,
+                    MAX(demand_max) as max_demand,
+                    AVG(demand_mean) as avg_demand
+                FROM demand_1hour
+                WHERE strftime('%m', timestamp) = ?
+                  AND CAST(strftime('%Y', timestamp) AS INTEGER) <= ?
+                GROUP BY year
+                ORDER BY year DESC
+                LIMIT ?
+            """, (f"{month:02d}", target_year, years + 1))
+        else:
+            cur.execute("""
+                SELECT
+                    strftime('%Y', timestamp) as year,
+                    MAX(demand_max) as max_demand,
+                    AVG(demand_mean) as avg_demand
+                FROM demand_1hour
+                WHERE strftime('%m', timestamp) = ?
+                GROUP BY year
+                ORDER BY year DESC
+                LIMIT ?
+            """, (f"{month:02d}", years + 1))
 
         rows = cur.fetchall()
         conn.close()
 
-        return [
-            {
-                "year": int(row[0]),
+        # 연도별 데이터를 딕셔너리로 변환
+        year_data = {}
+        for row in rows:
+            year_data[int(row[0])] = {
                 "max_demand": round(row[1], 0) if row[1] else None,
                 "avg_demand": round(row[2], 0) if row[2] else None,
             }
-            for row in rows
-        ]
+
+        # 최근 years개 연도에 대해 YoY 계산
+        result = []
+        sorted_years = sorted(year_data.keys(), reverse=True)[:years]
+
+        for yr in sorted_years:
+            data = year_data[yr]
+            prev_yr = yr - 1
+
+            # 전년 데이터가 있으면 YoY 계산
+            max_yoy = None
+            avg_yoy = None
+            if prev_yr in year_data:
+                prev_data = year_data[prev_yr]
+                if data["max_demand"] and prev_data["max_demand"]:
+                    max_yoy = round((data["max_demand"] - prev_data["max_demand"]) / prev_data["max_demand"] * 100, 1)
+                if data["avg_demand"] and prev_data["avg_demand"]:
+                    avg_yoy = round((data["avg_demand"] - prev_data["avg_demand"]) / prev_data["avg_demand"] * 100, 1)
+
+            result.append({
+                "year": yr,
+                "max_demand": data["max_demand"],
+                "avg_demand": data["avg_demand"],
+                "max_yoy": max_yoy,
+                "avg_yoy": avg_yoy,
+            })
+
+        return result
 
     def get_daily_pattern(self, year: int, month: int, day_type: int = 0) -> List[Dict[str, Any]]:
         """
@@ -295,7 +363,7 @@ class CombinedTools:
         summary = self.demand_tools.get_demand_summary(year, month)
         weekly = self.demand_tools.get_weekly_demand(year, month)
         peak = self.demand_tools.get_peak_load(year, month)
-        historical = self.demand_tools.get_historical_data(month, years=5)
+        historical = self.demand_tools.get_historical_data(month, years=5, target_year=year)
         weekday_pattern = self.demand_tools.get_daily_pattern(year, month, day_type=0)
         weekend_pattern = self.demand_tools.get_daily_pattern(year, month, day_type=1)
         weather = self.weather_tools.get_weather_summary(year, month)
@@ -322,8 +390,8 @@ class CombinedTools:
     def get_peak_load(self, year: int, month: int) -> Dict[str, Any]:
         return self.demand_tools.get_peak_load(year, month)
 
-    def get_historical_demand(self, month: int, years: int = 5) -> List[Dict[str, Any]]:
-        return self.demand_tools.get_historical_data(month, years)
+    def get_historical_demand(self, month: int, years: int = 5, target_year: int = None) -> List[Dict[str, Any]]:
+        return self.demand_tools.get_historical_data(month, years, target_year=target_year)
 
 
 class ChartTools:
