@@ -280,6 +280,67 @@ class DemandTools:
             for row in rows
         ]
 
+    def get_monthly_demand_by_year(self, year: int, up_to_month: int = 12) -> List[Dict[str, Any]]:
+        """특정 연도의 월별 평균 수요 조회
+
+        Args:
+            year: 연도
+            up_to_month: 이 월까지만 조회 (1-12)
+
+        Returns:
+            월별 평균/최대 수요 리스트
+        """
+        conn = get_db_connection()
+        cur = conn.cursor()
+
+        cur.execute("""
+            SELECT
+                CAST(strftime('%m', timestamp) AS INTEGER) as month,
+                AVG(demand_mean) as avg_demand,
+                MAX(demand_max) as max_demand
+            FROM demand_1hour
+            WHERE strftime('%Y', timestamp) = ?
+              AND CAST(strftime('%m', timestamp) AS INTEGER) <= ?
+            GROUP BY month
+            ORDER BY month
+        """, (str(year), up_to_month))
+
+        rows = cur.fetchall()
+        conn.close()
+
+        return [
+            {
+                "month": row[0],
+                "avg_demand": round(row[1], 0) if row[1] else None,
+                "max_demand": round(row[2], 0) if row[2] else None,
+            }
+            for row in rows
+        ]
+
+    def get_yearly_monthly_demand(self, target_year: int, target_month: int, years: int = 5) -> Dict[str, List]:
+        """최근 N년간 월별 평균 수요 조회 (차트용)
+
+        Args:
+            target_year: 기준 연도
+            target_month: 기준 월 (이 연도는 이 월까지만 조회)
+            years: 조회할 연도 수
+
+        Returns:
+            연도별 월별 수요 데이터
+        """
+        result = {}
+
+        for i in range(years):
+            year = target_year - i
+            # 기준 연도는 target_month까지만, 나머지는 12월까지
+            up_to_month = target_month if year == target_year else 12
+            monthly_data = self.get_monthly_demand_by_year(year, up_to_month)
+
+            if monthly_data:
+                result[year] = monthly_data
+
+        return result
+
 
 class WeatherTools:
     """기상 데이터 조회 도구 (SQLite 직접 조회)"""
@@ -350,6 +411,89 @@ class WeatherTools:
             for row in rows
         ]
 
+    def get_historical_weather(self, month: int, years: int = 5, target_year: int = None) -> Dict[str, Any]:
+        """과거 N년간 동월 기상 데이터 조회
+
+        Args:
+            month: 조회할 월
+            years: 조회할 연도 수
+            target_year: 기준 연도 (이 연도 이전 데이터만 조회)
+
+        Returns:
+            - years_data: 연도별 기상 데이터 리스트
+            - avg_temperature: 과거 N년 평균 기온
+            - avg_humidity: 과거 N년 평균 습도
+        """
+        conn = get_db_connection()
+        cur = conn.cursor()
+
+        if target_year:
+            cur.execute("""
+                SELECT
+                    strftime('%Y', timestamp) as year,
+                    AVG(temperature_mean) as temp_avg,
+                    MAX(temperature_max) as temp_max,
+                    MIN(temperature_min) as temp_min,
+                    AVG(humidity_mean) as humidity_avg
+                FROM weather_1hour
+                WHERE strftime('%m', timestamp) = ?
+                  AND CAST(strftime('%Y', timestamp) AS INTEGER) < ?
+                GROUP BY year
+                ORDER BY year DESC
+                LIMIT ?
+            """, (f"{month:02d}", target_year, years))
+        else:
+            cur.execute("""
+                SELECT
+                    strftime('%Y', timestamp) as year,
+                    AVG(temperature_mean) as temp_avg,
+                    MAX(temperature_max) as temp_max,
+                    MIN(temperature_min) as temp_min,
+                    AVG(humidity_mean) as humidity_avg
+                FROM weather_1hour
+                WHERE strftime('%m', timestamp) = ?
+                GROUP BY year
+                ORDER BY year DESC
+                LIMIT ?
+            """, (f"{month:02d}", years))
+
+        rows = cur.fetchall()
+        conn.close()
+
+        if not rows:
+            return {"error": f"{month}월 과거 기상 데이터 없음"}
+
+        years_data = []
+        total_temp = 0
+        total_humidity = 0
+        valid_count = 0
+
+        for row in rows:
+            temp_avg = round(row[1], 1) if row[1] else None
+            humidity_avg = round(row[4], 1) if row[4] else None
+
+            years_data.append({
+                "year": int(row[0]),
+                "temperature_avg": temp_avg,
+                "temperature_max": round(row[2], 1) if row[2] else None,
+                "temperature_min": round(row[3], 1) if row[3] else None,
+                "humidity_avg": humidity_avg,
+            })
+
+            if temp_avg is not None:
+                total_temp += temp_avg
+                valid_count += 1
+            if humidity_avg is not None:
+                total_humidity += humidity_avg
+
+        return {
+            "month": month,
+            "years_count": len(years_data),
+            "years_data": years_data,
+            "avg_temperature": round(total_temp / valid_count, 1) if valid_count > 0 else None,
+            "avg_humidity": round(total_humidity / valid_count, 1) if valid_count > 0 else None,
+        }
+
 
 class CombinedTools:
     """통합 조회 도구"""
@@ -357,6 +501,14 @@ class CombinedTools:
     def __init__(self):
         self.demand_tools = DemandTools()
         self.weather_tools = WeatherTools()
+        self._forecast_tools = None  # 지연 로딩
+
+    @property
+    def forecast_tools(self):
+        """ForecastTools 지연 로딩 (GPU 메모리 절약)"""
+        if self._forecast_tools is None:
+            self._forecast_tools = ForecastTools()
+        return self._forecast_tools
 
     def get_report_data(self, year: int, month: int) -> Dict[str, Any]:
         """보고서 생성용 전체 데이터 조회"""
@@ -367,6 +519,8 @@ class CombinedTools:
         weekday_pattern = self.demand_tools.get_daily_pattern(year, month, day_type=0)
         weekend_pattern = self.demand_tools.get_daily_pattern(year, month, day_type=1)
         weather = self.weather_tools.get_weather_summary(year, month)
+        # 과거 동월 기상 데이터 (기상전망 작성용)
+        historical_weather = self.weather_tools.get_historical_weather(month, years=5, target_year=year)
 
         return {
             "summary": summary,
@@ -376,6 +530,7 @@ class CombinedTools:
             "weekday_pattern": weekday_pattern,
             "weekend_pattern": weekend_pattern,
             "weather": weather,
+            "historical_weather": historical_weather,
         }
 
     def get_weather_summary(self, year: int, month: int) -> Dict[str, Any]:
@@ -392,6 +547,435 @@ class CombinedTools:
 
     def get_historical_demand(self, month: int, years: int = 5, target_year: int = None) -> List[Dict[str, Any]]:
         return self.demand_tools.get_historical_data(month, years, target_year=target_year)
+
+    def get_yearly_monthly_demand(self, target_year: int, target_month: int, years: int = 5) -> Dict[str, List]:
+        return self.demand_tools.get_yearly_monthly_demand(target_year, target_month, years)
+
+    def forecast_weekly_demand(self, year: int, month: int, model: str = "lstm", include_next_month: bool = False) -> Dict[str, Any]:
+        """주차별 전력수요 예측
+
+        Args:
+            year: 예측 대상 연도
+            month: 예측 대상 월
+            model: 사용할 모델 ("arima", "holt_winters", "lstm", "ensemble")
+            include_next_month: True면 다음 달까지 예측 (LSTM 8주 모델 사용)
+        """
+        return self.forecast_tools.forecast_weekly_demand(year, month, model, include_next_month)
+
+
+class ForecastTools:
+    """주차별 전력수요 예측 도구 (ARIMA, Holt-Winters, LSTM)"""
+
+    def __init__(self):
+        self.model_dir = Path(__file__).parent.parent.parent  # /root/De-Qwen-SFT
+        self.scaler_x = None
+        self.scaler_y = None
+        # 4주/8주 모델 파라미터 분리
+        self.lstm_params_4 = None
+        self.lstm_params_8 = None
+        self._load_lstm_models()
+
+    def _load_lstm_models(self):
+        """LSTM 모델 및 스케일러 로드 (4주/8주 모델)"""
+        try:
+            import torch
+            import pickle
+
+            # 4주 모델
+            model_path_4 = self.model_dir / "best_direct_lstm_full_4.pth"
+            # 8주 모델
+            model_path_8 = self.model_dir / "best_direct_lstm_full_8.pth"
+            scaler_path = self.model_dir / "scalers.pkl"
+
+            if not scaler_path.exists():
+                print(f"[WARN] 스케일러 파일 없음: {scaler_path}")
+                return
+
+            # 스케일러 로드
+            with open(scaler_path, 'rb') as f:
+                scalers = pickle.load(f)
+                self.scaler_x = scalers['scaler_x']
+                self.scaler_y = scalers['scaler_y']
+
+            # 4주 모델 파라미터 로드
+            if model_path_4.exists():
+                checkpoint_4 = torch.load(model_path_4, map_location='cpu', weights_only=False)
+                self.lstm_params_4 = checkpoint_4.get('params', {})
+                self.lstm_params_4['model_path'] = model_path_4
+                print(f"[INFO] LSTM 4주 모델 로드 완료")
+            else:
+                print(f"[WARN] LSTM 4주 모델 파일 없음: {model_path_4}")
+
+            # 8주 모델 파라미터 로드
+            if model_path_8.exists():
+                checkpoint_8 = torch.load(model_path_8, map_location='cpu', weights_only=False)
+                self.lstm_params_8 = checkpoint_8.get('params', {})
+                self.lstm_params_8['model_path'] = model_path_8
+                print(f"[INFO] LSTM 8주 모델 로드 완료")
+            else:
+                print(f"[WARN] LSTM 8주 모델 파일 없음: {model_path_8}")
+
+        except Exception as e:
+            print(f"[WARN] LSTM 모델 로드 실패: {e}")
+
+    def _get_weekly_data(self, up_to_year: int, up_to_month: int):
+        """주차별 데이터 준비 (예측을 위한 과거 데이터)"""
+        import pandas as pd
+        conn = get_db_connection()
+
+        # up_to_year, up_to_month 이전까지의 모든 데이터 조회
+        # 스케일러가 demand_max로 학습되었으므로 demand_max 사용
+        query = """
+            SELECT timestamp, demand_max, is_holiday, day_type
+            FROM demand_1hour
+            WHERE timestamp < ?
+            ORDER BY timestamp
+        """
+        # 해당 월의 첫날
+        end_date = f"{up_to_year}-{up_to_month:02d}-01"
+
+        df = pd.read_sql(query, conn, params=[end_date])
+        conn.close()
+
+        if df.empty:
+            return None
+
+        df["timestamp"] = pd.to_datetime(df["timestamp"])
+        df = df[["timestamp", "demand_max", "is_holiday", "day_type"]]
+
+        # 주차별 리샘플링 (demand_max는 max로, 나머지는 mean으로)
+        df_weekly = df.set_index("timestamp").resample('W').agg({
+            'demand_max': 'max',
+            'is_holiday': 'mean',
+            'day_type': 'mean'
+        })
+        df_weekly = df_weekly.dropna()
+
+        return df_weekly
+
+    def _get_weeks_in_month(self, year: int, month: int) -> List[Dict]:
+        """해당 월의 주차 정보 계산"""
+        import calendar
+        from datetime import date, timedelta
+
+        first_day = date(year, month, 1)
+        if month == 12:
+            last_day = date(year + 1, 1, 1) - timedelta(days=1)
+        else:
+            last_day = date(year, month + 1, 1) - timedelta(days=1)
+
+        weeks = []
+        week_num = 1
+        current = first_day
+
+        while current <= last_day:
+            week_start = current
+            # 주의 끝 (일요일) 또는 월말
+            days_until_sunday = (6 - current.weekday()) % 7
+            week_end = min(current + timedelta(days=days_until_sunday), last_day)
+
+            weeks.append({
+                "week": week_num,
+                "start_date": week_start,
+                "end_date": week_end,
+                "date_range": f"({week_start.month}/{week_start.day}~{week_end.month}/{week_end.day})"
+            })
+
+            week_num += 1
+            current = week_end + timedelta(days=1)
+
+        return weeks
+
+    def forecast_arima(self, year: int, month: int) -> List[Dict]:
+        """ARIMA 모델로 주차별 예측"""
+        try:
+            from statsmodels.tsa.arima.model import ARIMA
+
+            df_weekly = self._get_weekly_data(year, month)
+            if df_weekly is None or len(df_weekly) < 52:
+                return []
+
+            weeks = self._get_weeks_in_month(year, month)
+            n_weeks = len(weeks)
+
+            # ARIMA(1,1,0) 모델 학습
+            model = ARIMA(df_weekly['demand_mean'], order=(1, 1, 0))
+            model_fit = model.fit()
+            forecast = model_fit.forecast(steps=n_weeks)
+
+            results = []
+            for i, (week_info, pred) in enumerate(zip(weeks, forecast)):
+                results.append({
+                    "week": week_info["week"],
+                    "date_range": week_info["date_range"],
+                    "max_demand": round(pred, 0),  # 주차별 평균 → 최대로 사용
+                    "model": "ARIMA"
+                })
+
+            return results
+
+        except Exception as e:
+            print(f"[ERROR] ARIMA 예측 실패: {e}")
+            return []
+
+    def forecast_holt_winters(self, year: int, month: int) -> List[Dict]:
+        """Holt-Winters 모델로 주차별 예측"""
+        try:
+            from statsmodels.tsa.holtwinters import ExponentialSmoothing
+
+            df_weekly = self._get_weekly_data(year, month)
+            if df_weekly is None or len(df_weekly) < 104:  # 최소 2년
+                return []
+
+            weeks = self._get_weeks_in_month(year, month)
+            n_weeks = len(weeks)
+
+            # Holt-Winters 모델 (가법 계절성, 52주 주기)
+            model = ExponentialSmoothing(
+                df_weekly['demand_mean'],
+                trend='add',
+                seasonal='add',
+                seasonal_periods=52
+            ).fit()
+            forecast = model.forecast(steps=n_weeks)
+
+            results = []
+            for i, (week_info, pred) in enumerate(zip(weeks, forecast.values)):
+                results.append({
+                    "week": week_info["week"],
+                    "date_range": week_info["date_range"],
+                    "max_demand": round(pred, 0),
+                    "model": "Holt-Winters"
+                })
+
+            return results
+
+        except Exception as e:
+            print(f"[ERROR] Holt-Winters 예측 실패: {e}")
+            return []
+
+    def forecast_lstm(self, year: int, month: int, include_next_month: bool = False) -> List[Dict]:
+        """LSTM 모델로 주차별 예측
+
+        Args:
+            year: 예측 대상 연도
+            month: 예측 대상 월
+            include_next_month: True면 8주 모델로 다음 달까지 예측
+
+        Returns:
+            주차별 예측 결과 리스트
+        """
+        try:
+            import torch
+            import torch.nn as nn
+            import numpy as np
+            import pandas as pd
+
+            # 4주/8주 모델 선택
+            forecast_steps = 8 if include_next_month else 4
+            params = self.lstm_params_8 if include_next_month else self.lstm_params_4
+
+            if self.scaler_x is None or self.scaler_y is None or params is None:
+                print(f"[WARN] LSTM {forecast_steps}주 모델이 로드되지 않음")
+                return []
+
+            df_weekly = self._get_weekly_data(year, month)
+            if df_weekly is None or len(df_weekly) < 12:
+                return []
+
+            # 현재 월 주차 정보
+            weeks = self._get_weeks_in_month(year, month)
+
+            # 다음 달 정보 초기화
+            next_year = year if month < 12 else year + 1
+            next_month = month + 1 if month < 12 else 1
+
+            # 다음 달 주차 정보 (include_next_month일 때)
+            next_month_weeks = []
+            if include_next_month:
+                next_month_weeks = self._get_weeks_in_month(next_year, next_month)
+
+            total_weeks = weeks + next_month_weeks
+            n_weeks = len(total_weeks)
+
+            # 데이터 스케일링 (DataFrame 형태 유지하여 feature names 경고 방지)
+            feature_cols = ["demand_max", "is_holiday", "day_type"]
+            data_x = df_weekly[feature_cols]
+            data_x_scaled = self.scaler_x.transform(data_x)
+
+            # 마지막 12주 시퀀스
+            n_input = 12
+            last_sequence = data_x_scaled[-n_input:]
+
+            # LSTM 모델 정의
+            class DirectLSTMWithAttention(nn.Module):
+                def __init__(self, input_size=3, hidden_size=64, num_layers=1, forecast_steps=4):
+                    super(DirectLSTMWithAttention, self).__init__()
+                    self.hidden_size = hidden_size
+                    self.num_layers = num_layers
+                    self.forecast_steps = forecast_steps
+                    self.encoder = nn.LSTM(input_size, hidden_size, num_layers=num_layers,
+                                          batch_first=True, dropout=0.1 if num_layers > 1 else 0)
+                    self.attention = nn.Sequential(
+                        nn.Linear(hidden_size, hidden_size // 2),
+                        nn.Tanh(),
+                        nn.Linear(hidden_size // 2, 1)
+                    )
+                    self.fc = nn.Sequential(
+                        nn.Linear(hidden_size, hidden_size),
+                        nn.ReLU(),
+                        nn.Dropout(0.1),
+                        nn.Linear(hidden_size, forecast_steps)
+                    )
+
+                def forward(self, x):
+                    encoder_output, _ = self.encoder(x)
+                    attn_scores = self.attention(encoder_output)
+                    attn_weights = torch.softmax(attn_scores, dim=1)
+                    context = torch.sum(encoder_output * attn_weights, dim=1)
+                    output = self.fc(context)
+                    return output.unsqueeze(-1)
+
+            class DirectLSTM(nn.Module):
+                def __init__(self, input_size=3, hidden_size=64, num_layers=1, forecast_steps=4):
+                    super(DirectLSTM, self).__init__()
+                    self.encoder = nn.LSTM(input_size, hidden_size, num_layers=num_layers,
+                                          batch_first=True, dropout=0.1 if num_layers > 1 else 0)
+                    self.fc = nn.Sequential(
+                        nn.Linear(hidden_size, hidden_size),
+                        nn.ReLU(),
+                        nn.Dropout(0.1),
+                        nn.Linear(hidden_size, forecast_steps)
+                    )
+
+                def forward(self, x):
+                    _, (hidden, _) = self.encoder(x)
+                    output = self.fc(hidden[-1])
+                    return output.unsqueeze(-1)
+
+            # 모델 인스턴스 생성
+            if params.get('use_attention', False):
+                model = DirectLSTMWithAttention(
+                    input_size=3,
+                    hidden_size=params.get('hidden_size', 64),
+                    num_layers=params.get('num_layers', 1),
+                    forecast_steps=forecast_steps
+                )
+            else:
+                model = DirectLSTM(
+                    input_size=3,
+                    hidden_size=params.get('hidden_size', 64),
+                    num_layers=params.get('num_layers', 1),
+                    forecast_steps=forecast_steps
+                )
+
+            # 모델 가중치 로드
+            model_path = params.get('model_path')
+            checkpoint = torch.load(model_path, map_location='cpu', weights_only=False)
+            model.load_state_dict(checkpoint['model_state'])
+            model.eval()
+
+            # 예측 (한 번에 forecast_steps 주 예측)
+            all_forecasts = []
+            current_sequence = last_sequence.copy()
+
+            while len(all_forecasts) < n_weeks:
+                input_tensor = torch.FloatTensor(current_sequence).unsqueeze(0)
+                with torch.no_grad():
+                    pred_scaled = model(input_tensor).cpu().numpy()[0]
+
+                # 역변환
+                pred = self.scaler_y.inverse_transform(pred_scaled)
+                all_forecasts.extend(pred.flatten().tolist())
+
+                # 시퀀스 업데이트 (추가 예측 필요 시)
+                for p in pred.flatten():
+                    new_row = pd.DataFrame([[p, 0, 0]], columns=feature_cols)
+                    new_row_scaled = self.scaler_x.transform(new_row)
+                    current_sequence = np.vstack([current_sequence[1:], new_row_scaled])
+
+            # 결과 구성
+            results = []
+            for i, week_info in enumerate(total_weeks):
+                if i < len(all_forecasts):
+                    # 다음 달 여부 표시
+                    is_next_month = i >= len(weeks)
+                    results.append({
+                        "week": week_info["week"],
+                        "date_range": week_info["date_range"],
+                        "max_demand": round(all_forecasts[i], 0),
+                        "model": "LSTM",
+                        "month": next_month if is_next_month else month,
+                        "year": next_year if is_next_month else year
+                    })
+
+            return results
+
+        except Exception as e:
+            import traceback
+            print(f"[ERROR] LSTM 예측 실패: {e}")
+            traceback.print_exc()
+            return []
+
+    def forecast_weekly_demand(self, year: int, month: int, model: str = "lstm", include_next_month: bool = False) -> Dict[str, Any]:
+        """주차별 전력수요 예측 (메인 함수)
+
+        Args:
+            year: 예측 대상 연도
+            month: 예측 대상 월
+            model: 사용할 모델 ("arima", "holt_winters", "lstm", "ensemble")
+            include_next_month: True면 다음 달까지 예측 (LSTM 8주 모델 사용)
+
+        Returns:
+            주차별 예측 결과
+        """
+        weeks = self._get_weeks_in_month(year, month)
+
+        if model == "arima":
+            forecasts = self.forecast_arima(year, month)
+        elif model == "holt_winters":
+            forecasts = self.forecast_holt_winters(year, month)
+        elif model == "lstm":
+            forecasts = self.forecast_lstm(year, month, include_next_month=include_next_month)
+        elif model == "ensemble":
+            # 앙상블: 3가지 모델의 평균
+            arima_fc = self.forecast_arima(year, month)
+            hw_fc = self.forecast_holt_winters(year, month)
+            lstm_fc = self.forecast_lstm(year, month, include_next_month=include_next_month)
+
+            forecasts = []
+            for i, week_info in enumerate(weeks):
+                values = []
+                if i < len(arima_fc) and arima_fc[i].get("max_demand"):
+                    values.append(arima_fc[i]["max_demand"])
+                if i < len(hw_fc) and hw_fc[i].get("max_demand"):
+                    values.append(hw_fc[i]["max_demand"])
+                if i < len(lstm_fc) and lstm_fc[i].get("max_demand"):
+                    values.append(lstm_fc[i]["max_demand"])
+
+                if values:
+                    avg_demand = sum(values) / len(values)
+                    forecasts.append({
+                        "week": week_info["week"],
+                        "date_range": week_info["date_range"],
+                        "max_demand": round(avg_demand, 0),
+                        "model": "Ensemble"
+                    })
+
+            # 다음 달 예측은 LSTM만 사용 (앙상블에서)
+            if include_next_month and len(lstm_fc) > len(weeks):
+                for fc in lstm_fc[len(weeks):]:
+                    forecasts.append(fc)
+        else:
+            forecasts = []
+
+        return {
+            "year": year,
+            "month": month,
+            "model": model,
+            "forecasts": forecasts,
+            "weeks_count": len(forecasts)
+        }
 
 
 class ChartTools:
