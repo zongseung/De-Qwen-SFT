@@ -1,124 +1,103 @@
-# 📊 Power Demand Report Agent
+# 📊 Power Demand Report Agent (MCP-First)
 
-전력수요 특화 모델과 LangGraph 에이전트, MCP 기술을 결합하여 데이터 기반의 전력수요 분석 보고서를 자동으로 생성하는 시스템입니다.
+전력수요 특화 모델과 MCP 도구(데이터/예측/차트), vLLM LLM을 조합해 전력수요 분석 보고서를 자동 생성합니다. **보고서 생성기는 MCP 서버를 통해서만 DB/예측/차트를 호출**하고, LLM 호출만 로컬에서 수행합니다.
 
 ## 🏗️ System Architecture
 
-이 시스템은 크게 **Agent Layer**, **Data Layer (MCP Server)**, **Forecast Layer**, **LLM Layer (vLLM)** 네 가지 컴포넌트로 구성됩니다.
+CLI(Report Generator) ↔ MCP Server ↔ DB/예측/차트, 그리고 LLM(vLLM)로 구성됩니다.
 
 ```mermaid
 graph TD
-    User[👤 User] -->|1. Request Report| CLI[🖥️ Agent CLI]
+    User[👤 User] -->|1. Request Report| CLI[🖥️ Report CLI]
 
     subgraph "Report Agent System"
-        CLI -->|2. Get Data| MCPclient[🔌 combined_tools]
-        MCPclient <-->|3. MCP Protocol| MCPServer[🛰️ MCP Server]
-        MCPServer <-->|4. SQL Query| DB[(🗄️ SQLite DB)]
+        CLI -->|2. HTTP| MCPClient[🔌 MCP Client (httpx)]
+        MCPClient <-->|3. MCP Protocol| MCPServer[🛰️ MCP Server]
+        MCPServer <-->|4. SQL/Model/Chart| DB[(🗄️ SQLite + Forecast Models)]
 
-        CLI -->|5. Forecast| Forecast[📈 Forecast Tools]
-        Forecast -->|6. ARIMA| ARIMA[📊 ARIMA Model]
-        Forecast -->|6. Holt-Winters| HW[📊 Holt-Winters]
-        Forecast -->|6. LSTM| LSTM[🧠 Direct LSTM]
-
-        CLI -->|7. Build Prompt| Prompt[📝 Prompt Builder]
-        Prompt -->|8. API Request| vLLM[🤖 vLLM Server]
-        vLLM -->|9. Generate Text| Report[📄 Final Report]
+        CLI -->|5. Build Prompt| Prompt[📝 Prompt Builder]
+        Prompt -->|6. API Request| vLLM[🤖 vLLM Server]
+        vLLM -->|7. Generate Text| Report[📄 Final Report]
     end
 
     subgraph "External Services"
         vLLM <-->|Load| Model[🧠 Power Demand SFT Model]
     end
 
-    Report -->|10. Save| Markdown[📝 MySQL/Markdown]
+    Report -->|8. Save| Markdown[📝 Markdown]
 ```
-
----
 
 ## 🧩 Components
 
 | 컴포넌트 | 파일 경로 | 설명 |
 |---|---|---|
-| **Report Agent** | `report_agent/` | 사용자의 요청을 받아 전체 워크플로우를 조정하고 보고서를 생성합니다. |
-| **MCP Server** | `mcp_server/server.py` | 전력수요 데이터(`demand.db`)에 접근하는 인터페이스를 제공합니다. 직접 SQL을 실행하여 데이터를 가져옵니다. |
-| **Combined Tools** | `mcp_server/tools.py` | Agent가 MCP Server의 기능을 Python 함수처럼 호출할 수 있게 해주는 래퍼(Wrapper)입니다. |
-| **Forecast Tools** | `mcp_server/tools.py` | 주차별 최대전력 예측을 위한 3가지 모델(ARIMA, Holt-Winters, LSTM)을 제공합니다. |
-| **vLLM Server** | `serve_vllm.py` | 튜닝된 전력수요 예측 모델(`power_demand_merged_model`)을 OpenAI 호환 API로 서빙합니다. |
+| Report Generator (CLI) | `report_agent/generate_report.py` | 사용자 입력 → MCP 도구 호출 → 프롬프트 생성 → LLM 호출 → 후처리/저장 |
+| MCP Client | `report_agent/mcp_client.py` | MCP 서버 HTTP 래퍼 (데이터/예측/차트 호출) |
+| MCP Server | `report_agent/mcp_server/server.py` | FastAPI 도구 서버 (Port 8001) |
+| MCP Tools | `report_agent/mcp_server/tools.py` | DB 조회, 예측(ARIMA/HW/LSTM), 차트 생성 로직 |
+| LLM Server | `serve_vllm.py` | SFT 보고서/수요 모델을 vLLM(OpenAI 호환)으로 서빙 (Port 8000) |
+| Data | `report_agent/demand_data/demand.db` | 전력/기상 데이터 (SQLite) |
 
-### 📂 Directory Structure
+### 📂 Directory Structure (요약)
 
 ```
 /root/De-Qwen-SFT/
-├── serve_vllm.py              # vLLM 모델 서빙 스크립트 (Port 8000)
-├── power_demand_merged_model/ # SFT 튜닝된 모델 가중치
-├── best_direct_lstm_full.pth  # 주차별 예측용 LSTM 모델
-├── scalers.pkl                # 데이터 정규화 스케일러
-├── report_agent/              # 메인 에이전트 패키지
-│   ├── generate_report.py     # 사용자 CLI 진입점
-│   ├── mcp_server/            # 데이터 조회 계층
-│   │   ├── server.py          # MCP API 서버 (Port 8001)
-│   │   └── tools.py           # SQLite DB 조회 + 예측 모델 도구
-│   └── demand_data/           # 데이터 저장소
-│       └── demand.db          # 전력수요/기상 데이터 (SQLite)
+├── serve_vllm.py              # vLLM 서버 (8000)
+├── power_demand_merged_model/ # SFT 모델 가중치
+├── best_direct_lstm_full.pth  # 주차별 예측 LSTM 가중치(4/8주)
+├── scalers.pkl                # 예측 스케일러
+├── report_agent/
+│   ├── generate_report.py     # 보고서 CLI (MCP 클라이언트 사용)
+│   ├── mcp_client.py          # MCP HTTP 클라이언트
+│   ├── mcp_server/
+│   │   ├── server.py          # MCP API 서버 (8001)
+│   │   └── tools.py           # DB 조회 + 예측 + 차트
+│   └── demand_data/demand.db  # 전력/기상 SQLite
 ```
 
----
+## 🚀 Usage Guide (MCP → vLLM)
 
-## 🚀 Usage Guide
+보고서를 생성하려면 **MCP 서버(데이터/예측/차트)**와 **vLLM 서버**를 먼저 실행하세요.
 
-보고서를 생성하기 위해서는 **vLLM 서버**가 먼저 실행되어 있어야 합니다.
-
-### 1단계: vLLM 모델 서버 실행
-백그라운드에서 모델 서버를 실행합니다. (GPU 메모리 약 14GB 필요)
-
-```bash
-# /root/De-Qwen-SFT 디렉토리에서 실행
-python serve_vllm.py --mode server --host 0.0.0.0 --port 8000  &
-uv run -p 8000 serve_vllm.py --mode server --host 0.0.0.0 --port 8000
-``` 
-*서버가 완전히 뜰 때까지 약 1~2분 정도 소요될 수 있습니다.*
-
-### 2단계: 보고서 생성
-에이전트를 실행하여 특정 연월의 보고서를 생성합니다.
-
+### 1) MCP 서버 실행 (Port 8001)
 ```bash
 cd report_agent
-
-# 2024년 8월 보고서 생성
-python generate_report.py --year 2024 --month 8 --llm-url http://localhost:8000
+python -m mcp_server.server --host 0.0.0.0 --port 8001
 ```
 
-### 3단계: 결과 확인
-생성된 보고서는 `reports/` 디렉토리에 마크다운(`.md`) 파일로 저장됩니다.
+### 2) vLLM 모델 서버 실행 (Port 8000)
+```bash
+# /root/De-Qwen-SFT
+python serve_vllm.py --mode server --host 0.0.0.0 --port 8000 &
+```
 
+### 3) 보고서 생성 (CLI → MCP → vLLM)
+```bash
+cd report_agent
+# 예: 2025년 9월, 다음달까지 전망 분리
+python generate_report.py --year 2025 --month 9 --include-next-month \
+  --llm-url http://localhost:8000 \
+  --mcp-url http://localhost:8001
+```
+
+### 4) 결과 확인
 ```bash
 ls -l reports/
-cat reports/report_2024_08_llm_*.md
+cat reports/report_2025_09_llm_*.md
 ```
 
----
+## 🔌 MCP Endpoints (필수)
+- `POST /tools/get_report_data` : 요약/주차실적/과거/기상 패키지 반환
+- `POST /tools/forecast_weekly_demand` : 주차별 최대부하 예측 (include_next_month 지원)
+- `POST /tools/get_yearly_monthly_demand` : 연도별 월별 수요(차트용) 조회
+- `POST /tools/generate_yearly_monthly_chart` : 연도별 월별 차트 생성(PNG 경로 반환)
+- (기존) `get_demand_summary`, `get_weekly_demand`, `get_peak_load`, `get_historical_demand`, `generate_weekly_chart`
 
-## 🛠️ Testing
-
-시스템의 각 컴포넌트가 정상 작동하는지 테스트하려면:
-
+## 🧪 Testing
 ```bash
-# 전체 시스템 테스트 (MCP 도구, 보고서 생성기 등)
 python test_system.py
 ```
 
----
-
-## 📝 Example Output
-
-**Generated Report Preview:**
-
-> **2024년 8월 전력수요 분석 보고서**
->
-> **1. 개요**
-> 2024년 8월은 평균기온 27.5°C의 무더운 날씨로 인해 전력수요가 크게 증가했습니다...
-> 
-> **2. 전력수요 현황**
-> - 최대부하: 9.7만kW (전년 대비 +3.5%)
-> - 평균부하: 7.5만kW
->
-> ...
+## 📝 Notes
+- CLI는 DB/모델을 직접 열지 않습니다. 모든 데이터/예측/차트는 MCP를 통해 호출합니다.
+- 차트 PNG 경로는 MCP 서버가 생성 후 반환하며, 동일 머신 기준 상대경로 링크로 사용합니다.
