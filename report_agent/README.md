@@ -8,23 +8,23 @@ CLI(Report Generator) ↔ MCP Server ↔ DB/예측/차트, 그리고 LLM(vLLM)�
 
 ```mermaid
 graph TD
-    User[👤 User] -->|1. Request Report| CLI[🖥️ Report CLI]
+    User["User"] -->|1. Request Report| CLI["Report CLI"]
 
     subgraph "Report Agent System"
-        CLI -->|2. HTTP| MCPClient[🔌 MCP Client (httpx)]
-        MCPClient <-->|3. MCP Protocol| MCPServer[🛰️ MCP Server]
-        MCPServer <-->|4. SQL/Model/Chart| DB[(🗄️ SQLite + Forecast Models)]
+        CLI -->|2. HTTP| MCPClient["MCP Client (httpx)"]
+        MCPClient <-->|3. MCP Protocol| MCPServer["MCP Server"]
+        MCPServer <-->|4. SQL/Model/Chart| DB["SQLite + Forecast Models"]
 
-        CLI -->|5. Build Prompt| Prompt[📝 Prompt Builder]
-        Prompt -->|6. API Request| vLLM[🤖 vLLM Server]
-        vLLM -->|7. Generate Text| Report[📄 Final Report]
+        CLI -->|5. Build Prompt| Prompt["Prompt Builder"]
+        Prompt -->|6. API Request| vLLM["vLLM Server"]
+        vLLM -->|7. Generate Text| Report["Final Report"]
     end
 
     subgraph "External Services"
-        vLLM <-->|Load| Model[🧠 Power Demand SFT Model]
+        vLLM <-->|Load| Model["Power Demand SFT Model"]
     end
 
-    Report -->|8. Save| Markdown[📝 Markdown]
+    Report -->|8. Save| Markdown["Markdown"]
 ```
 
 ## 🧩 Components
