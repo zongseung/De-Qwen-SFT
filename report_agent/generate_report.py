@@ -35,22 +35,25 @@ sys.path.insert(0, str(Path(__file__).parent))
 from mcp_server.tools import CombinedTools
 
 
-def build_report_prompt(data: Dict[str, Any]) -> str:
+def build_report_prompt(data: Dict[str, Any], forecast: Dict[str, Any] = None) -> str:
     """보고서 생성용 프롬프트 구성
 
     Args:
         data: CombinedTools.get_report_data() 반환값
+        forecast: ForecastTools.forecast_weekly_demand() 반환값 (예측 데이터)
     """
     summary = data.get("summary", {})
     weather = data.get("weather", {})
     weekly = data.get("weekly_demand", [])
     historical = data.get("historical", [])
+    historical_weather = data.get("historical_weather", {})
+    forecast_data = forecast.get("forecasts", []) if forecast else []
 
     year = summary.get("year", 0)
     month = summary.get("month", 0)
     target_period_label = f"{year}년 {month}월"
 
-    # 기상 데이터
+    # 현재 월 기상 데이터
     avg_temp = weather.get("temperature_avg", 0) or 0 if weather and not weather.get("error") else 0
     max_temp = weather.get("temperature_max", 0) or 0 if weather and not weather.get("error") else 0
     min_temp = weather.get("temperature_min", 0) or 0 if weather and not weather.get("error") else 0
@@ -59,18 +62,55 @@ def build_report_prompt(data: Dict[str, Any]) -> str:
     weather_temp_text = f"평균 {avg_temp:.1f}°C (최고 {max_temp:.1f}°C, 최저 {min_temp:.1f}°C)" if avg_temp else "(값 미제공)"
     weather_humidity_text = f"평균 습도 {humidity:.1f}%" if humidity else "(값 미제공)"
 
+    # 과거 동월 기상 데이터 (기상전망용)
+    hist_weather_avg_temp = historical_weather.get("avg_temperature") if historical_weather and not historical_weather.get("error") else None
+    hist_weather_avg_humidity = historical_weather.get("avg_humidity") if historical_weather and not historical_weather.get("error") else None
+    hist_weather_years_count = historical_weather.get("years_count", 0) if historical_weather else 0
+
     # 과거 5개년 데이터 처리
     historical_sorted = sorted(historical, key=lambda x: x.get("year", 0))
     cols = []
     max_loads_with_yoy = []
     avg_loads_with_yoy = []
 
+    # 예측 데이터에서 최대/평균 계산 (해당 년월용)
+    forecast_max = None
+    forecast_avg = None
+    if forecast_data:
+        forecast_values = [fc.get("max_demand", 0) for fc in forecast_data if fc.get("max_demand")]
+        if forecast_values:
+            forecast_max = max(forecast_values)  # 주차별 최대값 중 최대
+            forecast_avg = sum(forecast_values) / len(forecast_values)  # 주차별 평균
+
+    # 전년도 데이터 찾기 (증감률 계산용)
+    prev_year_data = None
+    for h in historical_sorted:
+        if h.get('year') == year - 1:
+            prev_year_data = h
+            break
+
     for h in historical_sorted[-5:]:
-        cols.append(f"{h.get('year', '')}년{month}월")
-        max_val = h.get("max_demand", 0) or 0
-        avg_val = h.get("avg_demand", 0) or 0
-        max_yoy = h.get("max_yoy")
-        avg_yoy = h.get("avg_yoy")
+        h_year = h.get('year', 0)
+        cols.append(f"{h_year}년{month}월")
+
+        # 해당 년월이면 예측값 사용
+        if h_year == year and forecast_max:
+            max_val = forecast_max
+            avg_val = forecast_avg if forecast_avg else (h.get("avg_demand", 0) or 0)
+            # 전년 대비 증감률 재계산
+            if prev_year_data:
+                prev_max = prev_year_data.get("max_demand", 0) or 0
+                prev_avg = prev_year_data.get("avg_demand", 0) or 0
+                max_yoy = ((max_val - prev_max) / prev_max * 100) if prev_max else None
+                avg_yoy = ((avg_val - prev_avg) / prev_avg * 100) if prev_avg else None
+            else:
+                max_yoy = h.get("max_yoy")
+                avg_yoy = h.get("avg_yoy")
+        else:
+            max_val = h.get("max_demand", 0) or 0
+            avg_val = h.get("avg_demand", 0) or 0
+            max_yoy = h.get("max_yoy")
+            avg_yoy = h.get("avg_yoy")
 
         if max_val:
             max_str = f"{max_val/10:,.0f}"
@@ -93,28 +133,42 @@ def build_report_prompt(data: Dict[str, Any]) -> str:
         max_loads_with_yoy.insert(0, "(값 미제공)")
         avg_loads_with_yoy.insert(0, "(값 미제공)")
 
-    # 주차별 테이블 생성
+    # 주차별 테이블 생성 (예측 데이터 사용)
     weekly_table_rows = []
-    for w in weekly:
-        week_label = f"{w.get('week', '')}주"
-        date_range = w.get("date_range", "")
-        if not date_range:
-            start = w.get("start_date", "")
-            end = w.get("end_date", "")
-            if start and end:
-                try:
-                    from datetime import datetime as dt
-                    s_date = dt.strptime(start, "%Y-%m-%d")
-                    e_date = dt.strptime(end, "%Y-%m-%d")
-                    date_range = f"({s_date.month}/{s_date.day}~{e_date.month}/{e_date.day})"
-                except ValueError:
-                    date_range = ""
-        week_max = w.get("max_demand", 0) or 0
-        weekly_table_rows.append({
-            "label": week_label,
-            "range": date_range,
-            "max": f"{week_max/10:,.0f}" if week_max else "(값 미제공)"
-        })
+
+    # 예측 데이터가 있으면 예측값 사용, 없으면 실적 데이터 사용
+    if forecast_data:
+        for fc in forecast_data:
+            week_label = f"{fc.get('week', '')}주"
+            date_range = fc.get("date_range", "")
+            week_max = fc.get("max_demand", 0) or 0
+            weekly_table_rows.append({
+                "label": week_label,
+                "range": date_range,
+                "max": f"{week_max/10:,.0f}" if week_max else "(값 미제공)"
+            })
+    else:
+        # fallback: 실적 데이터 사용
+        for w in weekly:
+            week_label = f"{w.get('week', '')}주"
+            date_range = w.get("date_range", "")
+            if not date_range:
+                start = w.get("start_date", "")
+                end = w.get("end_date", "")
+                if start and end:
+                    try:
+                        from datetime import datetime as dt
+                        s_date = dt.strptime(start, "%Y-%m-%d")
+                        e_date = dt.strptime(end, "%Y-%m-%d")
+                        date_range = f"({s_date.month}/{s_date.day}~{e_date.month}/{e_date.day})"
+                    except ValueError:
+                        date_range = ""
+            week_max = w.get("max_demand", 0) or 0
+            weekly_table_rows.append({
+                "label": week_label,
+                "range": date_range,
+                "max": f"{week_max/10:,.0f}" if week_max else "(값 미제공)"
+            })
 
     week_count = len(weekly_table_rows)
     week_headers = [f"{w['label']}{w['range']}" for w in weekly_table_rows]
@@ -123,22 +177,41 @@ def build_report_prompt(data: Dict[str, Any]) -> str:
     if week_count > 0:
         header_row = "| 구분 | " + " | ".join(week_headers) + " |"
         align_row = "|---|" + "---:|" * week_count
-        data_row = "| 최대전력(만kW) | " + " | ".join(week_values) + " |"
+        data_row = "| 최대부하(만kW) | " + " | ".join(week_values) + " |"
         weekly_table = f"{header_row}\n{align_row}\n{data_row}"
     else:
         weekly_table = "(주별 데이터 미제공)"
 
     # 기상 데이터 유무에 따라 섹션 구성
-    has_weather = weather_temp_text != "(값 미제공)"
+    # 현재 월 기상 데이터 또는 과거 동월 기상 데이터가 있으면 기상전망 섹션 생성
+    has_current_weather = weather_temp_text != "(값 미제공)"
+    has_historical_weather = hist_weather_avg_temp is not None
 
-    if has_weather:
+    if has_current_weather:
+        # 현재 월 기상 데이터가 있는 경우
         weather_section = f"""### 기상 데이터
 - 기온: {weather_temp_text}
 - 습도: {weather_humidity_text}
 
 """
         weather_instruction = f"""# 1. 기상전망
-- {month}월 기온 전망 (입력된 기상 데이터 기반)
+- 위 "기상 데이터"를 반드시 참고하여 작성
+- 기온({weather_temp_text})과 습도({weather_humidity_text})를 언급
+- 기온이 전력수요에 미치는 영향 설명 (예: 고온 시 냉방수요 증가, 저온 시 난방수요 증가)
+
+# 2. 과거 전력수요 추이"""
+        forecast_section_num = "3"
+    elif has_historical_weather:
+        # 과거 동월 기상 데이터만 있는 경우 (기상전망 작성용)
+        weather_section = f"""### 과거 {hist_weather_years_count}개년 {month}월 기상 데이터
+- 평균 기온: {hist_weather_avg_temp:.1f}°C
+- 평균 습도: {hist_weather_avg_humidity:.1f}%
+
+"""
+        weather_instruction = f"""# 1. 기상전망
+- 위 "과거 {hist_weather_years_count}개년 {month}월 기상 데이터"를 반드시 참고하여 작성
+- 과거 평균 기온({hist_weather_avg_temp:.1f}°C)과 습도({hist_weather_avg_humidity:.1f}%)를 언급하고, 올해도 유사한 기온이 예상됨을 서술
+- 기온이 전력수요에 미치는 영향 설명 (예: 고온 시 냉방수요 증가)
 
 # 2. 과거 전력수요 추이"""
         forecast_section_num = "3"
@@ -170,7 +243,8 @@ def build_report_prompt(data: Dict[str, Any]) -> str:
 - 각 수치에 증감률 괄호 포함 (예: "8,546만kW (+10.6%)")
 
 # {forecast_section_num}. 전력수요 전망결과
-- "[단위: 만kW]" 표기 후 {target_period_label} 주차별 최대전력 표 작성
+- **중요: 위 "주차별 전력수요 전망" 표의 예측값을 절대 수정하지 말고 그대로 사용할 것**
+- "[단위: 만kW]" 표기 후 {target_period_label} 주차별 최대부하 표 작성
 - 주차 헤더에 날짜 범위 포함 (예: "1주(8/1~8/4)")
 
 ## 출력 규칙
@@ -180,6 +254,7 @@ def build_report_prompt(data: Dict[str, Any]) -> str:
 - 표 위에 반드시 "[단위: 만kW]" 명시
 - 주차별 표 헤더에 날짜 범위 표기 (예: 1주(8/1~8/4), 2주(8/5~8/11))
 - 입력 데이터의 증감률을 그대로 사용
+- **주차별 전망 표의 예측값은 입력 데이터의 값을 그대로 복사하여 사용 (수치 변경 금지)**
 - 기상 데이터가 없으면 기상전망 섹션 생략
 [/INST]
 
@@ -189,114 +264,82 @@ def build_report_prompt(data: Dict[str, Any]) -> str:
     return prompt
 
 
-def generate_weekly_chart(
-    weekly_data: List[Dict[str, Any]],
-    year: int,
-    month: int,
+def generate_yearly_monthly_chart(
+    yearly_data: Dict[int, List[Dict[str, Any]]],
+    target_year: int,
+    target_month: int,
     output_dir: Path,
-    historical_data: Optional[List[Dict[str, Any]]] = None,
 ) -> Optional[Path]:
-    """주별 전력수요 추이 라인 차트 생성 (다년간 비교 포함)
-    
+    """연도별 월별 평균 수요 라인 차트 생성
+
     Args:
-        weekly_data: 주별 전력수요 데이터
-        year: 연도
-        month: 월
+        yearly_data: 연도별 월별 수요 데이터 {year: [{month, avg_demand, max_demand}, ...]}
+        target_year: 기준 연도
+        target_month: 기준 월
         output_dir: 출력 디렉토리
-        historical_data: 과거 N년간 동월 데이터 (선택)
-        
+
     Returns:
         생성된 차트 파일 경로
     """
-    if not weekly_data:
+    if not yearly_data:
         return None
-    
+
     # 차트 저장 디렉토리 생성
     charts_dir = output_dir / "charts"
     charts_dir.mkdir(parents=True, exist_ok=True)
-    
-    # 데이터 추출
-    weeks = [f"W{d['week']}" for d in weekly_data]
-    max_demands = [d['max_demand'] / 10000 if d['max_demand'] else 0 for d in weekly_data]
-    avg_demands = [d['avg_demand'] / 10000 if d['avg_demand'] else 0 for d in weekly_data]
-    
-    # 차트 생성 (다년간 비교가 있으면 2개 subplot)
-    if historical_data and len(historical_data) > 1:
-        fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(14, 5))
-        
-        # 왼쪽: 현재 연도 주별 수요 차트
-        ax1.plot(weeks, max_demands, 'o-', color='#e74c3c', linewidth=2, markersize=8, label='Max')
-        ax1.plot(weeks, avg_demands, 's-', color='#3498db', linewidth=2, markersize=8, label='Avg')
-        ax1.fill_between(weeks, [0]*len(weeks), max_demands, alpha=0.1, color='#e74c3c')
-        ax1.set_xlabel('Week', fontsize=11)
-        ax1.set_ylabel('Power Demand (10MW)', fontsize=11)
-        ax1.set_title(f'{year}/{month:02d} Weekly Demand', fontsize=12, fontweight='bold')
-        ax1.legend(loc='upper right')
-        ax1.grid(True, linestyle='--', alpha=0.7)
-        ax1.set_ylim(bottom=0)
-        ax1.set_facecolor('#f8f9fa')
-        
-        # 오른쪽: 다년간 동월 비교 막대 차트
-        hist_years = [str(h['year']) for h in historical_data]
-        hist_max = [h['max_demand'] / 10000 if h['max_demand'] else 0 for h in historical_data]
-        hist_avg = [h['avg_demand'] / 10000 if h['avg_demand'] else 0 for h in historical_data]
-        
-        x = range(len(hist_years))
-        width = 0.35
-        
-        bars1 = ax2.bar([i - width/2 for i in x], hist_max, width, label='Max', color='#e74c3c', alpha=0.8)
-        bars2 = ax2.bar([i + width/2 for i in x], hist_avg, width, label='Avg', color='#3498db', alpha=0.8)
-        
-        # 트렌드 라인 추가
-        ax2.plot(x, hist_max, 'o--', color='#c0392b', linewidth=1.5, markersize=4)
-        ax2.plot(x, hist_avg, 'o--', color='#2980b9', linewidth=1.5, markersize=4)
-        
-        ax2.set_xlabel('Year', fontsize=11)
-        ax2.set_ylabel('Power Demand (10MW)', fontsize=11)
-        ax2.set_title(f'Month {month} Historical Comparison ({hist_years[-1]}-{hist_years[0]})', fontsize=12, fontweight='bold')
-        ax2.set_xticks(x)
-        ax2.set_xticklabels(hist_years, rotation=45, ha='right')
-        ax2.legend(loc='upper left')
-        ax2.grid(True, linestyle='--', alpha=0.5, axis='y')
-        ax2.set_ylim(bottom=0)
-        ax2.set_facecolor('#f8f9fa')
-        
-        # 현재 연도 하이라이트
-        current_idx = next((i for i, h in enumerate(historical_data) if h['year'] == year), None)
-        if current_idx is not None:
-            bars1[current_idx].set_edgecolor('black')
-            bars1[current_idx].set_linewidth(2)
-            bars2[current_idx].set_edgecolor('black')
-            bars2[current_idx].set_linewidth(2)
-        
-        fig.patch.set_facecolor('white')
-    else:
-        # 히스토리컬 데이터 없으면 단일 차트
-        fig, ax = plt.subplots(figsize=(10, 6))
-        ax.plot(weeks, max_demands, 'o-', color='#e74c3c', linewidth=2, markersize=8, label='Max (10MW)')
-        ax.plot(weeks, avg_demands, 's-', color='#3498db', linewidth=2, markersize=8, label='Avg (10MW)')
-        ax.fill_between(weeks, [0]*len(weeks), max_demands, alpha=0.1, color='#e74c3c')
-        
-        for w, max_d, avg_d in zip(weeks, max_demands, avg_demands):
-            ax.annotate(f'{max_d:.1f}', (w, max_d), textcoords="offset points", 
-                       xytext=(0, 10), ha='center', fontsize=9, color='#e74c3c')
-        
-        ax.set_xlabel('Week', fontsize=12)
-        ax.set_ylabel('Power Demand (10MW)', fontsize=12)
-        ax.set_title(f'Weekly Power Demand Trend - {year}/{month:02d}', fontsize=14, fontweight='bold')
-        ax.legend(loc='upper right')
-        ax.grid(True, linestyle='--', alpha=0.7)
-        ax.set_ylim(bottom=0)
-        ax.set_facecolor('#f8f9fa')
-        fig.patch.set_facecolor('white')
-    
+
+    # 색상 팔레트 (연도별로 다른 색상)
+    colors = ['#e74c3c', '#3498db', '#2ecc71', '#9b59b6', '#f39c12', '#1abc9c']
+
+    fig, ax = plt.subplots(figsize=(12, 6))
+
+    # 연도를 오름차순으로 정렬
+    sorted_years = sorted(yearly_data.keys())
+
+    for idx, year in enumerate(sorted_years):
+        monthly_data = yearly_data[year]
+        months = [d['month'] for d in monthly_data]
+        avg_demands = [d['avg_demand'] / 10000 if d['avg_demand'] else 0 for d in monthly_data]
+
+        color = colors[idx % len(colors)]
+
+        # 기준 연도는 굵은 선으로 강조
+        if year == target_year:
+            ax.plot(months, avg_demands, 'o-', color=color, linewidth=3, markersize=10,
+                   label=f'{year}', zorder=10)
+            # 데이터 레이블 추가
+            for m, d in zip(months, avg_demands):
+                ax.annotate(f'{d:.0f}', (m, d), textcoords="offset points",
+                           xytext=(0, 10), ha='center', fontsize=9, fontweight='bold', color=color)
+        else:
+            ax.plot(months, avg_demands, 'o--', color=color, linewidth=1.5, markersize=6,
+                   label=f'{year}', alpha=0.7)
+
+    # X축 설정 (1-12월)
+    ax.set_xticks(range(1, 13))
+    ax.set_xticklabels(['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+                        'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'])
+
+    # 기준 월 강조 (세로선)
+    ax.axvline(x=target_month, color='gray', linestyle=':', alpha=0.5)
+
+    ax.set_xlabel('Month', fontsize=12)
+    ax.set_ylabel('Avg Power Demand (10MW)', fontsize=12)
+    ax.set_title(f'Monthly Avg Power Demand by Year ({sorted_years[0]}-{sorted_years[-1]})',
+                fontsize=14, fontweight='bold')
+    ax.legend(loc='upper right', title='Year')
+    ax.grid(True, linestyle='--', alpha=0.7)
+    ax.set_ylim(bottom=0)
+    ax.set_facecolor('#f8f9fa')
+    fig.patch.set_facecolor('white')
+
     # 파일 저장
-    filename = f"weekly_demand_{year}_{month:02d}.png"
+    filename = f"yearly_monthly_demand_{target_year}_{target_month:02d}.png"
     filepath = charts_dir / filename
     plt.tight_layout()
     plt.savefig(filepath, dpi=150, bbox_inches='tight')
     plt.close()
-    
+
     return filepath
 
 
@@ -304,7 +347,15 @@ def insert_chart_after_section2(report: str, chart_path: Path) -> str:
     """# 2. 과거 전력수요 추이 섹션 바로 아래에 실적그래프 삽입"""
     import re
 
-    chart_markdown = f"\n\n### 실적그래프\n\n![최근 5개년 전력수요 추이](./charts/{chart_path.name})\n"
+    # 원하는 형식: ### 실적그래프 다음에 ## 2. 과거 전력수요 추이 제목과 이미지
+    chart_markdown = f"""
+
+### 실적그래프
+
+## 2. 과거 전력수요 추이
+![최근 5개년 전력수요 추이](./charts/{chart_path.name})
+
+"""
 
     # "# 3." 또는 "## 3." 시작 전에 그래프 삽입
     pattern = r'(# 3\.|## 3\.)'
@@ -312,7 +363,7 @@ def insert_chart_after_section2(report: str, chart_path: Path) -> str:
 
     if match:
         insert_pos = match.start()
-        return report[:insert_pos] + chart_markdown + "\n" + report[insert_pos:]
+        return report[:insert_pos] + chart_markdown + report[insert_pos:]
     else:
         # 섹션 3을 못 찾으면 마지막에 추가
         return report + chart_markdown
@@ -453,6 +504,11 @@ Examples:
     parser.add_argument("--output", type=Path, default=Path("./reports"), help="출력 디렉토리")
     parser.add_argument("--json", action="store_true", help="JSON 데이터만 출력")
     parser.add_argument("--prompt-only", action="store_true", help="프롬프트만 출력 (파일 저장 안함)")
+    parser.add_argument("--forecast-model", type=str, default="lstm",
+                       choices=["arima", "holt_winters", "lstm", "ensemble"],
+                       help="예측 모델 선택 (기본: lstm)")
+    parser.add_argument("--include-next-month", action="store_true",
+                       help="다음 달까지 예측 (LSTM 8주 모델 사용)")
 
     args = parser.parse_args()
 
@@ -480,26 +536,42 @@ Examples:
     else:
         print(f"  - 기상: 데이터 없음")
 
+    # 1-2. 주차별 예측 수행
+    next_month_str = " + 다음달" if args.include_next_month else ""
+    print(f"[1-2/5] 주차별 예측 수행 중... (모델: {args.forecast_model}{next_month_str})")
+    forecast_result = tools.forecast_weekly_demand(
+        args.year, args.month,
+        model=args.forecast_model,
+        include_next_month=args.include_next_month
+    )
+
+    if forecast_result.get("forecasts"):
+        print(f"  - {len(forecast_result['forecasts'])}개 주차 예측 완료")
+        for fc in forecast_result["forecasts"]:
+            print(f"    {fc['week']}주{fc['date_range']}: {fc['max_demand']/10:,.0f}만kW")
+    else:
+        print(f"  - 예측 실패 (데이터 부족 또는 모델 오류)")
+
     # JSON 모드
     if args.json:
+        data["forecast"] = forecast_result
         print(json.dumps(data, ensure_ascii=False, indent=2, default=str))
         return
 
-    # 2. 차트 생성 (다년간 비교 포함)
+    # 2. 차트 생성 (연도별 월별 평균 수요)
     print("[2/5] 차트 생성 중...")
-    
-    # 과거 연도별 동월 데이터 조회 (최대 10년, 요청 연도까지)
-    historical = tools.get_historical_demand(args.month, years=10, target_year=args.year)
-    if historical:
-        years_range = f"{historical[-1]['year']}-{historical[0]['year']}"
-        print(f"  - 히스토리컬 데이터: {args.month}월 ({years_range}, {len(historical)}년간)")
-    
-    chart_path = generate_weekly_chart(
-        data.get("weekly_demand", []),
+
+    # 연도별 월별 평균 수요 조회 (5년치, 기준 연도는 기준 월까지만)
+    yearly_monthly_data = tools.get_yearly_monthly_demand(args.year, args.month, years=5)
+    if yearly_monthly_data:
+        years_list = sorted(yearly_monthly_data.keys())
+        print(f"  - 연도별 월별 데이터: {years_list[0]}-{years_list[-1]} ({len(yearly_monthly_data)}년간)")
+
+    chart_path = generate_yearly_monthly_chart(
+        yearly_monthly_data,
         args.year,
         args.month,
         args.output,
-        historical_data=historical if historical else None,
     )
     if chart_path:
         print(f"  - 차트 저장: {chart_path}")
@@ -508,7 +580,7 @@ Examples:
 
     # 3. 프롬프트 생성
     print("[3/5] 프롬프트 생성 중...")
-    prompt = build_report_prompt(data)
+    prompt = build_report_prompt(data, forecast_result)
 
     if args.prompt_only:
         print("\n" + "="*60)
