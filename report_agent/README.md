@@ -13,18 +13,25 @@ graph TD
     subgraph "Report Agent System"
         CLI -->|2. HTTP| MCPClient["MCP Client (httpx)"]
         MCPClient <-->|3. MCP Protocol| MCPServer["MCP Server"]
-        MCPServer <-->|4. SQL/Model/Chart| DB["SQLite + Forecast Models"]
 
-        CLI -->|5. Build Prompt| Prompt["Prompt Builder"]
-        Prompt -->|6. API Request| vLLM["vLLM Server"]
-        vLLM -->|7. Generate Text| Report["Final Report"]
+        subgraph "Data & Models"
+            DB["SQLite (demand/weather)"]
+            ForecastModels["Forecast Models (LSTM 4/8w, ARIMA, HW)\nWeights: best_direct_lstm_full*.pth\nScalers: scalers.pkl"]
+        end
+
+        MCPServer -->|SQL| DB
+        MCPServer -->|Predict| ForecastModels
+
+        CLI -->|4. Build Prompt| Prompt["Prompt Builder"]
+        Prompt -->|5. API Request| vLLM["vLLM Server (OpenAI compat)"]
+        vLLM -->|6. Generate Text| Report["Final Report"]
     end
 
     subgraph "External Services"
-        vLLM <-->|Load| Model["Power Demand SFT Model"]
+        vLLM <-->|Load| SFT["Power Demand SFT Model\n(power_demand_merged_model)"]
     end
 
-    Report -->|8. Save| Markdown["Markdown"]
+    Report -->|7. Save| Markdown["Markdown"]
 ```
 
 ## 🧩 Components
