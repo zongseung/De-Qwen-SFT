@@ -4,27 +4,32 @@
 
 ## 🏗️ System Architecture
 
-이 시스템은 크게 **Agent Layer**, **Data Layer (MCP Server)**, **LLM Layer (vLLM)** 세 가지 컴포넌트로 구성됩니다.
+이 시스템은 크게 **Agent Layer**, **Data Layer (MCP Server)**, **Forecast Layer**, **LLM Layer (vLLM)** 네 가지 컴포넌트로 구성됩니다.
 
 ```mermaid
 graph TD
     User[👤 User] -->|1. Request Report| CLI[🖥️ Agent CLI]
-    
+
     subgraph "Report Agent System"
         CLI -->|2. Get Data| MCPclient[🔌 combined_tools]
         MCPclient <-->|3. MCP Protocol| MCPServer[🛰️ MCP Server]
         MCPServer <-->|4. SQL Query| DB[(🗄️ SQLite DB)]
-        
-        CLI -->|5. Build Prompt| Prompt[📝 Prompt Builder]
-        Prompt -->|6. API Request| vLLM[🤖 vLLM Server]
-        vLLM -->|7. Generate Text| Report[📄 Final Report]
+
+        CLI -->|5. Forecast| Forecast[📈 Forecast Tools]
+        Forecast -->|6. ARIMA| ARIMA[📊 ARIMA Model]
+        Forecast -->|6. Holt-Winters| HW[📊 Holt-Winters]
+        Forecast -->|6. LSTM| LSTM[🧠 Direct LSTM]
+
+        CLI -->|7. Build Prompt| Prompt[📝 Prompt Builder]
+        Prompt -->|8. API Request| vLLM[🤖 vLLM Server]
+        vLLM -->|9. Generate Text| Report[📄 Final Report]
     end
-    
+
     subgraph "External Services"
         vLLM <-->|Load| Model[🧠 Power Demand SFT Model]
     end
-    
-    Report -->|8. Save| Markdown[📝 MySQL/Markdown]
+
+    Report -->|10. Save| Markdown[📝 MySQL/Markdown]
 ```
 
 ---
@@ -36,6 +41,7 @@ graph TD
 | **Report Agent** | `report_agent/` | 사용자의 요청을 받아 전체 워크플로우를 조정하고 보고서를 생성합니다. |
 | **MCP Server** | `mcp_server/server.py` | 전력수요 데이터(`demand.db`)에 접근하는 인터페이스를 제공합니다. 직접 SQL을 실행하여 데이터를 가져옵니다. |
 | **Combined Tools** | `mcp_server/tools.py` | Agent가 MCP Server의 기능을 Python 함수처럼 호출할 수 있게 해주는 래퍼(Wrapper)입니다. |
+| **Forecast Tools** | `mcp_server/tools.py` | 주차별 최대전력 예측을 위한 3가지 모델(ARIMA, Holt-Winters, LSTM)을 제공합니다. |
 | **vLLM Server** | `serve_vllm.py` | 튜닝된 전력수요 예측 모델(`power_demand_merged_model`)을 OpenAI 호환 API로 서빙합니다. |
 
 ### 📂 Directory Structure
@@ -44,12 +50,13 @@ graph TD
 /root/De-Qwen-SFT/
 ├── serve_vllm.py              # vLLM 모델 서빙 스크립트 (Port 8000)
 ├── power_demand_merged_model/ # SFT 튜닝된 모델 가중치
+├── best_direct_lstm_full.pth  # 주차별 예측용 LSTM 모델
+├── scalers.pkl                # 데이터 정규화 스케일러
 ├── report_agent/              # 메인 에이전트 패키지
 │   ├── generate_report.py     # 사용자 CLI 진입점
-│   ├── report_generator.py    # 보고서 생성 로직 (Tools + LLM)
 │   ├── mcp_server/            # 데이터 조회 계층
 │   │   ├── server.py          # MCP API 서버 (Port 8001)
-│   │   └── tools.py           # SQLite DB 조회 도구
+│   │   └── tools.py           # SQLite DB 조회 + 예측 모델 도구
 │   └── demand_data/           # 데이터 저장소
 │       └── demand.db          # 전력수요/기상 데이터 (SQLite)
 ```
