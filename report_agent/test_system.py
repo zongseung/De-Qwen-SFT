@@ -59,7 +59,7 @@ def test_report_generator():
     print("\n[2] 보고서 생성기 테스트")
     print("-" * 40)
 
-    from report_agent.report_generator import ReportGenerator
+    from report_agent.report_service import ReportGenerator
 
     generator = ReportGenerator()
 
