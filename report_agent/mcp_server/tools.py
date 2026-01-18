@@ -601,7 +601,10 @@ class ForecastTools:
     """주차별 전력수요 예측 도구 (ARIMA, Holt-Winters, LSTM)"""
 
     def __init__(self):
-        self.model_dir = Path(__file__).parent.parent.parent  # /root/De-Qwen-SFT
+        self.repo_root = Path(__file__).parent.parent.parent  # /root/De-Qwen-SFT
+        self.artifacts_dir = self.repo_root / "artifacts"
+        self.models_dir = self.artifacts_dir / "models"
+        self.scalers_dir = self.artifacts_dir / "scalers"
         self.scaler_x_4 = None
         self.scaler_y_4 = None
         self.scaler_x_8 = None
@@ -616,6 +619,20 @@ class ForecastTools:
         self.monthly_models = {"mean": [], "peak": []}
         self._load_lstm_models()
 
+    def _resolve_artifact(self, filename: str, kind: str) -> Path:
+        """아티팩트 경로 해석 (신규 폴더 우선, 루트 폴더 fallback)"""
+        if kind == "model":
+            primary = self.models_dir / filename
+        elif kind == "scaler":
+            primary = self.scalers_dir / filename
+        else:
+            primary = self.artifacts_dir / filename
+
+        if primary.exists():
+            return primary
+
+        return self.repo_root / filename
+
     def _load_lstm_models(self):
         """LSTM 모델 및 스케일러 로드 (주차/월차 예측)"""
         try:
@@ -623,10 +640,10 @@ class ForecastTools:
             import pickle
 
             # ===== 주차별 LSTM =====
-            model_path_4 = self.model_dir / "best_direct_lstm_full_weekly_max_h4_win12.pth"
-            model_path_8 = self.model_dir / "best_direct_lstm_full_weekly_max_h8_win12.pth"
-            scaler_path_4 = self.model_dir / "scalers_weekly_max_h4_win12.pkl"
-            scaler_path_8 = self.model_dir / "scalers_weekly_max_h8_win12.pkl"
+            model_path_4 = self._resolve_artifact("best_direct_lstm_full_weekly_max_h4_win12.pth", "model")
+            model_path_8 = self._resolve_artifact("best_direct_lstm_full_weekly_max_h8_win12.pth", "model")
+            scaler_path_4 = self._resolve_artifact("scalers_weekly_max_h4_win12.pkl", "scaler")
+            scaler_path_8 = self._resolve_artifact("scalers_weekly_max_h8_win12.pkl", "scaler")
 
             if scaler_path_4.exists():
                 with open(scaler_path_4, 'rb') as f:
@@ -671,8 +688,8 @@ class ForecastTools:
                 print(f"[WARN] LSTM 8주 모델 파일 없음: {model_path_8}")
 
             # ===== 월차별 LSTM =====
-            mean_scaler_path = self.model_dir / "scalers_monthly_mean.pkl"
-            peak_scaler_path = self.model_dir / "scalers_monthly_peak.pkl"
+            mean_scaler_path = self._resolve_artifact("scalers_monthly_mean.pkl", "scaler")
+            peak_scaler_path = self._resolve_artifact("scalers_monthly_peak.pkl", "scaler")
 
             if mean_scaler_path.exists():
                 with open(mean_scaler_path, 'rb') as f:
@@ -692,13 +709,13 @@ class ForecastTools:
 
             self.monthly_models = {
                 "mean": self._load_many2one_models(
-                    [self.model_dir / "best_many2one_lstm_state_monthly_mean_win12.pth"],
+                    [self._resolve_artifact("best_many2one_lstm_state_monthly_mean_win12.pth", "model")],
                     default_feature_cols=["demand_mean", "is_holiday", "day_type"],
                     default_target_col="demand_mean",
                 ),
                 "peak": self._load_many2one_models(
                     [
-                        self.model_dir / "best_many2one_lstm_state_monthly_peak_win12.pth",
+                        self._resolve_artifact("best_many2one_lstm_state_monthly_peak_win12.pth", "model"),
                     ],
                     default_feature_cols=["demand_max", "is_holiday", "day_type"],
                     default_target_col="demand_max",
