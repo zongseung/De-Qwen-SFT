@@ -25,6 +25,27 @@ class MonthlyRequest(BaseModel):
 class HistoricalRequest(BaseModel):
     month: int
     years: int = 5
+    target_year: int | None = None
+
+
+class ForecastRequest(BaseModel):
+    year: int
+    month: int
+    model: str = "lstm"
+    include_next_month: bool = False
+
+
+class YearlyMonthlyRequest(BaseModel):
+    target_year: int
+    target_month: int
+    years: int = 5
+
+
+class YearlyMonthlyChartRequest(BaseModel):
+    target_year: int
+    target_month: int
+    years: int = 5
+    output_dir: str = "./reports"
 
 
 def create_mcp_server() -> FastAPI:
@@ -79,12 +100,41 @@ def create_mcp_server() -> FastAPI:
     @app.post("/tools/get_historical_demand")
     async def get_historical_demand(req: HistoricalRequest) -> List[Dict[str, Any]]:
         """과거 N년간 동월 데이터 조회"""
-        return tools.get_historical_demand(req.month, req.years)
+        return tools.get_historical_demand(req.month, req.years, target_year=req.target_year)
 
     @app.post("/tools/get_report_data")
     async def get_report_data(req: MonthlyRequest) -> Dict[str, Any]:
         """보고서 생성용 전체 데이터 조회"""
         return tools.get_report_data(req.year, req.month)
+
+    @app.post("/tools/forecast_weekly_demand")
+    async def forecast_weekly_demand(req: ForecastRequest) -> Dict[str, Any]:
+        """주차별 전력수요 예측 (ARIMA/HW/LSTM, 다음달 포함 가능)"""
+        return tools.forecast_weekly_demand(
+            req.year,
+            req.month,
+            model=req.model,
+            include_next_month=req.include_next_month,
+        )
+
+    @app.post("/tools/get_yearly_monthly_demand")
+    async def get_yearly_monthly_demand(req: YearlyMonthlyRequest) -> Dict[str, Any]:
+        """연도별 월별 수요 조회 (차트/표용)"""
+        data = tools.get_yearly_monthly_demand(req.target_year, req.target_month, req.years)
+        return {"data": data}
+
+    @app.post("/tools/generate_yearly_monthly_chart")
+    async def generate_yearly_monthly_chart(req: YearlyMonthlyChartRequest) -> Dict[str, Any]:
+        """연도별 월별 수요 차트 생성 (PNG)"""
+        result = chart_tools.generate_yearly_monthly_chart(
+            target_year=req.target_year,
+            target_month=req.target_month,
+            years=req.years,
+            output_dir=req.output_dir,
+        )
+        if not result.get("success"):
+            raise HTTPException(status_code=400, detail=result.get("error", "차트 생성 실패"))
+        return result
 
     @app.post("/tools/generate_weekly_chart")
     async def generate_weekly_chart(req: MonthlyRequest) -> Dict[str, Any]:
@@ -119,12 +169,41 @@ def create_mcp_server() -> FastAPI:
                 {
                     "name": "get_historical_demand",
                     "description": "과거 N년간 동월 전력수요",
-                    "parameters": {"month": "int", "years": "int (default: 5)"},
+                    "parameters": {"month": "int", "years": "int (default: 5)", "target_year": "int | None"},
                 },
                 {
                     "name": "get_report_data",
                     "description": "보고서 생성용 전체 데이터",
                     "parameters": {"year": "int", "month": "int"},
+                },
+                {
+                    "name": "forecast_weekly_demand",
+                    "description": "주차별 전력수요 예측 (ARIMA/HW/LSTM, 다음달 포함 가능)",
+                    "parameters": {
+                        "year": "int",
+                        "month": "int",
+                        "model": "str (arima|holt_winters|lstm|ensemble, default: lstm)",
+                        "include_next_month": "bool",
+                    },
+                },
+                {
+                    "name": "get_yearly_monthly_demand",
+                    "description": "연도별 월별 수요 조회 (차트/표용)",
+                    "parameters": {
+                        "target_year": "int",
+                        "target_month": "int",
+                        "years": "int (default: 5)",
+                    },
+                },
+                {
+                    "name": "generate_yearly_monthly_chart",
+                    "description": "연도별 월별 수요 차트 생성 (PNG 파일)",
+                    "parameters": {
+                        "target_year": "int",
+                        "target_month": "int",
+                        "years": "int (default: 5)",
+                        "output_dir": "str (default: ./reports)",
+                    },
                 },
                 {
                     "name": "generate_weekly_chart",
