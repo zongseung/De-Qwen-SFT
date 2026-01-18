@@ -1,192 +1,314 @@
-# Power Demand Report Agent (MCP-First)
+# Power Demand Report Agent
 
-전력수요(수요/기상) 데이터와 예측 모델(LSTM/ARIMA/Holt-Winters)을 기반으로 월간 전력수요 전망 보고서를 자동 생성하는 시스템입니다.
+전력수요(수요/기상) 데이터와 예측 모델(LSTM/ARIMA/Holt-Winters), 그리고 SFT 튜닝된 LLM(vLLM)을 결합해 **월간 전력수요 전망 보고서(Markdown)**를 자동 생성합니다.
 
-이 프로젝트의 설계 원칙은 아래 3가지입니다.
-
-1) **정답이 필요한 것(수치/표/차트)**은 “툴”이 만든다. (DB 조회, YoY 계산, 예측, 차트 생성)  
-2) **서술이 필요한 것(문장/요약/설명)**은 LLM(vLLM)이 만든다.  
-3) 마지막으로 **CLI 후처리로 표/형식을 강제**해서 결과 품질을 안정화한다.
-
-> 용어 정리  
-> - 여기서 “MCP”는 **툴 호출 패턴(툴 서버 + 툴 디스커버리 + 툴 실행)**을 의미합니다.  
-> - 현재 구현은 **FastAPI로 MCP 패턴을 구현**한 형태입니다(표준 MCP 런타임/SDK로의 전환 여지도 있음).
+이 README는 “어떤 노드(컴포넌트)가 어떤 책임을 가지고, 어떤 순서로, 어떤 데이터 형태로 상호작용하는지”를 **코드 기준으로 완전히 구체화**한 문서입니다.
 
 ---
 
-## 1) System Architecture
+## 0) 설계 원칙 (역할 분리)
 
-### 1.1 High-level Flow
+- **정답이 필요한 것**(수치/표/차트/예측)은 코드 기반 **Tools(MCP)**가 만든다: DB 조회, YoY 계산, 예측, 차트 렌더링
+- **서술이 필요한 것**(문장/요약/설명)은 **LLM(vLLM)**이 만든다
+- **품질 보증**은 CLI 후처리가 담당한다: 반복 제거, 표 형식 강제, 차트 링크 삽입
 
-- **Report CLI**: 보고서 생성 오케스트레이션(툴 호출 → 프롬프트 생성 → vLLM 호출 → 후처리 → 저장)
-- **MCP Server**: DB/예측/차트를 “툴”로 제공(정답 생성)
-- **vLLM Server**: 보고서 본문(서술) 생성
+---
+
+## 1) 아키텍처 (Mermaid node graph)
+
+### 1.1 전체 구성도 (한 장으로 보는 노드)
 
 ```mermaid
-graph TD
-  User["User"] -->|"1. Request report"| CLI["Report CLI (generate_report.py)"]
+flowchart LR
+  User[User] --> CLI["report_agent/generate_report.py (CLI)"]
 
-  subgraph "Report Agent System"
-    CLI -->|"2. Tool calls (HTTP)"| MCPClient["MCP Client (mcp_client.py)"]
-    MCPClient -->|"3. Execute tools"| MCPServer["MCP Server (FastAPI, :8001)"]
-
-    MCPServer -->|"SQL"| DB["SQLite DB (demand/weather)"]
-    MCPServer -->|"Predict"| Forecast["Forecast models: LSTM 4/8w, ARIMA, HW"]
-    MCPServer -->|"Render"| Charts["Charts (PNG artifacts)"]
-
-    CLI -->|"4. Build prompt"| Prompt["Prompt builder"]
-    Prompt -->|"5. Generate text (HTTP)"| vLLM["vLLM (OpenAI compat, :8000)"]
-    vLLM -->|"6. Draft markdown"| CLI
-
-    CLI -->|"7. Post-process & save"| Output["reports/*.md + reports/charts/*.png"]
+  subgraph ToolsLayer["Tools Layer (정답 생성)"]
+    MCP_HTTP["report_agent/mcp_server/server.py (FastAPI, :8001)"]
+    MCP_PURE["report_agent/mcp_server/mcp_pure_server.py (FastMCP, stdio/SSE)"]
+    Tools["report_agent/mcp_server/tools.py\n- DemandTools\n- WeatherTools\n- ForecastTools\n- ChartTools\n- CombinedTools"]
+    DB["report_agent/demand_data/demand.db (SQLite)\n- demand_1hour\n- weather_1hour"]
+    Models["Repo root model artifacts\n- best_direct_lstm_full_weekly_max_h4_win12.pth\n- best_direct_lstm_full_weekly_max_h8_win12.pth\n- scalers_weekly_max_h4_win12.pkl\n- scalers_weekly_max_h8_win12.pkl\n- scalers_monthly_mean.pkl\n- scalers_monthly_peak.pkl\n- best_many2one_lstm_state_monthly_*.pth"]
   end
 
-  vLLM -->|"Load"| SFT["SFT model: power_demand_merged_model/"]
+  subgraph LLM["LLM Layer (서술 생성)"]
+    vLLM["serve_vllm.py -> vLLM OpenAI-compatible\n:8000 (/v1/completions, /v1/chat/completions)"]
+    SFT["power_demand_merged_model/ (SFT model)"]
+  end
+
+  CLI -- "MCP stdio (권장)\nClientSession over stdio" --> MCP_PURE
+  CLI -- "MCP HTTP\nPOST /tools/*" --> MCP_HTTP
+
+  MCP_PURE --> Tools
+  MCP_HTTP --> Tools
+  Tools --> DB
+  Tools --> Models
+
+  CLI -- "POST /v1/completions\n(optional: --llm-url)" --> vLLM
+  vLLM --> SFT
+
+  CLI --> Output["report_agent/reports/\n- report_YYYY_MM_*_*.md\n- charts/*.png"]
 ```
 
-### 1.2 Why “FastAPI + MCP pattern”?
+### 1.2 보고서 생성 시퀀스 (정확한 실행 순서)
 
-“그냥 CLI에서 DB/예측/차트까지 다 하면 되지 않나?”에 대한 설계 이유는 아래와 같습니다.
+> 실제 구현 기준(파일/함수명): `report_agent/generate_report.py`의 HTTP 모드와 stdio 모드가 거의 동일한 순서로 동작합니다.
 
-- **역할 분리(정답 vs 서술)**: 수치/표/차트는 코드가, 서술은 LLM이 담당하도록 분리해 정확도와 일관성을 확보
-- **장기 실행/캐싱**: 예측 모델(LSTM) 가중치/스케일러 로딩을 서버 프로세스에 상주시켜 재사용 가능
-- **재사용성**: CLI 외에 웹/배치/다른 서비스도 동일한 툴을 HTTP로 호출 가능
-- **운영 편의**: FastAPI 기반이라 헬스체크/로그/배포가 쉬움
+```mermaid
+sequenceDiagram
+  participant U as User
+  participant CLI as generate_report.py
+  participant MCP as MCP (HTTP or stdio)
+  participant DB as demand.db
+  participant LLM as vLLM (:8000)
+  participant FS as filesystem (reports/)
+
+  U->>CLI: run CLI args
+  CLI->>MCP: get_report_data(year, month)
+  MCP->>DB: SELECT demand/weather
+  DB-->>MCP: rows
+  MCP-->>CLI: summary + weekly + historical + weather + monthly_forecast
+
+  CLI->>MCP: forecast_weekly_demand(year, month, model, include_next_month)
+  MCP-->>CLI: {model, forecasts[], weeks_count}
+
+  CLI->>MCP: generate_yearly_monthly_chart(...)
+  MCP-->>CLI: (HTTP: filepath) or (stdio: image_base64)
+  CLI->>FS: write charts/*.png (if base64)
+
+  CLI->>CLI: build_report_prompt(data, forecast)
+
+  alt --llm-url provided
+    CLI->>LLM: POST /v1/completions (prompt)
+    LLM-->>CLI: raw text
+    CLI->>CLI: remove_repetitions / apply_table_fixes / insert_chart_after_section2
+    CLI->>FS: save report_*_llm_mcp_*.md
+  else no --llm-url
+    CLI->>FS: save report_*_prompt_mcp_*.md
+  end
+```
 
 ---
 
-## 2) Repository Layout
+## 2) 실행 모드 (MCP 통신 방식)
 
-핵심 파일만 요약합니다.
+### 2.1 MCP stdio 모드 (권장)
 
-- `report_agent/generate_report.py`  
-  보고서 생성 CLI 엔트리포인트(툴 호출 + LLM 호출 + 후처리 + 저장)
-- `report_agent/mcp_client.py`  
-  MCP 서버 호출 래퍼(httpx 기반)
-- `report_agent/mcp_server/server.py`  
-  MCP 서버(FastAPI) – 툴 엔드포인트 제공
-- `report_agent/mcp_server/tools.py`  
-  툴 구현(수요/기상 DB 조회, 예측 모델, 차트 생성)
-- `report_agent/demand_data/demand.db`  
-  SQLite DB(전력수요/기상)
-- `serve_vllm.py`, `power_demand_merged_model/`  
-  vLLM 서빙 스크립트 및 SFT 모델
+- CLI가 `report_agent/mcp_server/mcp_pure_server.py`를 **subprocess로 띄우고**, 표준입출력(stdio)으로 MCP 세션을 맺습니다.
+- 네트워크 포트를 열지 않아도 되고(충돌/방화벽 이슈 감소), “한 번 실행해서 한 번 보고서 생성”에 적합합니다.
+- 구현 파일:
+  - 클라이언트: `report_agent/mcp_client_pure.py` (`ClientSession` + `mcp.client.stdio`)
+  - 서버: `report_agent/mcp_server/mcp_pure_server.py` (`FastMCP`)
 
-예측 모델 아티팩트(레포 루트):
-- `best_direct_lstm_full_4.pth`, `best_direct_lstm_full_8.pth`
-- `scalers.pkl`
+### 2.2 MCP HTTP 모드
+
+- FastAPI 서버(`:8001`)를 별도 프로세스로 띄우고 CLI가 HTTP로 `/tools/*` 엔드포인트를 호출합니다.
+- 구현 파일:
+  - 클라이언트: `report_agent/mcp_client.py` (HTTP POST)
+  - 서버: `report_agent/mcp_server/server.py` (FastAPI + uvicorn)
+
+### 2.3 (참고) Pure MCP SSE 모드
+
+- `mcp_client_pure.py`는 SSE도 지원하지만, `generate_report.py`는 현재 stdio만 사용합니다.
+- 필요 시 확장 포인트: `MCPClientPure(mode="sse", server_url="http://localhost:8001/sse")`
 
 ---
 
-## 3) How to Run (Local)
+## 3) 빠른 시작 (정확한 커맨드)
 
-보고서를 생성하려면 **MCP 서버(데이터/예측/차트)**와 **vLLM 서버**를 먼저 실행합니다.
-
-### 3.1 Start MCP Server (Tools) – Port 8001
-
-```bash
-cd report_agent
-python -m mcp_server.server --host 0.0.0.0 --port 8001
-```
-
-헬스체크:
-```bash
-curl http://localhost:8001/health
-```
-
-### 3.2 Start vLLM Server (LLM) – Port 8000
+### 3.1 (선택) vLLM 서버 실행 (LLM로 “보고서 본문”까지 생성할 때)
 
 ```bash
 cd /root/De-Qwen-SFT
-python serve_vllm.py --mode server --host 0.0.0.0 --port 8000 &
+python serve_vllm.py --mode server --host 0.0.0.0 --port 8000
 ```
 
-### 3.3 Generate Report (CLI → MCP → vLLM)
+`report_agent/generate_report.py`는 기본적으로 `POST {llm_url}/v1/completions`를 호출합니다.
+
+### 3.2 MCP stdio 모드 (권장)
 
 ```bash
-cd report_agent
-python generate_report.py \
-  --year 2025 --month 9 \
-  --include-next-month \
-  --mcp-url http://localhost:8001 \
-  --llm-url http://localhost:8000
+cd /root/De-Qwen-SFT/report_agent
+
+# 1) 프롬프트만 저장 (LLM 없이)
+python generate_report.py --year 2025 --month 11 --mcp-mode stdio
+
+# 2) LLM까지 포함해 보고서 저장
+python generate_report.py --year 2025 --month 11 --mcp-mode stdio --llm-url http://localhost:8000
+
+# 3) 다음달까지 예측(8주) 포함
+python generate_report.py --year 2025 --month 11 --mcp-mode stdio --include-next-month --llm-url http://localhost:8000
 ```
 
-옵션 요약:
-- `--mcp-url`: MCP 서버 URL(기본: `http://localhost:8001`)
-- `--llm-url`: vLLM URL(없으면 “프롬프트만 저장” 모드)
-- `--include-next-month`: 다음달 주차 예측 포함 + 표 분리 출력
-- `--output`: 결과 저장 디렉토리(기본: `./reports`)
+### 3.3 MCP HTTP 모드
 
----
-
-## 4) Output
-
-기본 출력 구조:
-- `report_agent/reports/report_YYYY_MM_llm_*.md`
-- `report_agent/reports/charts/*.png`
-
-품질 안정화 포인트:
-- LLM 출력이 표/형식을 흔들 수 있으므로, CLI에서 표/단위/월 분리/그래프 위치 등을 후처리로 강제합니다.
-
----
-
-## 5) MCP Tools (API)
-
-MCP 서버는 “툴 실행”을 HTTP 엔드포인트로 제공합니다.
-
-### 5.1 Tool Discovery
-- `GET /mcp/tools`: 사용 가능한 툴 목록
-
-### 5.2 Core Tools
-- `POST /tools/get_report_data`  
-  월 요약, 주차 실적, 과거 동월(기본 5개년), 기상 요약 등을 패키지로 반환
-- `POST /tools/forecast_weekly_demand`  
-  주차별 최대부하 예측(모델 선택 + include_next_month 지원)
-- `POST /tools/get_yearly_monthly_demand`  
-  연도별 월별 수요 데이터(차트/표용)
-- `POST /tools/generate_yearly_monthly_chart`  
-  연도별 월별 수요 차트(PNG) 생성 후 경로 반환
-
-기존 툴:
-- `POST /tools/get_demand_summary`
-- `POST /tools/get_weekly_demand`
-- `POST /tools/get_peak_load`
-- `POST /tools/get_historical_demand`
-- `POST /tools/generate_weekly_chart`
-
-예시:
 ```bash
-curl -X POST http://localhost:8001/tools/forecast_weekly_demand \
-  -H "Content-Type: application/json" \
-  -d '{"year":2025,"month":9,"model":"lstm","include_next_month":true}'
+# 터미널 1: MCP 서버 실행
+cd /root/De-Qwen-SFT/report_agent
+python -m mcp_server.server --port 8001
+
+# 터미널 2: 보고서 생성
+cd /root/De-Qwen-SFT/report_agent
+python generate_report.py --year 2025 --month 11 --mcp-mode http --mcp-url http://localhost:8001 --llm-url http://localhost:8000
 ```
 
 ---
 
-## 6) Design Notes (발표/설명용)
+## 4) CLI 옵션 (generate_report.py)
 
-### 6.1 Why not LangGraph multi-agent?
-- 이 문제는 “탐색/협상”보다 “정해진 절차의 자동화” 성격이 강함
-- 형식/표 수치 정확성이 최우선이라 멀티에이전트 자율성이 리스크가 될 수 있음
-- 필요해지면(대화형 분석/동적 플래닝/원인 추론 등) 그때 LangGraph로 확장하는 것이 합리적
+```bash
+python generate_report.py --year YYYY --month M [--mcp-mode http|stdio] [--mcp-url ...] [--llm-url ...] [--forecast-model ...] [--include-next-month] [--output ...] [--json] [--prompt-only]
+```
 
-### 6.2 What changes if we go “full standard MCP”?
-툴 로직(`tools.py`)은 유지 가능하지만, 아래가 추가로 필요해집니다.
-- 전송 레이어(HTTP → MCP SDK/프로토콜) 전환
-- 차트(이미지) 아티팩트 전달 방식(base64/다운로드/스토리지 URL) 재설계
-- LSTM 같은 무거운 모델을 위한 “상시 구동/캐싱” 운영 방식 정리
+| 옵션 | 의미 | 기본값/비고 |
+|---|---|---|
+| `--year` | 대상 연도 | 필수 |
+| `--month` | 대상 월(1-12) | 필수 |
+| `--mcp-mode` | `http` 또는 `stdio` | 기본 `http` |
+| `--mcp-url` | HTTP 모드 MCP 서버 URL | 기본 `http://localhost:8001` |
+| `--llm-url` | vLLM URL(없으면 프롬프트만 저장) | 없음 |
+| `--forecast-model` | `lstm`, `arima`, `holt_winters`, `ensemble` | 기본 `lstm` |
+| `--include-next-month` | 다음달까지 예측(8주) | 기본 `False` |
+| `--output` | 출력 디렉토리 | 기본 `./reports` |
+| `--json` | 보고서 대신 JSON 데이터 출력 | 디버그용 |
+| `--prompt-only` | 프롬프트만 stdout 출력 | 파일 저장 안 함 |
 
 ---
 
-## 7) Troubleshooting
+## 5) 컴포넌트별 구성/동작 (파일 단위로 “무슨 일을 하는지”)
 
-- MCP 서버 접속 실패:
-  - `curl http://localhost:8001/health` 확인
-  - 포트 충돌(8001) 확인
-- vLLM 호출 실패:
-  - 8000 포트, GPU 메모리, 모델 경로 확인
-- 차트 생성 실패:
-  - matplotlib 설치 여부, 출력 디렉토리 권한 확인
-- DB 데이터 없음:
-  - `report_agent/demand_data/demand.db` 존재/테이블/데이터 확인
+### 5.1 오케스트레이터 (CLI)
+
+- `report_agent/generate_report.py`
+  - 입력(Args): `year/month`, `mcp-mode`, `forecast-model`, `include-next-month`, `llm-url`, `output`
+  - MCP에서 가져오는 “정답 데이터”:
+    - `get_report_data(year, month)` → 요약/주차/과거/기상/월예측 등 패키지
+    - `forecast_weekly_demand(year, month, model, include_next_month)` → 주차별 최대수요 예측
+    - `generate_yearly_monthly_chart(target_year, target_month, years, output_dir?)` → 차트(PNG or base64)
+  - LLM 호출(선택): `POST {llm_url}/v1/completions`
+  - 후처리(품질 보증): `remove_repetitions()`, `apply_table_fixes()`, `insert_chart_after_section2()`
+  - 출력: `reports/report_YYYY_MM_{_llm_mcp|_prompt_mcp}_TIMESTAMP.md` (+ `reports/charts/*.png`)
+
+### 5.2 Tools 서버 (HTTP)
+
+- `report_agent/mcp_server/server.py`
+  - FastAPI 기반
+  - 주요 엔드포인트(일부):
+    - `POST /tools/get_report_data`
+    - `POST /tools/forecast_weekly_demand`
+    - `POST /tools/generate_yearly_monthly_chart`
+    - `GET /health`
+  - 내부적으로 `CombinedTools()` / `ChartTools()`를 호출합니다.
+
+### 5.3 Tools 서버 (Pure MCP)
+
+- `report_agent/mcp_server/mcp_pure_server.py`
+  - `FastMCP` 기반 “순수 MCP” 서버
+  - 동일한 도구들을 `@mcp.tool()`로 노출합니다.
+  - 실행 모드:
+    - stdio: `python mcp_pure_server.py --mode stdio` (CLI가 자동 실행)
+    - SSE: `python mcp_pure_server.py --mode sse --host 0.0.0.0 --port 8001` (선택)
+
+### 5.4 Tools 구현 (DB/예측/차트)
+
+- `report_agent/mcp_server/tools.py`
+  - `DemandTools`: `demand_1hour` 기반 수요 요약/주차 집계/최대부하/과거동월
+  - `WeatherTools`: `weather_1hour` 기반 월간 요약/과거동월 기상
+  - `ForecastTools`: ARIMA/HW/LSTM/Ensemble 예측 + 월별 예측(`monthly_forecast`)
+    - 주차별 LSTM 모델/스케일러 로드:
+      - 4주: `best_direct_lstm_full_weekly_max_h4_win12.pth` + `scalers_weekly_max_h4_win12.pkl`
+      - 8주: `best_direct_lstm_full_weekly_max_h8_win12.pth` + `scalers_weekly_max_h8_win12.pkl`
+    - 월별 LSTM(평균/피크): `best_many2one_lstm_state_monthly_*.pth` + `scalers_monthly_*.pkl`
+  - `ChartTools`: matplotlib로 PNG 생성 (HTTP는 파일 경로 반환, Pure MCP는 base64 반환 가능)
+  - `CombinedTools`: 보고서에 필요한 데이터 패키징(`get_report_data`)
+
+### 5.5 LLM 서버 (vLLM)
+
+- `serve_vllm.py`
+  - `power_demand_merged_model/`을 OpenAI 호환 API로 서빙합니다.
+  - `generate_report.py`는 기본적으로 `POST /v1/completions`로 호출합니다.
+
+---
+
+## 6) MCP Tool 스펙 (입력/출력 “필드” 단위)
+
+아래 스펙은 `report_agent/mcp_server/tools.py` 구현(및 `server.py` 노출) 기준입니다.
+
+### 6.1 수요/기상 조회
+
+| Tool | 입력 | 출력(핵심 필드) |
+|---|---|---|
+| `get_demand_summary` | `year`, `month` | `max_demand`, `avg_demand`, `min_demand`, `yoy_change` |
+| `get_weekly_demand` | `year`, `month` | 각 주차 `max_demand/avg_demand/min_demand`, `date_range`, `start_date/end_date` |
+| `get_peak_load` | `year`, `month` | `peak_datetime`, `peak_date`, `peak_hour`, `peak_demand`, `weekday` |
+| `get_historical_demand` | `month`, `years`, `target_year?` | 연도별 `max_demand`, `avg_demand`, `max_yoy`, `avg_yoy` 등 |
+| `get_weather_summary` (Pure MCP) | `year`, `month` | `temperature_avg/max/min`, `humidity_avg` |
+
+> 참고: HTTP 모드에서는 `get_weather_summary`를 별도 엔드포인트로 제공하지 않고, `get_report_data` 안에 포함된 `weather`를 사용합니다.
+
+### 6.2 예측
+
+| Tool | 입력 | 출력(핵심 필드) |
+|---|---|---|
+| `forecast_weekly_demand` | `year`, `month`, `model`, `include_next_month` | `model`, `weeks_count`, `forecasts[]` (`week`, `date_range`, `max_demand`, `month/year`(다음달 포함 시)) |
+
+### 6.3 차트
+
+| Tool | 입력 | 출력(핵심 필드) |
+|---|---|---|
+| `generate_yearly_monthly_chart` | `target_year`, `target_month`, `years`, (`output_dir`는 HTTP만) | `success`, (HTTP: `filepath`), (Pure MCP: `image_base64`) |
+| `generate_weekly_chart` | `year`, `month` | `success`, `filepath` 또는 `image_base64` |
+
+---
+
+## 7) 데이터/출력 포맷
+
+### 7.1 SQLite 스키마(핵심 테이블)
+
+- `demand_1hour`: `timestamp`, `demand_mean`, `demand_max`, `demand_min`, `is_holiday`, `day_type` 등
+- `weather_1hour`: `timestamp`, `temperature_mean/max/min`, `humidity_mean/max/min`
+
+### 7.2 출력 디렉토리
+
+```
+report_agent/reports/
+├── report_2025_11_llm_mcp_YYYYMMDD_HHMMSS.md
+└── charts/
+    └── yearly_monthly_demand_2025_11.png
+```
+
+---
+
+## 8) 의존성(필수 아티팩트/패키지)
+
+### 8.1 필수 파일/폴더
+
+- DB: `report_agent/demand_data/demand.db`
+- vLLM 모델: `power_demand_merged_model/`
+- 예측 모델/스케일러(레포 루트):
+  - `best_direct_lstm_full_weekly_max_h4_win12.pth`, `scalers_weekly_max_h4_win12.pkl`
+  - `best_direct_lstm_full_weekly_max_h8_win12.pth`, `scalers_weekly_max_h8_win12.pkl`
+  - `best_many2one_lstm_state_monthly_mean_win12.pth`, `scalers_monthly_mean.pkl`
+  - `best_many2one_lstm_state_monthly_peak_win12.pth`, `scalers_monthly_peak.pkl`
+
+### 8.2 Python 패키지(주요)
+
+- `mcp` (Pure MCP stdio/SSE)
+- `fastapi`, `uvicorn` (HTTP 서버)
+- `httpx` (HTTP 클라이언트)
+- `torch` (LSTM 추론)
+- `pandas`, `numpy` (데이터 처리)
+- `statsmodels` (ARIMA, Holt-Winters)
+- `matplotlib` (차트)
+- `vllm` (LLM 서빙)
+
+---
+
+## 9) Troubleshooting (현상 → 원인/확인 포인트)
+
+| 증상 | 확인 포인트 |
+|---|---|
+| MCP 서버 연결 실패(HTTP) | `curl http://localhost:8001/health`, 포트 충돌, `--mcp-url` |
+| Pure MCP stdio 실패 | `mcp` 패키지 설치, `report_agent/mcp_server/mcp_pure_server.py` 실행 가능 여부 |
+| vLLM 호출 실패 | `--llm-url` 정확도, 8000 포트, GPU 메모리, `power_demand_merged_model/` 경로 |
+| 예측 실패/빈 값 | `demand.db`에 과거 데이터 충분한지, 루트의 `.pth/.pkl` 존재 여부 |
+| 차트 생성 실패 | `matplotlib` 설치, `report_agent/reports/` 쓰기 권한, 데이터 유무 |
