@@ -51,7 +51,7 @@ def run_mcp_server(host: str = "0.0.0.0", port: int = 8001):
 
 def generate_report(year: int, month: int, output_dir: Optional[Path] = None):
     """보고서 생성"""
-    from .report_generator import ReportGenerator
+    from .report_service import ReportGenerator
 
     generator = ReportGenerator()
     result = generator.generate_report(year, month)

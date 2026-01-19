@@ -8,10 +8,10 @@ from transformers import AutoTokenizer, AutoModelForCausalLM
 from peft import PeftModel
 import os
 
-# 경로 설정
-BASE_MODEL_PATH = "./Qwen2.5-7B-Instruct"
-ADAPTER_PATH = "./power_demand_sft_model"
-OUTPUT_PATH = "./power_demand_merged_model"
+# 경로 설정 - llama -> 이 부분만 수정하면 됨.
+BASE_MODEL_PATH = "/root/models/llama-3-korean-bllossom-8B"
+ADAPTER_PATH = "/root/De-Qwen-SFT/power_demand_sft_model_llama3"
+OUTPUT_PATH = "./power_demand_merged_model_llama3"
 
 def merge_lora():
     print("=" * 60)
