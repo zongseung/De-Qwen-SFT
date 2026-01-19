@@ -226,10 +226,10 @@ def build_report_prompt(
 ## 입력 데이터
 
 {weather_section}### 과거 5개년 실적
-| 구분 | {cols[0]} | {cols[1]} | {cols[2]} | {cols[3]} | {cols[4]} |
+| 구분 | {cols[0]} | {cols[1]} | {cols[2]} | {cols[3]} | **{cols[4]}** |
 |---|---:|---:|---:|---:|---:|
-| 최대부하(만kW) | {max_loads_with_yoy[0]} | {max_loads_with_yoy[1]} | {max_loads_with_yoy[2]} | {max_loads_with_yoy[3]} | {max_loads_with_yoy[4]} |
-| 평균부하(만kW) | {avg_loads_with_yoy[0]} | {avg_loads_with_yoy[1]} | {avg_loads_with_yoy[2]} | {avg_loads_with_yoy[3]} | {avg_loads_with_yoy[4]} |
+| 최대부하(만kW) | {max_loads_with_yoy[0]} | {max_loads_with_yoy[1]} | {max_loads_with_yoy[2]} | {max_loads_with_yoy[3]} | **{max_loads_with_yoy[4]}** |
+| 평균부하(만kW) | {avg_loads_with_yoy[0]} | {avg_loads_with_yoy[1]} | {avg_loads_with_yoy[2]} | {avg_loads_with_yoy[3]} | **{avg_loads_with_yoy[4]}** |
 
 ### 주차별 전력수요 전망
 {weekly_table}
@@ -346,10 +346,10 @@ def _format_historical_table(
         avg_loads_with_yoy.insert(0, "(값 미제공)")
 
     table = [
-        f"| 구분 | {cols[0]} | {cols[1]} | {cols[2]} | {cols[3]} | {cols[4]} |",
+        f"| 구분 | {cols[0]} | {cols[1]} | {cols[2]} | {cols[3]} | **{cols[4]}** |",
         "|---|---:|---:|---:|---:|---:|",
-        f"| 최대부하 | {max_loads_with_yoy[0]} | {max_loads_with_yoy[1]} | {max_loads_with_yoy[2]} | {max_loads_with_yoy[3]} | {max_loads_with_yoy[4]} |",
-        f"| 평균부하 | {avg_loads_with_yoy[0]} | {avg_loads_with_yoy[1]} | {avg_loads_with_yoy[2]} | {avg_loads_with_yoy[3]} | {avg_loads_with_yoy[4]} |",
+        f"| 최대부하 | {max_loads_with_yoy[0]} | {max_loads_with_yoy[1]} | {max_loads_with_yoy[2]} | {max_loads_with_yoy[3]} | **{max_loads_with_yoy[4]}** |",
+        f"| 평균부하 | {avg_loads_with_yoy[0]} | {avg_loads_with_yoy[1]} | {avg_loads_with_yoy[2]} | {avg_loads_with_yoy[3]} | **{avg_loads_with_yoy[4]}** |",
         "",
         "* [단위: 만kW, 증감률(%)]",
     ]
@@ -731,7 +731,7 @@ def generate_with_llm(prompt: str, llm_url: str) -> Optional[str]:
         response = httpx.post(
             f"{llm_url}/v1/completions",
             json={
-                "model": "./power_demand_merged_model",
+                "model": "./power_demand_merged_model_llama3",
                 "prompt": prompt,
                 "max_tokens": 800,
                 "temperature": 0.2, # 최대한 정확한 답변 유도 

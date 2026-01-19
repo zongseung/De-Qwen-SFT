@@ -19,34 +19,41 @@
 ### 1.1 전체 구성도 (한 장으로 보는 노드)
 
 ```mermaid
-flowchart LR
-  User[User] --> CLI["report_agent/generate_report.py (CLI)"]
+flowchart TB
+  User[User] --> CLI["generate_report.py (CLI 오케스트레이터)"]
 
-  subgraph ToolsLayer["Tools Layer (정답 생성)"]
-    MCP_HTTP["report_agent/mcp_server/server.py (FastAPI, :8001)"]
-    MCP_PURE["report_agent/mcp_server/mcp_pure_server.py (FastMCP, stdio/SSE)"]
-    Tools["report_agent/mcp_server/tools.py\n- DemandTools\n- WeatherTools\n- ForecastTools\n- ChartTools\n- CombinedTools"]
-    DB["report_agent/demand_data/demand.db (SQLite)\n- demand_1hour\n- weather_1hour"]
-    Models["Repo root model artifacts\n- best_direct_lstm_full_weekly_max_h4_win12.pth\n- best_direct_lstm_full_weekly_max_h8_win12.pth\n- scalers_weekly_max_h4_win12.pkl\n- scalers_weekly_max_h8_win12.pkl\n- scalers_monthly_mean.pkl\n- scalers_monthly_peak.pkl\n- best_many2one_lstm_state_monthly_*.pth"]
+  subgraph MCP_Layer["MCP Layer (데이터/예측/차트)"]
+    direction TB
+    subgraph MCP_Servers["MCP 서버 (택1)"]
+      MCP_PURE["mcp_pure_server.py\n(FastMCP, stdio)\n자동 subprocess"]
+      MCP_HTTP["server.py\n(FastAPI, :8001)\n별도 실행 필요"]
+    end
+    Tools["tools.py\n- CombinedTools\n- ForecastTools\n- ChartTools"]
+    DB["demand.db\n(SQLite)"]
+    Models["artifacts/\n- models/*.pth\n- scalers/*.pkl"]
   end
 
-  subgraph LLM["LLM Layer (서술 생성)"]
-    vLLM["serve_vllm.py -> vLLM OpenAI-compatible\n:8000 (/v1/completions, /v1/chat/completions)"]
-    SFT["power_demand_merged_model/ (SFT model)"]
+  subgraph LLM_Layer["LLM Layer (서술 생성, 선택)"]
+    direction LR
+    vLLM["vLLM Server (:8000)\nserve_vllm.py\n별도 실행 필요"]
+    SFT["power_demand_merged_model_llama3/"]
+    vLLM --> SFT
   end
 
-  CLI -- "MCP stdio (권장)\nClientSession over stdio" --> MCP_PURE
-  CLI -- "MCP HTTP\nPOST /tools/*" --> MCP_HTTP
+  CLI -- "1. --mcp-mode stdio (권장)\nsubprocess 자동 실행" --> MCP_PURE
+  CLI -. "1. --mcp-mode http\nPOST /tools/*" .-> MCP_HTTP
 
   MCP_PURE --> Tools
   MCP_HTTP --> Tools
   Tools --> DB
   Tools --> Models
 
-  CLI -- "POST /v1/completions\n(optional: --llm-url)" --> vLLM
-  vLLM --> SFT
+  CLI -- "2. --llm-url (선택)\nPOST /v1/completions" --> vLLM
 
-  CLI --> Output["report_agent/reports/\n- report_YYYY_MM_*_*.md\n- charts/*.png"]
+  CLI --> Output["reports/\n- report_*.md\n- charts/*.png"]
+
+  style MCP_PURE fill:#90EE90
+  style vLLM fill:#FFE4B5
 ```
 
 ### 1.2 보고서 생성 시퀀스 (정확한 실행 순서)
@@ -57,33 +64,53 @@ flowchart LR
 sequenceDiagram
   participant U as User
   participant CLI as generate_report.py
-  participant MCP as MCP (HTTP or stdio)
+  participant MCP as MCP Server (HTTP or stdio)
+  participant Tools as tools.py (CombinedTools/ChartTools)
   participant DB as demand.db
+  participant Models as LSTM/ARIMA Models
   participant LLM as vLLM (:8000)
   participant FS as filesystem (reports/)
 
-  U->>CLI: run CLI args
+  U->>CLI: run CLI args (--year, --month, --mcp-mode, --llm-url)
+
+  Note over CLI,Tools: Step 1: 데이터 조회
   CLI->>MCP: get_report_data(year, month)
-  MCP->>DB: SELECT demand/weather
-  DB-->>MCP: rows
-  MCP-->>CLI: summary + weekly + historical + weather + monthly_forecast
+  MCP->>Tools: CombinedTools.get_report_data()
+  Tools->>DB: SELECT demand/weather
+  DB-->>Tools: rows
+  Tools-->>MCP: summary + weekly + historical + weather + monthly_forecast
+  MCP-->>CLI: JSON response
 
+  Note over CLI,Models: Step 2: 주차별 예측
   CLI->>MCP: forecast_weekly_demand(year, month, model, include_next_month)
-  MCP-->>CLI: {model, forecasts[], weeks_count}
+  MCP->>Tools: ForecastTools.forecast_weekly()
+  Tools->>DB: SELECT historical data (12주)
+  Tools->>Models: LSTM inference (*.pth)
+  Models-->>Tools: predictions
+  Tools-->>MCP: {model, forecasts[], weeks_count}
+  MCP-->>CLI: JSON response
 
+  Note over CLI,FS: Step 3: 차트 생성
   CLI->>MCP: generate_yearly_monthly_chart(...)
-  MCP-->>CLI: (HTTP: filepath) or (stdio: image_base64)
+  MCP->>Tools: ChartTools.generate_yearly_monthly_chart()
+  Tools->>DB: SELECT yearly data
+  Tools-->>MCP: (HTTP: filepath) or (stdio: image_base64)
+  MCP-->>CLI: chart response
   CLI->>FS: write charts/*.png (if base64)
 
+  Note over CLI: Step 4: 프롬프트 생성
   CLI->>CLI: build_report_prompt(data, forecast)
 
+  Note over CLI,LLM: Step 5: LLM 호출 (선택)
   alt --llm-url provided
     CLI->>LLM: POST /v1/completions (prompt)
     LLM-->>CLI: raw text
-    CLI->>CLI: remove_repetitions / apply_table_fixes / insert_chart_after_section2
-    CLI->>FS: save report_*_llm_mcp_*.md
+    CLI->>CLI: remove_repetitions()
+    CLI->>CLI: apply_table_fixes()
+    CLI->>CLI: insert_chart_after_section2()
+    CLI->>FS: save report_*_llm_*.md
   else no --llm-url
-    CLI->>FS: save report_*_prompt_mcp_*.md
+    CLI->>FS: save report_*_prompt_*.md (프롬프트만 저장)
   end
 ```
 
@@ -215,16 +242,16 @@ python generate_report.py --year YYYY --month M [--mcp-mode http|stdio] [--mcp-u
   - `WeatherTools`: `weather_1hour` 기반 월간 요약/과거동월 기상
   - `ForecastTools`: ARIMA/HW/LSTM/Ensemble 예측 + 월별 예측(`monthly_forecast`)
     - 주차별 LSTM 모델/스케일러 로드:
-      - 4주: `best_direct_lstm_full_weekly_max_h4_win12.pth` + `scalers_weekly_max_h4_win12.pkl`
-      - 8주: `best_direct_lstm_full_weekly_max_h8_win12.pth` + `scalers_weekly_max_h8_win12.pkl`
-    - 월별 LSTM(평균/피크): `best_many2one_lstm_state_monthly_*.pth` + `scalers_monthly_*.pkl`
+      - 4주: `artifacts/models/best_direct_lstm_full_weekly_max_h4_win12.pth` + `artifacts/scalers/scalers_weekly_max_h4_win12.pkl`
+      - 8주: `artifacts/models/best_direct_lstm_full_weekly_max_h8_win12.pth` + `artifacts/scalers/scalers_weekly_max_h8_win12.pkl`
+    - 월별 LSTM(평균/피크): `artifacts/models/best_many2one_lstm_state_monthly_*.pth` + `artifacts/scalers/scalers_monthly_*.pkl`
   - `ChartTools`: matplotlib로 PNG 생성 (HTTP는 파일 경로 반환, Pure MCP는 base64 반환 가능)
   - `CombinedTools`: 보고서에 필요한 데이터 패키징(`get_report_data`)
 
 ### 5.5 LLM 서버 (vLLM)
 
 - `serve_vllm.py`
-  - `power_demand_merged_model/`을 OpenAI 호환 API로 서빙합니다.
+  - `power_demand_merged_model_llama3/`을 OpenAI 호환 API로 서빙합니다.
   - `generate_report.py`는 기본적으로 `POST /v1/completions`로 호출합니다.
 
 ---
@@ -283,12 +310,12 @@ report_agent/reports/
 ### 8.1 필수 파일/폴더
 
 - DB: `report_agent/demand_data/demand.db`
-- vLLM 모델: `power_demand_merged_model/`
-- 예측 모델/스케일러(레포 루트):
-  - `best_direct_lstm_full_weekly_max_h4_win12.pth`, `scalers_weekly_max_h4_win12.pkl`
-  - `best_direct_lstm_full_weekly_max_h8_win12.pth`, `scalers_weekly_max_h8_win12.pkl`
-  - `best_many2one_lstm_state_monthly_mean_win12.pth`, `scalers_monthly_mean.pkl`
-  - `best_many2one_lstm_state_monthly_peak_win12.pth`, `scalers_monthly_peak.pkl`
+- vLLM 모델: `power_demand_merged_model_llama3/`
+- 예측 모델/스케일러(아티팩트 폴더):
+  - `artifacts/models/best_direct_lstm_full_weekly_max_h4_win12.pth`, `artifacts/scalers/scalers_weekly_max_h4_win12.pkl`
+  - `artifacts/models/best_direct_lstm_full_weekly_max_h8_win12.pth`, `artifacts/scalers/scalers_weekly_max_h8_win12.pkl`
+  - `artifacts/models/best_many2one_lstm_state_monthly_mean_win12.pth`, `artifacts/scalers/scalers_monthly_mean.pkl`
+  - `artifacts/models/best_many2one_lstm_state_monthly_peak_win12.pth`, `artifacts/scalers/scalers_monthly_peak.pkl`
 
 ### 8.2 Python 패키지(주요)
 
@@ -309,6 +336,6 @@ report_agent/reports/
 |---|---|
 | MCP 서버 연결 실패(HTTP) | `curl http://localhost:8001/health`, 포트 충돌, `--mcp-url` |
 | Pure MCP stdio 실패 | `mcp` 패키지 설치, `report_agent/mcp_server/mcp_pure_server.py` 실행 가능 여부 |
-| vLLM 호출 실패 | `--llm-url` 정확도, 8000 포트, GPU 메모리, `power_demand_merged_model/` 경로 |
-| 예측 실패/빈 값 | `demand.db`에 과거 데이터 충분한지, 루트의 `.pth/.pkl` 존재 여부 |
+| vLLM 호출 실패 | `--llm-url` 정확도, 8000 포트, GPU 메모리, `power_demand_merged_model_llama3/` 경로 |
+| 예측 실패/빈 값 | `demand.db`에 과거 데이터 충분한지, `artifacts/models`/`artifacts/scalers` 존재 여부 |
 | 차트 생성 실패 | `matplotlib` 설치, `report_agent/reports/` 쓰기 권한, 데이터 유무 |
