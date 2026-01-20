@@ -48,6 +48,7 @@ def build_report_prompt(
     historical = data.get("historical", [])
     historical_weather = data.get("historical_weather", {})
     monthly_forecast = data.get("monthly_forecast", {}) or {}
+    weather_forecast = data.get("weather_forecast", {}) or {}
     forecast_data = forecast.get("forecasts", []) if forecast else []
 
     year = summary.get("year", 0)
@@ -57,7 +58,12 @@ def build_report_prompt(
     next_month = 1 if month == 12 else month + 1
     next_period_label = f"{next_month}월"
 
-    # 현재 월 기상 데이터
+    # 기상 예측 데이터 (LSTM 기반)
+    temp_pred = weather_forecast.get("temp_mean_pred")
+    humidity_pred = weather_forecast.get("humidity_mean_pred")
+    weather_insight = weather_forecast.get("insight")
+
+    # 현재 월 기상 데이터 (fallback)
     avg_temp = weather.get("temperature_avg", 0) or 0 if weather and not weather.get("error") else 0
     max_temp = weather.get("temperature_max", 0) or 0 if weather and not weather.get("error") else 0
     min_temp = weather.get("temperature_min", 0) or 0 if weather and not weather.get("error") else 0
@@ -182,11 +188,32 @@ def build_report_prompt(
         weekly_table = "(주별 데이터 미제공)"
 
     # 기상 데이터 유무에 따라 섹션 구성
-    # 현재 월 기상 데이터 또는 과거 동월 기상 데이터가 있으면 기상전망 섹션 생성
+    # 우선순위: 1) LSTM 예측값 2) 현재 월 데이터 3) 과거 동월 데이터
+    has_weather_prediction = temp_pred is not None
     has_current_weather = weather_temp_text != "(값 미제공)"
     has_historical_weather = hist_weather_avg_temp is not None
 
-    if has_current_weather:
+    if has_weather_prediction:
+        # LSTM 예측값이 있는 경우 (가장 우선)
+        pred_temp_text = f"예측 평균 기온: {temp_pred}°C"
+        pred_humidity_text = f"예측 평균 습도: {humidity_pred}%" if humidity_pred else ""
+        insight_text = weather_insight if weather_insight else ""
+
+        weather_section = f"""### 기상 전망 (LSTM 예측 기반)
+- {pred_temp_text}
+{f"- {pred_humidity_text}" if pred_humidity_text else ""}
+{f"- 분석: {insight_text}" if insight_text else ""}
+
+"""
+        weather_instruction = f"""# 1. 기상전망
+- 위 "기상 전망 (LSTM 예측 기반)" 데이터를 반드시 참고하여 작성
+- 예측 기온({temp_pred}°C){"과 습도(" + str(humidity_pred) + "%)" if humidity_pred else ""}를 언급
+- 제공된 분석 내용을 바탕으로 전력수요에 미치는 영향 설명
+- 기존 인사이트: {insight_text if insight_text else "기온에 따른 냉난방 수요 변화 예상"}
+
+# 2. 과거 전력수요 추이"""
+        forecast_section_num = "3"
+    elif has_current_weather:
         # 현재 월 기상 데이터가 있는 경우
         weather_section = f"""### 기상 데이터
 - 기온: {weather_temp_text}
